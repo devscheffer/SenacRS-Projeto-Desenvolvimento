@@ -3,3 +3,4 @@
 ## Integrantes
 
 - Gerson Scheffer
+- Cassiano Trainini
