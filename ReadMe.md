@@ -1,10 +1,11 @@
-# App: Mecânico Virtual
+# App: Herbie-21
 
 ## Integrantes
 
+- Cassiano
 - Gerson Scheffer
 - Jonatan Goulart Maciel
-- Cassiano
+- Leonardo Soares Duarte
 
 ## Visão de Produto
 
