@@ -1,14 +1,4 @@
-# App: Herbie-21
-
-## Integrantes
-
-- Cassiano
-- Gerson Scheffer
-- Gian Lucas
-- Jonatan Goulart Maciel
-- Leonardo Soares Duarte
-
-## Visão de Produto
+# Visão de Produto
 
 **Para** proprietário de automóveis
 
@@ -23,4 +13,3 @@
 **Diferentemente** de depender de anotações ou planilhas
 
 **Nosso** produto permite gerenciar as informações sobre condições do seu veiculo diretamente na tela do aplicativo.
->>>>>>> bae750dc395c47aaf810a389329bdddde07f14b7
