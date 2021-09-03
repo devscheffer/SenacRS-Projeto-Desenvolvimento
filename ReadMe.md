@@ -23,4 +23,4 @@
 **Diferentemente** de depender de anotações ou planilhas
 
 **Nosso** produto permite gerenciar as informações sobre condições do seu veiculo diretamente na tela do aplicativo.
->>>>>>> bae750dc395c47aaf810a389329bdddde07f14b7
+
