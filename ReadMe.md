@@ -4,6 +4,7 @@
 
 - Cassiano
 - Gerson Scheffer
+- Gian Lucas
 - Jonatan Goulart Maciel
 - Leonardo Soares Duarte
 
