@@ -1,6 +1,6 @@
 # App: Herbie-21
 
-## Integrantes
+## Integrantes Grupo 3
 
 - Cassiano
 - Gerson Scheffer
