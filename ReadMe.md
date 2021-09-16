@@ -2,9 +2,9 @@
 
 ## Integrantes Grupo 3
 
-- Cassiano
+- Cassiano (front-end)
 - Gerson Scheffer (back-end)
-- Gian Lucas
+- Gian Lucas 
 - Jonatan Goulart Maciel
 - Leonardo Soares Duarte
 
