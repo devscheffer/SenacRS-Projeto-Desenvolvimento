@@ -2,11 +2,11 @@
 
 ## Integrantes Grupo 3
 
-- Cassiano
+- Cassiano (front-end)
 - Gerson Scheffer (back-end)
-- Gian Lucas
-- Jonatan Goulart Maciel
-- Leonardo Soares Duarte
+- Gian Lucas (front-end)
+- Jonatan Goulart Maciel (front-end)
+- Leonardo Soares Duarte (front-end)
 
 ## Visão de Produto
 
