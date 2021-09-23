@@ -18,6 +18,13 @@ const routes: Routes = [
           title: 'Menu Principal'
         },
         loadChildren: () => import('./modules/menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+      },
+      {
+        path: 'cadastra-pressao-pneu',
+        data: {
+          title: 'Cadastro pressao pneu'
+        },
+        loadChildren: () => import('./modules/pneu/pneu.module').then(m => m.PneuModule)
       }
     ]
   }
