@@ -12,6 +12,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PneuModule } from './modules/pneu/pneu.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     FontAwesomeModule,
     MenuPrincipalModule,
     CollapseModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    PneuModule
   ],
   exports: [HeaderComponent],
   providers: [],

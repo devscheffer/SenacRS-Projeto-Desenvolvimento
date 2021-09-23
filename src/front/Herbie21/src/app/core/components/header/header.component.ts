@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
 
   paginas = [
     {
-      nome: 'Página 1',
-      rota: 'pagina1',
+      nome: 'Cadastra pressão do pneu',
+      rota: 'cadastra-pressao-pneu',
     },
     {
       nome: 'Página 2',
