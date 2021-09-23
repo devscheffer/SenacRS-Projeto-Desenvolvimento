@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="menu-principal.component.scss">
-    <title>Cadastro Pneu</title>
-</head>
-<body class="body1">
-    <div class="container">
+    <div class="container fundo">
     <form>       
         <div class="form-group">
           <label class="label-cad-pneu" >ID Pneu: </label>
           <input class="form-control form-control-lg" type="text" placeholder="Digite o ID do pneu.">
         </div>
         <div class="form-group">
-            <label class="label-cad-pneu">Posição do pneu no carro: </label>
-            <input class="form-control form-control-lg" type="text" placeholder="Digite a posição onde o pneu será colocado.">
+            <label class="label-cad-pneu">Posição do pneu no carro: </label><br>
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Selecione a posição</option>
+                <option value="1">Um</option>
+                <option value="2">Dois</option>
+                <option value="3">Três</option>
+                <option value="4">Quatro</option>
+              </select>
         </div>
         <div class="form-group">
             <label class="label-cad-pneu">Pressão do pneu: </label>
-            <input class="form-control form-control-lg" type="text" placeholder="Digite a pressão do pneu em libras.">
+            <input class="form-control form-control-lg" type="number" placeholder="Digite a pressão do pneu em libras.">
         </div>
         <div class="form-group">
             <label class="label-cad-pneu">Data de compra: </label>
@@ -41,5 +36,3 @@
     </form>
     </div>  
 
-</body>
-</html>
