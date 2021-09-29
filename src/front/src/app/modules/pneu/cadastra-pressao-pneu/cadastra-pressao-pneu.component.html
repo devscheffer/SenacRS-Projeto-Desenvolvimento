@@ -1,0 +1,31 @@
+<header>
+  <h2 class="titulo">{{title}}</h2>
+  <hr class="linha">
+</header>
+
+<div class="pt-3 container">
+  <form [formGroup]="cadastraPneuForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label class="label-cad-pneu">Posição do pneu no carro: </label><br>
+      <select class="form-select" formControlName="posicao">
+          <option disabled selected>Selecione a posição...</option>
+          <option [value]="opcao.value" *ngFor="let opcao of opcoes">{{opcao.name}}</option>
+        </select>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Pressão do pneu: </label>
+      <input class="form-control form-control-lg" type="number" formControlName="pressao" placeholder="Digite o valor da pressão">
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Data de Calibragem: </label>
+      <input class="form-control form-control-lg" type="date" formControlName="dataCalibragem">
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Observações: </label>
+      <textarea class="form-control" id="observacoes" rows="3" formControlName="obs"></textarea>
+    </div>
+    <div class="col text-center">
+      <button class="btn btn-primary mb-3" type="submit" [disabled]="cadastraPneuForm.invalid">Salvar</button>
+    </div>
+  </form>
+</div>

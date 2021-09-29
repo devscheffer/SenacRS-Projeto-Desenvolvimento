@@ -1,5 +1,3 @@
-(Figma)[https://www.figma.com/file/ep0oJLSESdIO8IFpB8VyjM/Herbie-21?node-id=0%3A1]
-
 # Herbie21
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
