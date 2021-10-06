@@ -1,3 +1,3 @@
 [submodule "src/back"]
 	path = src/back
-	url = git@github.com:devscheffer/API-herbie-21.git
+	url = https://github.com/devscheffer/API-herbie-21.git

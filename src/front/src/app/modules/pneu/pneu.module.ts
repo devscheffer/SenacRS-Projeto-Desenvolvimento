@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadastraPressaoPneuComponent } from './cadastra-pressao-pneu/cadastra-pressao-pneu.component';
 import { PneuRoutingModule } from './pneu.routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -10,9 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    PneuRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    PneuRoutingModule
   ]
 })
 export class PneuModule { }

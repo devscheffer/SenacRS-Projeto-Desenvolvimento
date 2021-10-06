@@ -16,6 +16,10 @@ export class HeaderComponent implements OnInit {
       nome: 'Cadastra pressão do pneu',
       rota: 'cadastra-pressao-pneu',
     },
+    {
+      nome: 'Página 2',
+      rota: 'pagina2',
+    }
   ]
 
   constructor(private router: Router) { }
@@ -24,6 +28,6 @@ export class HeaderComponent implements OnInit {
 
   direcionar(rota: string) {
     console.log('Redirecionando para página: ' + rota);
-    this.router.navigate([rota])
+    // this.router.navigate([rota])
   }
 }
