@@ -1,5 +1,4 @@
 import { RouterModule } from '@angular/router';
-import { MenuPrincipalModule } from './modules/menu-principal/menu-principal.module';
 import { HomeComponent } from './core/components/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,7 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HeaderComponent } from './core/components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { PneuModule } from './modules/pneu/pneu.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,12 +26,13 @@ import { PneuModule } from './modules/pneu/pneu.module';
     RouterModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
-    MenuPrincipalModule,
     CollapseModule.forRoot(),
     BsDropdownModule.forRoot(),
-    PneuModule
+    HttpClientModule
   ],
-  exports: [HeaderComponent],
+  exports: [
+    HeaderComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
