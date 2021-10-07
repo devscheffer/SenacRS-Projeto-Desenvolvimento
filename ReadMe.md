@@ -25,3 +25,5 @@
 
 **Nosso** produto permite gerenciar as informações sobre condições do seu veiculo diretamente na tela do aplicativo.
 
+## Meta Sprint 3:
+ Implementar telas de cadastro e visualização de pressão do pneu, combustível e manutenção.
