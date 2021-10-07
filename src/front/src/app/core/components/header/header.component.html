@@ -1,6 +1,6 @@
 <header>
   <div class="container">
-    <div class="row mt-3">
+    <div class="row p-3">
       <div class="col-3 text-center botao">
         <button type="button" class="btn btn-secondary" (click)="isCollapsed = !isCollapsed"
           [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
@@ -8,13 +8,13 @@
         </button>
       </div>
       <div class="col-9">
-        <img class="imagem" src="../../../assets/herbie.png">
+        <a [routerLink]="['']"><img class="imagem" src="../../../assets/herbie.png"></a>
       </div>
     </div>
   </div>
-  <hr>
+  <hr class="linha">
   <div id="collapseBasic" [collapse]="isCollapsed" *ngFor="let pagina of paginas">
-    <div class="well well-lg card card-block card-header" (click)="direcionar(pagina.rota)">
+    <div class="well well-lg card card-block card-header menu" (click)="direcionar(pagina.rota)">
       {{ pagina.nome }}
     </div>
   </div>
