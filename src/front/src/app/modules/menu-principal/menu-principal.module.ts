@@ -10,8 +10,7 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule,
-    MenuPrincipalRoutingModule,
-    SharedModule
+    MenuPrincipalRoutingModule
   ]
 })
 export class MenuPrincipalModule { }

@@ -6,7 +6,6 @@
   background-color: white !important;
 }
 
-
 .dataTables_wrapper .dataTables_length {
   display: inline-block;
 }
@@ -21,4 +20,12 @@ a.first { display: none !important; }
 
 .dataTables_wrapper .dataTables_filter input, select {
   color: white;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.796);
 }

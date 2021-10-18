@@ -3,7 +3,7 @@
   <hr class="linha">
 </header>
 
-<div class="pt-3 container">
+<div class="pt-3 mb-4 container">
   <form [formGroup]="cadastraPneuForm" (ngSubmit)="submit()">
     <div class="form-group">
       <label class="label-cad-pneu">Posição do pneu no carro: </label><br>
@@ -25,7 +25,7 @@
       <textarea class="form-control" id="observacoes" rows="3" formControlName="obs"></textarea>
     </div>
     <div class="col text-center">
-      <button class="btn btn-primary mb-3" type="submit" [disabled]="cadastraPneuForm.invalid">Salvar</button>
+      <button class="btn btn-primary mb-3" type="submit" [disabled]="cadastraPneuForm.invalid">Cadastrar</button>
     </div>
   </form>
 </div>

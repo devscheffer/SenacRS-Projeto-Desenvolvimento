@@ -1,5 +1,27 @@
-label.label-cad-pneu {
-  color: rgb(255, 255, 255);
+label.label-cad-manu{
+  color:rgb(255, 255, 255);
+}
+
+.titulo {
+  font-size: 1rem;
+  color: #EEEEEE;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.linha {
+  background-color: #EEEEEE;
+  width: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+input, select {
+  color: #495057;
 }
 
 .btn-primary {
@@ -27,26 +49,4 @@ label.label-cad-pneu {
 
 input[type="date"], input[type="number"] {
   font-size: 1rem;
-}
-
-.titulo {
-  font-size: 1rem;
-  color: #EEEEEE;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.linha {
-  background-color: #EEEEEE;
-  width: 10px;
-}
-
-select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-input, select {
-  color: #495057;
 }
