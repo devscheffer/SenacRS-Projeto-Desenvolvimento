@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { ManutencaoRoutingModule } from './manutencao.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VisualizaManutencaoComponent } from './visualiza-manutencao/visualiza-manutencao.component';
@@ -14,7 +15,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ManutencaoRoutingModule
+    ManutencaoRoutingModule,
+    SharedModule
   ]
 })
 export class ManutencaoModule { }
