@@ -25,6 +25,10 @@ export class HeaderComponent implements OnInit {
       rota: 'manutencao/cadastra',
     },
     {
+      nome: 'Cadastra quilometragem',
+      rota: 'quilometragem/cadastra',
+    },
+    {
       nome: 'Login',
       rota: 'login',
     },

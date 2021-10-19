@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-visualiza-combustivel',
-  templateUrl: './visualiza-combustivel.component.html',
-  styleUrls: ['./visualiza-combustivel.component.scss']
+  selector: 'app-visualiza-quilometragem',
+  templateUrl: './visualiza-quilometragem.component.html',
+  styleUrls: ['./visualiza-quilometragem.component.scss']
 })
-export class VisualizaCombustivelComponent implements OnInit {
+export class VisualizaQuilometragemComponent implements OnInit {
 
   columns: Object[] = [];
   data: Object[] = [];

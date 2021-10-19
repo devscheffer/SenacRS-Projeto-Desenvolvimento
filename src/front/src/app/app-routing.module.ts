@@ -17,11 +17,6 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'menu-principal',
-        pathMatch: 'full'
-      },
-      {
-        path: 'menu-principal',
         data: {
           title: 'Menu Principal'
         },
@@ -47,6 +42,13 @@ const routes: Routes = [
           title: 'Manutenção'
         },
         loadChildren: () => import('./modules/manutencao/manutencao.module').then(m => m.ManutencaoModule)
+      },
+      {
+        path: 'quilometragem',
+        data: {
+          title: 'Quilometragem'
+        },
+        loadChildren: () => import('./modules/quilometragem/quilometragem.module').then(m => m.QuilometragemModule)
       },
     ]
   }

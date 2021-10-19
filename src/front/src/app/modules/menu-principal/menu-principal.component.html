@@ -1,33 +1,33 @@
 <header>
-    <!-- --><h2 class="titulo">Menu Teste</h2>
-    <hr class="linha">
+  <h2 class="titulo">{{title}}</h2>
+  <hr class="linha">
 </header>
 
 <div class="container-menu">
   <div class="row">
-    <div class="col">
+    <div class="col" (click)="direcionaRota('pneu/visualiza')">
       <div class="icon-radius">
-      <img class="icons" src="../../../assets/pressao-do-pneu.png">
+        <img class="icons" src="../../../assets/pressao-do-pneu.png">
       </div>
       <h5>Pressão do Pneu</h5>
     </div>
-    <div class="col">
+    <div class="col" (click)="direcionaRota('combustivel/visualiza')">
       <div class="icon-radius">
-      <img class="icons" src="../../../assets/bomba-de-gasolina.png">
+        <img class="icons" src="../../../assets/bomba-de-gasolina.png">
       </div>
       <h5>Consumo de Combustível</h5>
     </div>
   </div>
   <div class="row">
-    <div class="col">
+    <div class="col" (click)="direcionaRota('manutencao/visualiza')">
       <div class="icon-radius">
-      <img class="icons" src="../../../assets/turbo.png">
+        <img class="icons" src="../../../assets/turbo.png">
       </div>
       <h5>Controle de Manutenção Mecãnico</h5>
     </div>
-    <div class="col">
+    <div class="col" (click)="direcionaRota('quilometragem/visualiza')">
       <div class="icon-radius">
-      <img class="icons" src="../../../assets/car-parts.png">
+        <img class="icons" src="../../../assets/car-parts.png">
       </div>
       <h5>Controle de Quilometragem</h5>
     </div>

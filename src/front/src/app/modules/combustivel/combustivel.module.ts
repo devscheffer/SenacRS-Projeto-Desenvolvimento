@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CombustivelRoutingModule } from './combustivel.routing.module';
 import { VisualizaCombustivelComponent } from './visualiza-combustivel/visualiza-combustivel.component';
@@ -14,7 +15,8 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     CombustivelRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CombustivelModule { }

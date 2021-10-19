@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,8 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPrincipalComponent implements OnInit {
 
-  constructor() { }
+  title: string = '';
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.title = route.snapshot.data['title'];
+  }
 
   ngOnInit(): void {}
+
+  direcionaRota(rota: string) {
+    this.router.navigate([rota]);
+  }
 
 }
