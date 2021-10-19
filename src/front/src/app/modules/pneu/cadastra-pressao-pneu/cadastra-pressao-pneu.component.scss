@@ -41,9 +41,12 @@ input[type="date"], input[type="number"] {
   width: 10px;
 }
 
-
 select {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
+}
+
+input, select {
+  color: #495057;
 }

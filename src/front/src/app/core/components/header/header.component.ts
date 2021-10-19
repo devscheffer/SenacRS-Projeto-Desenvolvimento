@@ -14,7 +14,19 @@ export class HeaderComponent implements OnInit {
   paginas = [
     {
       nome: 'Cadastra pressão do pneu',
-      rota: 'cadastra-pressao-pneu',
+      rota: 'pneu/cadastra',
+    },
+    {
+      nome: 'Cadastra combustivel',
+      rota: 'combustivel/cadastra',
+    },
+    {
+      nome: 'Cadastra manutenção',
+      rota: 'manutencao/cadastra',
+    },
+    {
+      nome: 'Login',
+      rota: 'login',
     },
   ]
 
@@ -24,6 +36,7 @@ export class HeaderComponent implements OnInit {
 
   direcionar(rota: string) {
     console.log('Redirecionando para página: ' + rota);
+    this.isCollapsed = true;
     this.router.navigate([rota])
   }
 }

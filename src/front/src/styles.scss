@@ -1,3 +1,31 @@
 
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background-color: white !important;
+}
+
+.dataTables_wrapper .dataTables_length {
+  display: inline-block;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  color: white !important;
+  display: inline-block;
+}
+
+a.last { display: none !important; }
+a.first { display: none !important; }
+
+.dataTables_wrapper .dataTables_filter input, select {
+  color: white;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.796);
+}
