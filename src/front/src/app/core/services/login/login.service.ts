@@ -1,7 +1,7 @@
+import { UserModel } from './../../models/login.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from './login.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,10 @@ export class LoginService {
     this.path = `${this.uri}${this.route}`;
   }
 
-  signup(user: User): Observable<User> {
-    return this.http.post<User>(`${this.path}/user/signup`, user);
+  signup(user: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.path}/user/signup`, user);
   }
-  login(user: User): Observable<User> {
-    return this.http.post<User>(`${this.path}/user/login`, user);
+  login(user: UserModel): Observable<UserModel> {
+    return this.http.post<UserModel>(`${this.path}/user/login`, user);
   }
 }

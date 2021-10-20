@@ -1,5 +1,5 @@
+import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './core/components/home/home.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -7,30 +7,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HeaderComponent } from './core/components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     BrowserAnimationsModule,
-    FontAwesomeModule,
-    CollapseModule.forRoot(),
-    BsDropdownModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    CoreModule
   ],
-  exports: [
-    HeaderComponent
-  ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })

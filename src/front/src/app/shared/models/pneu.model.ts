@@ -1,7 +1,6 @@
-export interface Pneu {
+export interface PneuModel {
   position: string;
   pressure: number;
   observation: string;
-  // user: User;
   date: string;
 }
