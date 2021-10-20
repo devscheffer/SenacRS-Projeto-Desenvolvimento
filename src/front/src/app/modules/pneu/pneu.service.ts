@@ -16,8 +16,8 @@ export class PneuService {
 
   constructor(private http: HttpClient) {
     this.uri = 'https://herbie-21.herokuapp.com';
-    this.route = 'pressao';
-    this.path = `${this.uri}/${this.route}`;
+    this.route = '/pressao';
+    this.path = `${this.uri}${this.route}`;
   }
 
   create(pneu: Pneu): Observable<Pneu> {
