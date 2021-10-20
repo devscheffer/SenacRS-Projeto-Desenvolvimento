@@ -1,8 +1,8 @@
+import { PneuModel } from './../../shared/models/pneu.model';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pneu } from './pneu.interface';
 
 const url = environment.apiUrl;
 
@@ -20,19 +20,19 @@ export class PneuService {
     this.path = `${this.uri}${this.route}`;
   }
 
-  create(pneu: Pneu): Observable<Pneu> {
-    return this.http.post<Pneu>(`${this.path}/`, pneu);
+  create(pneu: PneuModel): Observable<PneuModel> {
+    return this.http.post<PneuModel>(`${this.path}/`, pneu);
   }
-  read_all(): Observable<Pneu[]> {
-    return this.http.get<Pneu[]>(`${this.path}/`);
+  read_all(): Observable<PneuModel[]> {
+    return this.http.get<PneuModel[]>(`${this.path}/`);
   }
-  read_id(id: number): Observable<Pneu> {
-    return this.http.get<Pneu>(`${this.path}/${id}`);
+  read_id(id: number): Observable<PneuModel> {
+    return this.http.get<PneuModel>(`${this.path}/${id}`);
   }
-  update(id: number, pneu: Pneu): Observable<any> {
+  update(id: number, pneu: PneuModel): Observable<any> {
     return this.http.patch(`${url}/${id}`, pneu);
   }
-  delete(id: number): Observable<Pneu> {
-    return this.http.delete<Pneu>(`${url}/${id}`);
+  delete(id: number): Observable<PneuModel> {
+    return this.http.delete<PneuModel>(`${url}/${id}`);
   }
 }

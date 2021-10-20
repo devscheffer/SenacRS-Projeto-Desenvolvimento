@@ -6,7 +6,7 @@ import { HomeComponent } from './core/components/home/home.component';
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./core/components/login/login.module').then(m => m.LoginModule),
+    component: LoginComponent,
     data: {
       title: 'Tela de Login'
     }
@@ -17,39 +17,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        data: {
-          title: 'Menu Principal'
-        },
-        loadChildren: () => import('./modules/menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
-      },
-      {
-        path: 'pneu',
-        data: {
-          title: 'Pneu'
-        },
-        loadChildren: () => import('./modules/pneu/pneu.module').then(m => m.PneuModule)
-      },
-      {
-        path: 'combustivel',
-        data: {
-          title: 'Combustivel'
-        },
-        loadChildren: () => import('./modules/combustivel/combustivel.module').then(m => m.CombustivelModule)
-      },
-      {
-        path: 'manutencao',
-        data: {
-          title: 'Manutenção'
-        },
-        loadChildren: () => import('./modules/manutencao/manutencao.module').then(m => m.ManutencaoModule)
-      },
-      {
-        path: 'quilometragem',
-        data: {
-          title: 'Quilometragem'
-        },
-        loadChildren: () => import('./modules/quilometragem/quilometragem.module').then(m => m.QuilometragemModule)
-      },
+        loadChildren: () => import('./modules/modules.module').then(m => m.ModulesModule)
+      }
     ]
   }
 ];

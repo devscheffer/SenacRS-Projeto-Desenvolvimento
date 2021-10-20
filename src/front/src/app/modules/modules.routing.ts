@@ -1,0 +1,49 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes : Routes = [
+  {
+    path: '',
+    data: {
+      title: 'Menu Principal'
+    },
+    loadChildren: () => import('./menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+  },
+  {
+    path: 'pneu',
+    data: {
+      title: 'Pneu'
+    },
+    loadChildren: () => import('./pneu/pneu.module').then(m => m.PneuModule)
+  },
+  {
+    path: 'combustivel',
+    data: {
+      title: 'Combustivel'
+    },
+    loadChildren: () => import('./combustivel/combustivel.module').then(m => m.CombustivelModule)
+  },
+  {
+    path: 'manutencao',
+    data: {
+      title: 'Manutenção'
+    },
+    loadChildren: () => import('./manutencao/manutencao.module').then(m => m.ManutencaoModule)
+  },
+  {
+    path: 'quilometragem',
+    data: {
+      title: 'Quilometragem'
+    },
+    loadChildren: () => import('./quilometragem/quilometragem.module').then(m => m.QuilometragemModule)
+  },
+]
+
+@NgModule({
+	imports: [ RouterModule.forChild(routes),],
+	exports: [ RouterModule ]
+})
+
+export class ModulesRoutingModule {
+
+}
