@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-visualiza-manutencao',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizaManutencaoComponent implements OnInit {
 
+  title: string = '';
   columns: Object[] = [];
   data: Object[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute
+  ) {
+    this.title = route.snapshot.data['title'];
+  }
 
   ngOnInit(): void {
     this.columns = [
