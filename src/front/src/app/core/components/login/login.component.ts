@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
 
   submit() {
     console.log(this.loginForm.value);
-    this.router.navigate([''])
+    // this.router.navigate([''])
+    this.loginService.authenticate(this.loginForm.value)
+        .subscribe(retorno =>{
+            console.log(retorno);
+            // this.router.navigate([''])
+        })
+
   }
 }
