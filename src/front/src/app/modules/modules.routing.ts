@@ -37,6 +37,20 @@ const routes : Routes = [
     },
     loadChildren: () => import('./quilometragem/quilometragem.module').then(m => m.QuilometragemModule)
   },
+  {
+    path: 'manual',
+    data: {
+      title: 'Manual'
+    },
+    loadChildren: () => import('./manual/manual.module').then(m => m.ManualModule)
+  },
+  {
+    path: 'dashboard',
+    data: {
+      title: 'Dashboard'
+    },
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+  },
 ]
 
 @NgModule({
