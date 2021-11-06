@@ -1,4 +1,4 @@
-point;service;km;obs;place;date;price;id_proof_payment
+category;service;km;obs;place;date;price;id_proof_payment
 Suspencao;suspencao completa;45120;novos;Mecanica Confia;05/06/2019;1.900,00;1
 Motor;oleo e filtro;55100;Castrol;Mecanica Confia;05/06/2019;240;1
 Suspencao;geometria e balanceamento;55100;;Mecanica Confia;10/12/2019;120;2
