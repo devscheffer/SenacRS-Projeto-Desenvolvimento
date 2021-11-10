@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from './services/login/request.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     BsDropdownModule.forRoot(),
     FontAwesomeModule
   ],
-  exports: [HeaderComponent]
+  exports: [HeaderComponent],
+  providers: [
+    {
+        provide: HTTP_INTERCEPTORS,
+        useClass: RequestInterceptor,
+        multi: true
+    }
+]
 })
 export class CoreModule { }
