@@ -1,5 +1,5 @@
 export interface KmModel {
-  date: Date;
+  date: string;
   km: number;
   observation: string;
 }

@@ -1,3 +1,4 @@
+import { TokenService } from './../../core/services/token/token.service';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,29 +11,27 @@ const url = environment.apiUrl;
   providedIn: 'root',
 })
 export class PneuService {
-  uri: string;
-  route: string;
-  path: string;
 
-  constructor(private http: HttpClient) {
-    this.uri = 'https://herbie-21.herokuapp.com';
-    this.route = '/pressao';
-    this.path = `${this.uri}${this.route}`;
-  }
+  constructor( private http: HttpClient ) {}
 
   create(pneu: PneuModel): Observable<PneuModel> {
-    return this.http.post<PneuModel>(`${this.path}/`, pneu);
+    return this.http.post<PneuModel>(`${url}/pressao`, pneu);
   }
+
   read_all(): Observable<PneuModel[]> {
-    return this.http.get<PneuModel[]>(`${this.path}/`);
+    return this.http.get<PneuModel[]>(`${url}/pressao`);
   }
+
   read_id(id: number): Observable<PneuModel> {
-    return this.http.get<PneuModel>(`${this.path}/${id}`);
+    return this.http.get<PneuModel>(`${url}/pressao/${id}`);
   }
+
   update(id: number, pneu: PneuModel): Observable<any> {
     return this.http.patch(`${url}/${id}`, pneu);
   }
+
   delete(id: number): Observable<PneuModel> {
     return this.http.delete<PneuModel>(`${url}/${id}`);
   }
+
 }

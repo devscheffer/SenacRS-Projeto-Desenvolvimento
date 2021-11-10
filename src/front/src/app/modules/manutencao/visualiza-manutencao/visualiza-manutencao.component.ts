@@ -1,4 +1,7 @@
+import { ManutencaoService } from './../manutencao.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-visualiza-manutencao',
@@ -7,42 +10,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizaManutencaoComponent implements OnInit {
 
+  title: string = '';
   columns: Object[] = [];
   data: Object[] = [];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private manutencaoervice: ManutencaoService
+  ) {
+    this.title = route.snapshot.data['title'];
+  }
 
   ngOnInit(): void {
     this.columns = [
       {
-        title: 'ID',
-        data: 'id'
+        title: 'Servico',
+        data: 'service'
       },
       {
-        title: 'Primeiro Nome',
-        data: 'firstName'
+        title: 'Categoria',
+        data: 'category'
       },
       {
-        title: 'Segundo Nome',
-        data: 'lastName'
+        title: 'Data',
+        data: 'date'
       },
+      {
+        title: 'Preço',
+        data: 'price'
+      }
     ]
 
-    this.data = [
-      { "id": 860, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 870, "firstName": "Foo", "lastName": "Whateveryournameis" },
-      { "id": 590, "firstName": "Toto", "lastName": "Titi" },
-      { "id": 803, "firstName": "Luke", "lastName": "Kyle" },
-      { "id": 474, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 476, "firstName": "Zed", "lastName": "Kyle" },
-      { "id": 464, "firstName": "Cartman", "lastName": "Kyle" },
-      { "id": 505, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 308, "firstName": "Louis", "lastName": "Kyle" },
-      { "id": 184, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 411, "firstName": "Luke", "lastName": "Yoda" },
-      { "id": 154, "firstName": "Luke", "lastName": "Moliku" },
-      { "id": 623, "firstName": "Someone First Name", "lastName": "Moliku" }
-    ]
+    this.buscaDados();
+
+  }
+
+  buscaDados() {
+    this.data = [];
+
+    this.manutencaoervice.read_all()
+    .subscribe(res => {
+
+      res.forEach(item => {
+        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.observation };
+        this.data.push(row);
+      });
+
+    });
+
+  }
+
+  formataData(data: string) {
+    return moment(data).format('DD/MM/YYYY');
   }
 
 }

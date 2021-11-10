@@ -29,18 +29,17 @@ export class LoginComponent implements OnInit {
   initForm() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required]],
-      senha: ['', [Validators.required]]
+      password: ['', [Validators.required]]
     })
   }
 
   submit() {
     console.log(this.loginForm.value);
-    // this.router.navigate([''])
-    this.loginService.authenticate(this.loginForm.value)
-        .subscribe(retorno =>{
-            console.log(retorno);
-            // this.router.navigate([''])
-        })
+    this.loginService.login(this.loginForm.value)
+    .subscribe(retorno =>{
+          // console.log(retorno);
+          this.router.navigate([''])
+        });
 
   }
 }
