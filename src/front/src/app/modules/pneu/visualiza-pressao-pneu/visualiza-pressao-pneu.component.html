@@ -3,6 +3,10 @@
   <hr class="linha">
 </header>
 
+<a class="botao" routerLink="/pneu/cadastra">
+  <fa-icon [icon]="icon"></fa-icon>
+</a>
+
 <div class="mb-4">
-  <app-datatable [columns]="columns" [data]="data" class="mt-2"></app-datatable>
+  <app-datatable *ngIf="data.length > 0" [columns]="columns" [data]="data" class="mt-2"></app-datatable>
 </div>

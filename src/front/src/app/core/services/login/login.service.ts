@@ -18,18 +18,21 @@ export class LoginService {
     this.path = `${this.uri}${this.route}`;
   }
 
-  signup(user: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.path}/user/signup`, user);
-  }
-  login(user: UserModel): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.path}/user/login`, user);
-  }
-  authenticate(user: UserModel) {
+  // signup(user: UserModel): Observable<UserModel> {
+  //   return this.http.post<UserModel>(`${this.path}/user/signup`, user);
+  // }
+
+  // login(user: UserModel): Observable<UserModel> {
+  //   return this.http.post<UserModel>(`${this.path}/user/login`, user);
+  // }
+
+  login(user: UserModel) {
     return this.http
-      .post(this.uri + '/user/signup', user, { observe: 'response' })
+      .post(this.uri + '/user/login', user, { observe: 'response' })
       .pipe(
         tap((res) => {
-          const authToken: any = res.headers.get('x-access-token');
+          let authToken: any = res;
+          authToken = authToken.body.token;
           this.tokenService.setToken(authToken);
           console.log(`authenticated with token ${authToken}`);
         })

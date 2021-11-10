@@ -1,19 +1,29 @@
+import { CombustivelService } from './../combustivel.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-visualiza-combustivel',
   templateUrl: './visualiza-combustivel.component.html',
-  styleUrls: ['./visualiza-combustivel.component.scss']
+  styleUrls: ['./visualiza-combustivel.component.scss'],
 })
 export class VisualizaCombustivelComponent implements OnInit {
-
   title: string = '';
   columns: Object[] = [];
   data: Object[] = [];
 
+  tiposCombustiveis = [
+    { name: 'Comum', value: 'gasolina comum' },
+    { name: 'Aditivada', value: 'gasolina aditivada' },
+    { name: 'Etanol', value: 'etanol' },
+    { name: 'GNV', value: 'GNV' },
+    { name: 'Diesel', value: 'Diesel' },
+  ];
+
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private combustivelService: CombustivelService
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -21,34 +31,56 @@ export class VisualizaCombustivelComponent implements OnInit {
   ngOnInit(): void {
     this.columns = [
       {
-        title: 'ID',
-        data: 'id'
+        title: 'km',
+        data: 'km',
       },
       {
-        title: 'Primeiro Nome',
-        data: 'firstName'
+        title: 'Tipo',
+        data: 'gas_type',
       },
       {
-        title: 'Segundo Nome',
-        data: 'lastName'
+        title: 'Volume',
+        data: 'volume',
       },
-    ]
+      {
+        title: 'Data',
+        data: 'date',
+      },
+      {
+        title: 'Preço',
+        data: 'price',
+      },
+    ];
 
-    this.data = [
-      { "id": 860, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 870, "firstName": "Foo", "lastName": "Whateveryournameis" },
-      { "id": 590, "firstName": "Toto", "lastName": "Titi" },
-      { "id": 803, "firstName": "Luke", "lastName": "Kyle" },
-      { "id": 474, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 476, "firstName": "Zed", "lastName": "Kyle" },
-      { "id": 464, "firstName": "Cartman", "lastName": "Kyle" },
-      { "id": 505, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 308, "firstName": "Louis", "lastName": "Kyle" },
-      { "id": 184, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 411, "firstName": "Luke", "lastName": "Yoda" },
-      { "id": 154, "firstName": "Luke", "lastName": "Moliku" },
-      { "id": 623, "firstName": "Someone First Name", "lastName": "Moliku" }
-    ]
+    this.buscaDados();
   }
 
+  buscaDados() {
+    this.data = [];
+
+    this.combustivelService.read_all().subscribe((res) => {
+      res.forEach((item) => {
+        let row = {
+          km: item.km,
+          gas_type: this.validaPosicao(item.gas_type),
+          volume: item.volume,
+          date: this.formataData(item.date),
+          price: item.price,
+        };
+
+        this.data.push(row);
+      });
+    });
+  }
+
+  formataData(data: string) {
+    return moment(data).format('DD/MM/YYYY');
+  }
+
+  validaPosicao(tipoEscolhido: string) {
+    let tipo = this.tiposCombustiveis.filter(
+      (tipo) => tipo.value == tipoEscolhido
+    );
+    return tipo[0].name;
+  }
 }

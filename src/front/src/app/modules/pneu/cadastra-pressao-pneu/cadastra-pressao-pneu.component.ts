@@ -1,27 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { PneuService } from '../pneu.service';
 
 @Component({
   selector: 'app-cadastra-pressao-pneu',
   templateUrl: './cadastra-pressao-pneu.component.html',
-  styleUrls: ['./cadastra-pressao-pneu.component.scss']
+  styleUrls: ['./cadastra-pressao-pneu.component.scss'],
 })
 export class CadastraPressaoPneuComponent implements OnInit {
-
   title: string = '';
   cadastraPneuForm!: FormGroup;
 
   opcoes = [
-    { name: 'Frente Esquerda', value: 'FE' },
-    { name: 'Frente Direita', value: 'FD' },
-    { name: 'Traseira Esquerda', value: 'TE' },
-    { name: 'Traseira Direita', value: 'TD' }
-  ]
+    { name: 'Frente Esquerda', value: 'fl' },
+    { name: 'Frente Direita', value: 'fr' },
+    { name: 'Traseira Esquerda', value: 'bl' },
+    { name: 'Traseira Direita', value: 'br' },
+  ];
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private pneuService: PneuService
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -32,15 +33,24 @@ export class CadastraPressaoPneuComponent implements OnInit {
 
   initForm() {
     this.cadastraPneuForm = this.fb.group({
-      posicao: ['Selecione a posição...', [Validators.required]],
-      pressao: ['', [Validators.required]],
-      dataCalibragem: ['', [Validators.required]],
-      obs: ['']
-    })
+      position: ['Selecione a posição...', [Validators.required]],
+      pressure_old: ['', [Validators.required]],
+      pressure_new: ['', [Validators.required]],
+      date: ['', [Validators.required]],
+      observation: [''],
+    });
   }
 
   submit() {
     console.log(this.cadastraPneuForm.value);
-  }
 
+    this.pneuService.create(this.cadastraPneuForm.value).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }

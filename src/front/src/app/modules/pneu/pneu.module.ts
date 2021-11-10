@@ -5,6 +5,7 @@ import { PneuRoutingModule } from './pneu.routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VisualizaPressaoPneuComponent } from './visualiza-pressao-pneu/visualiza-pressao-pneu.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     PneuRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ]
 })
 export class PneuModule { }
