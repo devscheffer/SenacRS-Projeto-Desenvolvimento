@@ -4,7 +4,7 @@ import { QuilometragemService } from './../../quilometragem/quilometragem.servic
 import { CombustivelService } from './../combustivel.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastra-combustivel',
@@ -27,7 +27,8 @@ export class CadastraCombustivelComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private combustivelService: CombustivelService,
-    private kmService: QuilometragemService
+    private kmService: QuilometragemService,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -65,9 +66,13 @@ export class CadastraCombustivelComponent implements OnInit {
     };
     console.log(dataKm);
 
+    let confirmaEnvioCombustivel = false;
+    let confirmaEnvioKm = false;
+
     this.kmService.create(dataKm).subscribe(
         (res) => {
           console.log(res);
+          confirmaEnvioCombustivel = true;
         },
         (err) => {
           console.log(err);
@@ -77,10 +82,15 @@ export class CadastraCombustivelComponent implements OnInit {
     this.combustivelService.create(dataCombustivel).subscribe(
         (res) => {
           console.log(res);
+          confirmaEnvioKm = true;
         },
         (err) => {
           console.log(err);
         }
       );
+
+    setTimeout(() => {
+      confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['/combustivel/visualiza']) : null;
+    }, 500);
   }
 }

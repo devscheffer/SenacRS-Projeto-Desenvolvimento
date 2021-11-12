@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PneuService } from '../pneu.service';
 
 @Component({
@@ -22,7 +22,8 @@ export class CadastraPressaoPneuComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private pneuService: PneuService
+    private pneuService: PneuService,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -47,6 +48,7 @@ export class CadastraPressaoPneuComponent implements OnInit {
     this.pneuService.create(this.cadastraPneuForm.value).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigate(['/pneu/visualiza']);
       },
       (err) => {
         console.log(err);

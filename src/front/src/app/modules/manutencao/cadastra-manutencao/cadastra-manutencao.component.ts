@@ -1,5 +1,5 @@
 import { ManutencaoService } from './../manutencao.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -15,7 +15,8 @@ export class CadastraManutencaoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private manutencaoService: ManutencaoService
+    private manutencaoService: ManutencaoService,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -40,6 +41,7 @@ export class CadastraManutencaoComponent implements OnInit {
     this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
       (res) => {
         console.log(res);
+        this.router.navigate(['/manutencao/visualiza']);
       },
       (err) => {
         console.log(err);
