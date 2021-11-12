@@ -4,7 +4,7 @@
 </header>
 
 <div class="pt-3 mb-4 container">
-  <form [formGroup]="cadastraManutencaoForm">
+  <form [formGroup]="cadastraManutencaoForm" (submit)="submit()">
     <div class="form-group">
       <label class="label-cad-manu">Data da realização da manutenção: </label>
       <input class="form-control form-control-lg" type="date" formControlName="date">

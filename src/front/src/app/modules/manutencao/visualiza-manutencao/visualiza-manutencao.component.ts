@@ -52,7 +52,7 @@ export class VisualizaManutencaoComponent implements OnInit {
     .subscribe(res => {
 
       res.forEach(item => {
-        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.observation };
+        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.price };
         this.data.push(row);
       });
 

@@ -3,9 +3,7 @@
   <hr class="linha">
 </header>
 
-<a class="botao" routerLink="/pneu/cadastra">
-  <fa-icon [icon]="icon"></fa-icon>
-</a>
+<app-button-plus [rota]="'/pneu/cadastra'"></app-button-plus>
 
 <div class="mb-4">
   <app-datatable *ngIf="data.length > 0" [columns]="columns" [data]="data" class="mt-2"></app-datatable>

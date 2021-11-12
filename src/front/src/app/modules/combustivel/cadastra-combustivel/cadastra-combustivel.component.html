@@ -22,10 +22,9 @@
       <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu" for="tipo da Combustivel">Tipo da Combustível:</label>
-      <select id="combustivel">
-        <option disabled selected>Selecione o tipo de combustível...</option>
-        <option [value]="combustivel.value" *ngFor="let combustivel of tiposCombustiveis">{{combustivel.name}}</option>
+      <label class="label-cad-pneu">Tipo da Combustível:</label>
+      <select formControlName="gas_type">
+        <option *ngFor="let combustivel of tiposCombustiveis" [value]="combustivel.value">{{combustivel.name}}</option>
       </select>
     </div>
     <div class="form-group">

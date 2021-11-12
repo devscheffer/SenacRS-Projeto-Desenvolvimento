@@ -1,3 +1,4 @@
+import { ButtonPlusModule } from './../../shared/components/button-plus/button-plus.module';
 import { SharedModule } from './../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CombustivelRoutingModule } from './combustivel.routing.module';
@@ -16,7 +17,8 @@ import { CommonModule } from '@angular/common';
     CombustivelRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ButtonPlusModule
   ]
 })
 export class CombustivelModule { }

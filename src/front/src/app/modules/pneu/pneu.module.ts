@@ -1,3 +1,4 @@
+import { ButtonPlusModule } from './../../shared/components/button-plus/button-plus.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CadastraPressaoPneuComponent } from './cadastra-pressao-pneu/cadastra-pressao-pneu.component';
@@ -18,7 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    FontAwesomeModule
+    ButtonPlusModule
   ]
 })
 export class PneuModule { }
