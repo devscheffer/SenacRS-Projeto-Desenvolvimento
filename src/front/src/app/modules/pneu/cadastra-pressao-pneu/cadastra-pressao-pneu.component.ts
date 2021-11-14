@@ -48,7 +48,7 @@ export class CadastraPressaoPneuComponent implements OnInit {
     this.pneuService.create(this.cadastraPneuForm.value).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(['/pneu/visualiza']);
+        this.router.navigate(['home/pneu/visualiza']);
       },
       (err) => {
         console.log(err);

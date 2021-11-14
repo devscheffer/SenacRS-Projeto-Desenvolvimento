@@ -1,36 +1,38 @@
 <footer>
   <div class="btn-group conteudo" role="group" aria-label="Button group with nested dropdown">
-    <button type="button" class="btn btn-secondary alinhamento" aria-haspopup="true" aria-expanded="false" routerLink="manual">
+    <button type="button" class="btn btn-secondary alinhamento {{buttonManual}}" aria-haspopup="true" aria-expanded="false"
+      routerLink="manual" (click)="manual()" (click)="removeActive('manual')">
       <fa-icon [icon]="iconeManual"></fa-icon>
     </button>
 
     <div class="btn-group dropup alinhamento">
-      <button id="btnGroupDrop1" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary {{buttonAdd}}" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <fa-icon [icon]="iconeAdicionar"></fa-icon>
       </button>
       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item" routerLink="pneu/cadastra">Cadastro de pressão de pneu</a>
-        <a class="dropdown-item" routerLink="combustivel/cadastra">Cadastro de consumo de combustivel</a>
-        <a class="dropdown-item" routerLink="quilometragem/cadastra">Cadastro de quilometragem</a>
-        <a class="dropdown-item" routerLink="manutencao/cadastra">Cadastro de manutenção</a>
+        <a class="dropdown-item" (click)="adicionar()" (click)="removeActive('add')" routerLink="pneu/cadastra" routerLinkActive="ativo">Cadastro de pressão de pneu</a>
+        <a class="dropdown-item" (click)="adicionar()" (click)="removeActive('add')" routerLink="combustivel/cadastra" routerLinkActive="ativo">Cadastro de consumo de combustivel</a>
+        <a class="dropdown-item" (click)="adicionar()" (click)="removeActive('add')" routerLink="quilometragem/cadastra" routerLinkActive="ativo">Cadastro de quilometragem</a>
+        <a class="dropdown-item" (click)="adicionar()" (click)="removeActive('add')" routerLink="manutencao/cadastra" routerLinkActive="ativo">Cadastro de manutenção</a>
       </div>
     </div>
 
-    <button type="button" class="btn btn-primary active alinhamento" aria-haspopup="true" aria-expanded="false" routerLink="dashboard">
+    <button type="button" class="btn btn-secondary alinhamento iconeDash {{buttonDash}}" aria-haspopup="true" aria-expanded="false"
+      routerLink="dashboard" routerLinkActive="buttonActive" (click)="dashboard()" (click)="removeActive('dash')">
       <fa-icon [icon]="iconeDashboard"></fa-icon>
     </button>
 
     <div class="btn-group dropup alinhamento">
-      <button id="btnGroupDrop1" type="button" class="btn btn-secondary" data-toggle="dropdown" aria-haspopup="true"
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary {{buttonView}}" data-toggle="dropdown" aria-haspopup="true"
         aria-expanded="false">
         <fa-icon [icon]="iconeVisualizar"></fa-icon>
       </button>
       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item" routerLink="pneu/visualiza">Visualiza status de pressão de pneu</a>
-        <a class="dropdown-item" routerLink="combustivel/visualiza">Visualiza status do consumo de combustivel</a>
-        <a class="dropdown-item" routerLink="quilometragem/visualiza">Visualiza status de quilometragem</a>
-        <a class="dropdown-item" routerLink="manutencao/visualiza">Visualiza manutenções</a>
+        <a class="dropdown-item" (click)="visualizar()" (click)="removeActive('view')" routerLink="pneu/visualiza" routerLinkActive="ativo">Visualizar status de pressão de pneu</a>
+        <a class="dropdown-item" (click)="visualizar()" (click)="removeActive('view')" routerLink="combustivel/visualiza" routerLinkActive="ativo">Visualizar status do consumo de combustivel</a>
+        <a class="dropdown-item" (click)="visualizar()" (click)="removeActive('view')" routerLink="quilometragem/visualiza" routerLinkActive="ativo">Visualizar status de quilometragem</a>
+        <a class="dropdown-item" (click)="visualizar()" (click)="removeActive('view')" routerLink="manutencao/visualiza" routerLinkActive="ativo">Visualizar manutenções</a>
       </div>
     </div>
 
@@ -40,8 +42,7 @@
         <fa-icon [icon]="iconeLogin"></fa-icon>
       </button>
       <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-        <a class="dropdown-item" href="#">Login</a>
-        <a class="dropdown-item" href="#">Sair</a>
+        <a class="dropdown-item" (click)="sair()">Sair</a>
       </div>
     </div>
   </div>

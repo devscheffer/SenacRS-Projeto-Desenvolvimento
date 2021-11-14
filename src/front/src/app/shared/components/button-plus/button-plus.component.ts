@@ -18,7 +18,7 @@ export class ButtonPlusComponent implements OnInit {
   }
 
   direciona() {
-    this.router.navigate([this.rota]);
+    this.router.navigate(['home/' + this.rota]);
   }
 
 }

@@ -4,10 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes : Routes = [
   {
     path: '',
-    data: {
-      title: 'Menu Principal'
-    },
-    loadChildren: () => import('./menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
   },
   {
     path: 'pneu',

@@ -90,7 +90,7 @@ export class CadastraCombustivelComponent implements OnInit {
       );
 
     setTimeout(() => {
-      confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['/combustivel/visualiza']) : null;
+      confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['home/combustivel/visualiza']) : null;
     }, 500);
   }
 }
