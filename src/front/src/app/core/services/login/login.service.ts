@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { TokenService } from './../token/token.service';
 import { UserModel } from './../../models/login.model';
 import { HttpClient } from '@angular/common/http';
@@ -12,7 +13,11 @@ export class LoginService {
   route: string;
   path: string;
 
-  constructor(private http: HttpClient, private tokenService: TokenService) {
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService,
+    private router: Router
+    ) {
     this.uri = 'https://herbie-21.herokuapp.com';
     this.route = '';
     this.path = `${this.uri}${this.route}`;
@@ -34,8 +39,16 @@ export class LoginService {
           let authToken: any = res;
           authToken = authToken.body.token;
           this.tokenService.setToken(authToken);
-          console.log(`authenticated with token ${authToken}`);
         })
       );
+  }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.router.navigate(['']);
+  }
+
+  isLogged(): boolean {
+    return this.tokenService.hasToken();
   }
 }

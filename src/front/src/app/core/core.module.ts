@@ -11,12 +11,14 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './services/login/request.interceptor';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HomeComponent,
     LoginComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,10 @@ import { RequestInterceptor } from './services/login/request.interceptor';
     BsDropdownModule.forRoot(),
     FontAwesomeModule
   ],
-  exports: [HeaderComponent],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ],
   providers: [
     {
         provide: HTTP_INTERCEPTORS,

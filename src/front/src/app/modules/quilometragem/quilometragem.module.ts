@@ -1,3 +1,4 @@
+import { ButtonPlusModule } from './../../shared/components/button-plus/button-plus.module';
 import { VisualizaQuilometragemComponent } from './visualiza-quilometragem/visualiza-quilometragem.component';
 import { QuilometragemRoutingModule } from './quilometragem.routing.module';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     QuilometragemRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    ButtonPlusModule
   ]
 })
 export class QuilometragemModule { }

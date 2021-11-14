@@ -61,8 +61,8 @@ export class VisualizaPressaoPneuComponent implements OnInit {
     .subscribe(res => {
 
       res.forEach(item => {
-        item.pressure == null ? item.pressure = 0 : item.pressure;
-        let row = { 'position': this.validaPosicao(item.position), 'pressure': item.pressure, 'date': this.formataData(item.date), 'observation': item.observation };
+        item.pressure_old == null ? item.pressure_old = 0 : item.pressure_old;
+        let row = { 'position': this.validaPosicao(item.position), 'pressure': item.pressure_old, 'date': this.formataData(item.date), 'observation': item.observation };
         this.data.push(row);
       });
 

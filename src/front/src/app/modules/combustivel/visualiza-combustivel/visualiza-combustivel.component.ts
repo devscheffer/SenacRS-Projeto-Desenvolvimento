@@ -14,11 +14,11 @@ export class VisualizaCombustivelComponent implements OnInit {
   data: Object[] = [];
 
   tiposCombustiveis = [
-    { name: 'Comum', value: 'gasolina comum' },
-    { name: 'Aditivada', value: 'gasolina aditivada' },
+    { name: 'Comum', value: 'gasolina_comum' },
+    { name: 'Aditivada', value: 'gasolina_aditivada' },
     { name: 'Etanol', value: 'etanol' },
-    { name: 'GNV', value: 'GNV' },
-    { name: 'Diesel', value: 'Diesel' },
+    { name: 'GNV', value: 'gnv' },
+    { name: 'Diesel', value: 'diesel' },
   ];
 
   constructor(
@@ -30,10 +30,6 @@ export class VisualizaCombustivelComponent implements OnInit {
 
   ngOnInit(): void {
     this.columns = [
-      {
-        title: 'km',
-        data: 'km',
-      },
       {
         title: 'Tipo',
         data: 'gas_type',
@@ -61,7 +57,6 @@ export class VisualizaCombustivelComponent implements OnInit {
     this.combustivelService.read_all().subscribe((res) => {
       res.forEach((item) => {
         let row = {
-          km: item.km,
           gas_type: this.validaPosicao(item.gas_type),
           volume: item.volume,
           date: this.formataData(item.date),
