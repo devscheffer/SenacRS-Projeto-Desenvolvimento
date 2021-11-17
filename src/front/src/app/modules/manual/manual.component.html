@@ -1,4 +1,4 @@
-<div id="container">
+<div id="container"  *ngIf="!loading">
     <div class="mb-3">
         <label for="formFileMultiple" class="form-label">Não encontra o manual do seu carro? faça upload dele aqui!</label>
         <form method="post" enctype="multipart/form-data">
@@ -18,6 +18,8 @@
         <li><a href="pdfs/manual-cruze-2022.pdf">Cruze 2022</a></li> -->
     </ul>
 </div>
+
+<app-loading [loading]="loading"></app-loading>
 
 <!--
 <script>

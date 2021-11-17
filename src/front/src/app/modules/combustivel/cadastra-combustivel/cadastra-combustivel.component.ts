@@ -14,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CadastraCombustivelComponent implements OnInit {
   title: string = '';
   cadastraCombustivelForm!: FormGroup;
+  public loading: boolean = false;
 
   tiposCombustiveis = [
     { name: 'Comum', value: 'gasolina_comum' },
@@ -34,7 +35,11 @@ export class CadastraCombustivelComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.initForm();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
   initForm() {
@@ -49,6 +54,7 @@ export class CadastraCombustivelComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
 
     const dataCombustivel: CombustivelModel = {
       'gas_type': this.cadastraCombustivelForm.get('gas_type')?.value,
@@ -91,6 +97,7 @@ export class CadastraCombustivelComponent implements OnInit {
 
     setTimeout(() => {
       confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['home/combustivel/visualiza']) : null;
+      this.loading = false;
     }, 500);
   }
 }

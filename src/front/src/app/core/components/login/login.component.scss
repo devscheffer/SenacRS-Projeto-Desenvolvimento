@@ -26,11 +26,13 @@ select {
   padding: 12px 20px;
   margin: auto;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 0;
   border-radius: 25px;
   box-sizing: border-box;
-  background-color: rgba(154, 157, 226, 0.5);
+  background-color: rgba(255, 255, 255, 1);
 }
+
+input:focus {outline:none!important;}
 
 button {
   width: 100%;

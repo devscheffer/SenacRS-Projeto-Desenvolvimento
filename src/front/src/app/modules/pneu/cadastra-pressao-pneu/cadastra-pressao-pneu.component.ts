@@ -11,6 +11,7 @@ import { PneuService } from '../pneu.service';
 export class CadastraPressaoPneuComponent implements OnInit {
   title: string = '';
   cadastraPneuForm!: FormGroup;
+  public loading: boolean = false;
 
   opcoes = [
     { name: 'Frente Esquerda', value: 'fl' },
@@ -29,7 +30,11 @@ export class CadastraPressaoPneuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.initForm();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
   initForm() {
@@ -43,15 +48,16 @@ export class CadastraPressaoPneuComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.cadastraPneuForm.value);
+    this.loading = true;
 
     this.pneuService.create(this.cadastraPneuForm.value).subscribe(
       (res) => {
-        console.log(res);
+        this.loading = false;
         this.router.navigate(['home/pneu/visualiza']);
       },
       (err) => {
         console.log(err);
+        this.loading = false;
       }
     );
   }

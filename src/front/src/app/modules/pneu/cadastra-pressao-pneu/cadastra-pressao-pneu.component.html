@@ -3,7 +3,7 @@
   <hr class="linha">
 </header>
 
-<div class="pt-3 mb-4 container">
+<div class="pt-3 mb-4 container" *ngIf="!loading">
   <form [formGroup]="cadastraPneuForm" (ngSubmit)="submit()">
     <div class="form-group">
       <label class="label-cad-pneu">Posição do pneu no carro: </label><br>
@@ -33,3 +33,5 @@
     </div>
   </form>
 </div>
+
+<app-loading [loading]="loading"></app-loading>

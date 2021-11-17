@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class CadastraManutencaoComponent implements OnInit {
   title: string = '';
   cadastraManutencaoForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +23,11 @@ export class CadastraManutencaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.initForm();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
   initForm() {
@@ -36,15 +41,16 @@ export class CadastraManutencaoComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.cadastraManutencaoForm.value);
+    this.loading = true;
 
     this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
       (res) => {
-        console.log(res);
+        this.loading = false;
         this.router.navigate(['home/manutencao/visualiza']);
       },
       (err) => {
         console.log(err);
+        this.loading = false;
       }
     );
   }

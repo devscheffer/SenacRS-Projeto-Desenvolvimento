@@ -12,6 +12,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class VisualizaPressaoPneuComponent implements OnInit {
 
   title: string = '';
+  public loading: boolean = false;
   columns: Object[] = [];
   data: Object[] = [];
   icon = faPlus;
@@ -30,7 +31,9 @@ export class VisualizaPressaoPneuComponent implements OnInit {
     this.title = route.snapshot.data['title'];
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.loading = true;
+
     this.columns = [
       {
         title: 'Posição',
@@ -50,11 +53,14 @@ export class VisualizaPressaoPneuComponent implements OnInit {
       }
     ]
 
-    this.buscaDados();
+    await this.buscaDados();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
 
   }
 
-  buscaDados() {
+  async buscaDados() {
     this.data = [];
 
     this.pneuService.read_all()
