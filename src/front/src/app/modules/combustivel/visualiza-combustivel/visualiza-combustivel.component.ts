@@ -12,6 +12,7 @@ export class VisualizaCombustivelComponent implements OnInit {
   title: string = '';
   columns: Object[] = [];
   data: Object[] = [];
+  public loading: boolean = false;
 
   tiposCombustiveis = [
     { name: 'Comum', value: 'gasolina_comum' },
@@ -28,7 +29,8 @@ export class VisualizaCombustivelComponent implements OnInit {
     this.title = route.snapshot.data['title'];
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.loading = true;
     this.columns = [
       {
         title: 'Tipo',
@@ -48,10 +50,13 @@ export class VisualizaCombustivelComponent implements OnInit {
       },
     ];
 
-    this.buscaDados();
+    await this.buscaDados();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
-  buscaDados() {
+  async buscaDados() {
     this.data = [];
 
     this.combustivelService.read_all().subscribe((res) => {

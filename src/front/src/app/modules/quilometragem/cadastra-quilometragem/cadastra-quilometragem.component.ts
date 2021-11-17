@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CadastraQuilometragemComponent implements OnInit {
   title: string = '';
   cadastraQuilometragemForm!: FormGroup;
+  public loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -22,7 +23,11 @@ export class CadastraQuilometragemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loading = true;
     this.initForm();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
   }
 
   initForm() {
@@ -34,15 +39,16 @@ export class CadastraQuilometragemComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.cadastraQuilometragemForm.value);
+    this.loading = true;
 
     this.kmService.create(this.cadastraQuilometragemForm.value).subscribe(
       (res) => {
-        console.log(res);
+        this.loading = false;
         this.router.navigate(['home/quilometragem/visualiza']);
       },
       (err) => {
         console.log(err);
+        this.loading = false;
       }
     );
   }

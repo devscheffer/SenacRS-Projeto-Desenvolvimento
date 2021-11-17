@@ -3,7 +3,7 @@
   <hr class="linha">
 </header>
 
-<div class="pt-3 mb-4 container">
+<div class="pt-3 mb-4 container" *ngIf="!loading">
   <form [formGroup]="cadastraManutencaoForm" (submit)="submit()">
     <div class="form-group">
       <label class="label-cad-manu">Data da realização da manutenção: </label>
@@ -29,7 +29,9 @@
       <textarea class="form-control" formControlName="observation" rows="3"></textarea>
     </div>
     <div class="col text-center">
-      <button class="btn btn-primary" type="submit">Cadastrar</button>
+      <button class="btn btn-primary" type="submit" [disabled]="cadastraManutencaoForm.invalid">Cadastrar</button>
     </div>
   </form>
 </div>
+
+<app-loading [loading]="loading"></app-loading>

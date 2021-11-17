@@ -1,19 +1,28 @@
+import { ButtonPlusComponent } from './button-plus/button-plus.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
-import { ButtonPlusComponent } from './button-plus/button-plus.component';
+import { LoadingComponent } from './loading/loading.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    DatatableComponent
+    DatatableComponent,
+    LoadingComponent,
+    ButtonPlusComponent
   ],
   imports: [
     CommonModule,
-    DataTablesModule
+    DataTablesModule,
+    FontAwesomeModule,
+    NgxLoadingModule.forRoot({})
   ],
   exports: [
-    DatatableComponent
+    DatatableComponent,
+    LoadingComponent,
+    ButtonPlusComponent
   ]
 })
 export class ComponentsModule { }

@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class VisualizaManutencaoComponent implements OnInit {
 
   title: string = '';
+  public loading: boolean = false;
   columns: Object[] = [];
   data: Object[] = [];
 
@@ -21,7 +22,9 @@ export class VisualizaManutencaoComponent implements OnInit {
     this.title = route.snapshot.data['title'];
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.loading = true;
+
     this.columns = [
       {
         title: 'Servico',
@@ -41,11 +44,15 @@ export class VisualizaManutencaoComponent implements OnInit {
       }
     ]
 
-    this.buscaDados();
+    await this.buscaDados();
+
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
 
   }
 
-  buscaDados() {
+  async buscaDados() {
     this.data = [];
 
     this.manutencaoervice.read_all()

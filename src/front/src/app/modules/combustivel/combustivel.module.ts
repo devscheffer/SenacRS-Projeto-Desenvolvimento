@@ -1,11 +1,11 @@
-import { ButtonPlusModule } from './../../shared/components/button-plus/button-plus.module';
-import { SharedModule } from './../../shared/shared.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { CombustivelRoutingModule } from './combustivel.routing.module';
 import { VisualizaCombustivelComponent } from './visualiza-combustivel/visualiza-combustivel.component';
 import { CadastraCombustivelComponent } from './cadastra-combustivel/cadastra-combustivel.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from './../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +14,10 @@ import { CommonModule } from '@angular/common';
   ],
   imports: [
     CommonModule,
-    CombustivelRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
-    ButtonPlusModule
+    CombustivelRoutingModule,
+    SharedModule
   ]
 })
 export class CombustivelModule { }
