@@ -1,15 +1,18 @@
 import { ComponentsModule } from './components/components.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    MatSliderModule
   ],
   exports: [
-    ComponentsModule
+    ComponentsModule,
+    MatSliderModule
   ]
 })
 export class SharedModule { }
