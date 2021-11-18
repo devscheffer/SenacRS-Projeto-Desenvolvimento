@@ -6,6 +6,7 @@ import { PneuRoutingModule } from './pneu.routing.module';
 import { VisualizaPressaoPneuComponent } from './visualiza-pressao-pneu/visualiza-pressao-pneu.component';
 import { CadastraPressaoPneuComponent } from './cadastra-pressao-pneu/cadastra-pressao-pneu.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     PneuRoutingModule,
-    SharedModule
+    SharedModule,
+    MatSliderModule
   ]
 })
 export class PneuModule { }

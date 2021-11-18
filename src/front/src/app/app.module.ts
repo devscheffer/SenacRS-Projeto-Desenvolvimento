@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
 import localePt from '@angular/common/locales/pt'
 
 registerLocaleData(localePt, 'pt');
@@ -22,7 +23,8 @@ registerLocaleData(localePt, 'pt');
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    MatSliderModule
   ],
   exports: [],
   providers: [
