@@ -3,7 +3,7 @@
   <hr class="linha">
 </header>
 
-<app-button-plus *ngIf="!loading" [rota]="'/combustivel/cadastra'"></app-button-plus>
+<!-- <app-button-plus *ngIf="!loading" [rota]="'/combustivel/cadastra'"></app-button-plus> -->
 
 <div class="mb-4">
   <app-datatable *ngIf="data.length > 0 || !loading" [columns]="columns" [data]="data" class="mt-2"></app-datatable>

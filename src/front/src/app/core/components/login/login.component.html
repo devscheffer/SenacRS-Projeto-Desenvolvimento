@@ -11,5 +11,6 @@
       </div>
       <button (click)="seguinte()" *ngIf="!emailPreenchido" class="btn mb-3" [disabled]="loginForm.controls.email.invalid">Seguinte</button>
       <button (click)="submit()" *ngIf="emailPreenchido" class="btn mb-3" type="submit" [disabled]="loginForm.invalid">Entrar</button>
-  </form>
+      <a routerLink="/cadastro"><p>Crie uma conta</p></a>
+    </form>
 </div>
