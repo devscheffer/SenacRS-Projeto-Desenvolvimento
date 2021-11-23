@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit {
     private combustivelService: CombustivelService,
     private pneuService: PneuService,
     private kmService: QuilometragemService
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.loading = true;
@@ -49,7 +49,7 @@ export class DashboardComponent implements OnInit {
         this.manutencoes = res;
         let data: any[] = [];
         this.manutencoes.forEach(item => {
-          let dataObject = { label: item.category , value: item.price};
+          let dataObject = { label: item.category, value: item.price };
           data.push(dataObject);
         });
 
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
         this.combustivel = res;
         let data: any[] = [];
         this.combustivel.forEach(item => {
-          let dataObject = { label: item.gas_type , value: item.price};
+          let dataObject = { label: item.gas_type, value: item.price };
           data.push(dataObject);
         });
 
@@ -105,7 +105,7 @@ export class DashboardComponent implements OnInit {
         this.pneu = res;
         let data: any[] = [];
         this.pneu.forEach(item => {
-          let dataObject = { label: item.position , value: item.pressure_new};
+          let dataObject = { label: item.position, value: item.pressure_new };
           data.push(dataObject);
         });
 
@@ -133,7 +133,7 @@ export class DashboardComponent implements OnInit {
         this.km = res;
         let data: any[] = [];
         this.km.forEach(item => {
-          let dataObject = { label: item.observation , value: item.km};
+          let dataObject = { label: item.observation, value: item.km };
           data.push(dataObject);
         });
 

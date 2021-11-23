@@ -10,7 +10,7 @@
       <input class="form-control form-control-lg" type="date" formControlName="date">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Quilometragem:</label>
+      <label class="label-cad-pneu">Quilometragem (km):</label>
       <input class="form-control form-control-lg" type="number" formControlName="km">
     </div>
     <div class="form-group">
@@ -18,14 +18,14 @@
       <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="price">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Volume:</label>
-      <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume">
-    </div>
-    <div class="form-group">
-      <label class="label-cad-pneu">Tipo da Combustível:</label>
+      <label class="label-cad-pneu">Tipo do Combustível:</label>
       <select formControlName="gas_type">
         <option *ngFor="let combustivel of tiposCombustiveis" [value]="combustivel.value">{{combustivel.name}}</option>
       </select>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Litros:</label>
+      <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume">
     </div>
     <div class="form-group">
       <label class="label-cad-pneu">Observações: </label>

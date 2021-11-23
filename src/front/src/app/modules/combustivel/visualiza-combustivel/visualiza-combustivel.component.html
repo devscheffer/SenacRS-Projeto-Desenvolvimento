@@ -6,7 +6,7 @@
 <!-- <app-button-plus *ngIf="!loading" [rota]="'/combustivel/cadastra'"></app-button-plus> -->
 
 <div class="mb-4">
-  <app-datatable *ngIf="data.length > 0 || !loading" [columns]="columns" [data]="data" class="mt-2"></app-datatable>
+  <app-datatable *ngIf="data.length > 0" [columns]="columns" [data]="data" class="mt-2"></app-datatable>
 </div>
 
 <app-loading [loading]="loading"></app-loading>
