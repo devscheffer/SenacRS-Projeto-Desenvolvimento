@@ -67,8 +67,8 @@ export class VisualizaCombustivelComponent implements OnInit {
           date: this.formataData(item.date),
           price: item.price,
         };
-
         this.data.push(row);
+        
       });
     });
   }

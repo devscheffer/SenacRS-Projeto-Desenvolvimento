@@ -57,12 +57,11 @@ export class VisualizaManutencaoComponent implements OnInit {
 
     this.manutencaoervice.read_all()
     .subscribe(res => {
-
       res.forEach(item => {
+        item.price == null ? item.price = 0 : null;
         let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.price };
         this.data.push(row);
       });
-
     });
 
   }

@@ -10,6 +10,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './services/login/request.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
+import { CadastroComponent } from './components/cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     LoginComponent,
     FooterComponent,
+    CadastroComponent,
   ],
   imports: [
     CommonModule,
