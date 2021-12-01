@@ -1,0 +1,28 @@
+.botao {
+  position:fixed;
+	width: 3rem;
+	height: 3rem;
+	top: 7rem;
+	right: 1rem;
+	background-color:rgb(26, 135, 9);
+	color:rgb(255, 255, 255);
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px rgb(10, 72, 0);
+  z-index: 9999;
+  padding-top: 0.4rem;
+
+
+  fa-icon {
+    font-size: 1.5rem;
+  }
+
+}
+
+.botao:hover {
+  transform: scale(1.2);
+}
+
+.botao:active {
+  transform: scale(1.2);
+}

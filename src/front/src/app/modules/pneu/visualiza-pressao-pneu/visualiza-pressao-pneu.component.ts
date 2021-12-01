@@ -1,4 +1,8 @@
+import { PneuService } from './../pneu.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-visualiza-pressao-pneu',
@@ -7,42 +11,78 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizaPressaoPneuComponent implements OnInit {
 
+  title: string = '';
+  public loading: boolean = false;
   columns: Object[] = [];
   data: Object[] = [];
+  icon = faPlus;
 
-  constructor() { }
+  opcoes = [
+    { name: 'Frente Esquerda', value: 'fl' },
+    { name: 'Frente Direita', value: 'fr' },
+    { name: 'Traseira Esquerda', value: 'bl' },
+    { name: 'Traseira Direita', value: 'br' }
+  ]
 
-  ngOnInit(): void {
+  constructor(
+    private route: ActivatedRoute,
+    private pneuService: PneuService
+  ) {
+    this.title = route.snapshot.data['title'];
+  }
+
+  async ngOnInit() {
+    this.loading = true;
+
     this.columns = [
       {
-        title: 'ID',
-        data: 'id'
+        title: 'Posição',
+        data: 'position'
       },
       {
-        title: 'Primeiro Nome',
-        data: 'firstName'
+        title: 'Pressão',
+        data: 'pressure'
       },
       {
-        title: 'Segundo Nome',
-        data: 'lastName'
+        title: 'Data',
+        data: 'date'
       },
+      {
+        title: 'Obs',
+        data: 'observation'
+      }
     ]
 
-    this.data = [
-      { "id": 860, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 870, "firstName": "Foo", "lastName": "Whateveryournameis" },
-      { "id": 590, "firstName": "Toto", "lastName": "Titi" },
-      { "id": 803, "firstName": "Luke", "lastName": "Kyle" },
-      { "id": 474, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 476, "firstName": "Zed", "lastName": "Kyle" },
-      { "id": 464, "firstName": "Cartman", "lastName": "Kyle" },
-      { "id": 505, "firstName": "Superman", "lastName": "Yoda" },
-      { "id": 308, "firstName": "Louis", "lastName": "Kyle" },
-      { "id": 184, "firstName": "Toto", "lastName": "Bar" },
-      { "id": 411, "firstName": "Luke", "lastName": "Yoda" },
-      { "id": 154, "firstName": "Luke", "lastName": "Moliku" },
-      { "id": 623, "firstName": "Someone First Name", "lastName": "Moliku" }
-    ]
+    await this.buscaDados();
+    setTimeout(() => {
+      this.loading = false;
+    }, 500);
+
+  }
+
+  async buscaDados() {
+    this.data = [];
+
+    this.pneuService.read_all()
+    .subscribe(res => {
+
+      res.forEach(item => {
+        item.pressure_old == null ? item.pressure_old = 0 : item.pressure_old;
+        let row = { 'position': this.validaPosicao(item.position), 'pressure': item.pressure_old, 'date': this.formataData(item.date), 'observation': item.observation };
+        this.data.push(row);
+      });
+
+    });
+
+  }
+
+  formataData(data: string) {
+    return moment(data).format('DD/MM/YYYY');
+  }
+
+  validaPosicao(siglaPosicao: string) {
+    let posicao = this.opcoes.filter(posicao => posicao.value == siglaPosicao);
+    return posicao[0].name;
   }
 
 }

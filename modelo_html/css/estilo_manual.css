@@ -1,0 +1,15 @@
+#container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-image: url('../img/tela_login.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

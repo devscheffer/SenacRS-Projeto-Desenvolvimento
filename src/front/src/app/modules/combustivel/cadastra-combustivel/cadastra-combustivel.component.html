@@ -3,29 +3,38 @@
   <hr class="linha">
 </header>
 
-<div class="pt-3 mb-4 container">
+<div *ngIf="!loading" class="pt-3 mb-4 container">
   <form id="formulario_cadastro_combustivel" [formGroup]="cadastraCombustivelForm" (ngSubmit)="submit()">
     <div class="form-group">
-      <label class="label-cad-pneu" for="data_reabastecimento">Data de Reabastecimento:</label>
-      <input class="form-control form-control-lg" type="date" id="data_reabastecimento" formControlName="data_reabastecimento">
+      <label class="label-cad-pneu">Data de Reabastecimento:</label>
+      <input class="form-control form-control-lg" type="date" formControlName="date">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu" for="quilometragem">Quilometragem:</label>
-      <input class="form-control form-control-lg" type="number" id="quilometragem" formControlName="quilometragem">
+      <label class="label-cad-pneu">Quilometragem (km):</label>
+      <input class="form-control form-control-lg" type="number" formControlName="km">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu" for="Preço do Combustível:">Preço do Combustível:</label>
-      <input class="form-control form-control-lg" type="number" min="1" step="any" id="preco do combustivel" formControlName="preco">
+      <label class="label-cad-pneu">Preço do Combustível:</label>
+      <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="price">
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu" for="tipo da Combustivel">Tipo da Combustível:</label>
-      <select id="combustivel" formControlName="tipoCombustivel">
-        <option disabled selected>Selecione o tipo de combustível...</option>
-        <option [value]="combustivel.value" *ngFor="let combustivel of tiposCombustiveis">{{combustivel.name}}</option>
+      <label class="label-cad-pneu">Tipo do Combustível:</label>
+      <select formControlName="gas_type">
+        <option *ngFor="let combustivel of tiposCombustiveis" [value]="combustivel.value">{{combustivel.name}}</option>
       </select>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Litros:</label>
+      <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume">
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Observações: </label>
+      <textarea class="form-control" id="observacoes" rows="3" formControlName="observation"></textarea>
     </div>
     <div class="col text-center">
       <button class="btn btn-primary mb-3" type="submit" [disabled]="cadastraCombustivelForm.invalid">Cadastrar</button>
     </div>
   </form>
 </div>
+
+<app-loading [loading]="loading"></app-loading>

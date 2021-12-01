@@ -1,13 +1,13 @@
-point;service;km;obs;place;date;price;id_proof_payment
-Suspencao;suspencao completa;45120;novos;Mecanica Confia;05/06/2019;1.900,00;1
-Motor;oleo e filtro;55100;Castrol;Mecanica Confia;05/06/2019;240;1
-Suspencao;geometria e balanceamento;55100;;Mecanica Confia;10/12/2019;120;2
-Motor;oleo e filtro;55100;Castrol;Mecanica Confia;10/12/2019;240;2
-Arrefecimento;limpeza e troca de liquido;55100;CarCool;Mecanica Confia;10/12/2019;400;2
-Motor;oleo e filtro;65200;Castrol;Mecanica Confia;07/06/2020;240;3
-Motor;oleo e filtro;75105;Castrol;Mecanica Confia;12/12/2020;240;4
-Motor;jogo de vela;85150;NGK;Mecanica Confia;15/06/2021;350;5
-Motor;oleo e filtro;85150;Castrol;Mecanica Confia;15/06/2021;240;5
-Rodas;par de pneus frontais;90340;Goodyear 185/65/15;Mecanica Confia;07/09/2021;950;6
-Motor;oleo e filtro;95215;Castrol;Mecanica Confia;06/12/2021;240;7
-Rodas;par de pneus traseiros;99712;Goodyear 185/65/15;Mecanica Confia;22/12/2021;950;8
+date,service,category,price,observation,user
+05/06/2019,suspencao completa,Suspencao,"1.900,00",novos,6198218980099c805d009400
+05/06/2019,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+10/12/2019,geometria e balanceamento,Suspencao,120,,6198218980099c805d009400
+10/12/2019,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+10/12/2019,limpeza e troca de liquido,Arrefecimento,400,CarCool,6198218980099c805d009400
+07/06/2020,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+12/12/2020,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+15/06/2021,jogo de vela,Motor,350,NGK,6198218980099c805d009400
+15/06/2021,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+07/09/2021,par de pneus frontais,Rodas,950,Goodyear 185/65/15,6198218980099c805d009400
+06/12/2021,oleo e filtro,Motor,240,Castrol,6198218980099c805d009400
+22/12/2021,par de pneus traseiros,Rodas,950,Goodyear 185/65/15,6198218980099c805d009400

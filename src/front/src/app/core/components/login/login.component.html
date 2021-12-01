@@ -1,14 +1,16 @@
 <div class="conteudo">
   <h2 class="titulo mb-3 text-center">{{title}}</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()" class="formulario_login">
-      <div class="form-group">
+  <form [formGroup]="loginForm" class="formulario_login">
+      <div *ngIf="!emailPreenchido" class="form-group">
         <label for="email">E-mail:</label>
-        <input type="email" id="email" formControlName="email" placeholder="Digite seu e-mail">
+        <input #emailInput type="email" id="email" formControlName="email" placeholder="Digite seu e-mail">
       </div>
-      <div class="form-group">
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" formControlName="senha" placeholder="Digite sua senha">
+      <div *ngIf="emailPreenchido" class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" formControlName="password" placeholder="Digite sua senha" autofocus>
       </div>
-      <button class="btn mb-3" type="submit" [disabled]="loginForm.invalid">Entrar</button>
-  </form>
+      <button (click)="seguinte()" *ngIf="!emailPreenchido" class="btn mb-3" [disabled]="loginForm.controls.email.invalid">Seguinte</button>
+      <button (click)="submit()" *ngIf="emailPreenchido" class="btn mb-3" type="submit" [disabled]="loginForm.invalid">Entrar</button>
+      <a routerLink="/cadastro"><p>Crie uma conta</p></a>
+    </form>
 </div>

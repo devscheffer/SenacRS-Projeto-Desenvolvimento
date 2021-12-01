@@ -1,38 +1,36 @@
+import { CombustivelModel } from './../../shared/models/combustivel.model';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PneuModel } from './../../shared/models/pneu.model';
 
 const url = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root',
 })
-export class PneuService {
-  uri: string;
-  route: string;
-  path: string;
+export class CombustivelService {
 
-  constructor(private http: HttpClient) {
-    this.uri = 'https://herbie-21.herokuapp.com';
-    this.route = '/pressao';
-    this.path = `${this.uri}${this.route}`;
+  constructor(private http: HttpClient) {}
+
+  create(pneu: CombustivelModel): Observable<CombustivelModel> {
+    return this.http.post<CombustivelModel>(`${url}/combustivel`, pneu);
   }
 
-  create(pneu: PneuModel): Observable<PneuModel> {
-    return this.http.post<PneuModel>(`${this.path}/`, pneu);
+  read_all(): Observable<CombustivelModel[]> {
+    return this.http.get<CombustivelModel[]>(`${url}/combustivel`);
   }
-  read_all(): Observable<PneuModel[]> {
-    return this.http.get<PneuModel[]>(`${this.path}/`);
+
+  read_id(id: number): Observable<CombustivelModel> {
+    return this.http.get<CombustivelModel>(`${url}/combustivel/${id}`);
   }
-  read_id(id: number): Observable<PneuModel> {
-    return this.http.get<PneuModel>(`${this.path}/${id}`);
-  }
-  update(id: number, pneu: PneuModel): Observable<any> {
+
+  update(id: number, pneu: CombustivelModel): Observable<any> {
     return this.http.patch(`${url}/${id}`, pneu);
   }
-  delete(id: number): Observable<PneuModel> {
-    return this.http.delete<PneuModel>(`${url}/${id}`);
+
+  delete(id: number): Observable<CombustivelModel> {
+    return this.http.delete<CombustivelModel>(`${url}/${id}`);
   }
+
 }

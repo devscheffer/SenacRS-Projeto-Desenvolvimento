@@ -3,6 +3,6 @@ export interface CombustivelModel {
   price: number;
   gas_type: string;
   volume:number
-  km: number
+  km?: string
   observation: string;
 }

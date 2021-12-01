@@ -4,10 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes : Routes = [
   {
     path: '',
-    data: {
-      title: 'Menu Principal'
-    },
-    loadChildren: () => import('./menu-principal/menu-principal.module').then(m => m.MenuPrincipalModule)
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
   },
   {
     path: 'pneu',
@@ -36,6 +34,20 @@ const routes : Routes = [
       title: 'Quilometragem'
     },
     loadChildren: () => import('./quilometragem/quilometragem.module').then(m => m.QuilometragemModule)
+  },
+  {
+    path: 'manual',
+    data: {
+      title: 'Manual'
+    },
+    loadChildren: () => import('./manual/manual.module').then(m => m.ManualModule)
+  },
+  {
+    path: 'dashboard',
+    data: {
+      title: 'Dashboard'
+    },
+    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
   },
 ]
 

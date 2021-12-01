@@ -1,0 +1,45 @@
+<div id="container"  *ngIf="!loading">
+    <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Não encontra o manual do seu carro? faça upload dele aqui!</label>
+        <form method="post" enctype="multipart/form-data">
+            <input class="form-control form-control-sm" type="file" name="formFileMultiple" id="formFileMultiple" multiple>
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm" [disabled]="true">Enviar</button>
+        </form>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label"></label>
+        <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Digite o modelo do carro" title="Type in a category">
+    </div>
+
+    <ul id="myMenu">
+        <!-- <li><a href="pdfs/manual-celta-2012.pdf">Celta 2012</a></li>
+        <li><a href="pdfs/manual-astra-2010.pdf">Astra 2010</a></li>
+        <li><a href="pdfs/manual-cruze-2022.pdf">Cruze 2022</a></li> -->
+    </ul>
+</div>
+
+<app-loading [loading]="loading"></app-loading>
+
+<!--
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("mySearch");
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myMenu");
+        li = ul.getElementsByTagName("li");
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("a")[0];
+            if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+</script>
+-->
