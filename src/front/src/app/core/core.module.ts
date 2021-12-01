@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestInterceptor } from './services/login/request.interceptor';
 import { FooterComponent } from './components/footer/footer.component';
 import { CadastroComponent } from './components/cadastro/cadastro.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CadastroComponent } from './components/cadastro/cadastro.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    SharedModule
   ],
   exports: [
     HeaderComponent,

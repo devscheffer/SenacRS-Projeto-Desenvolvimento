@@ -39,7 +39,11 @@ export class CadastraPressaoPneuComponent implements OnInit {
 
   initForm() {
     this.cadastraPneuForm = this.fb.group({
-      position: ['Selecione a posição...', [Validators.required]],
+      position: ['Selecione a posição...', 
+      [
+        Validators.required
+      ]
+      ],
       pressure_old: ['', [Validators.required]],
       pressure_new: ['', [Validators.required]],
       date: ['', [Validators.required]],
