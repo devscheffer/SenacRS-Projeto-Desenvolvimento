@@ -1,8 +1,8 @@
-import { PneuModel } from 'src/app/shared/models/pneu.model';
+import { PressaoModel } from 'src/app/shared/models/pressao.model';
 import { CombustivelModel } from './../../shared/models/combustivel.model';
 import { KmModel } from './../../shared/models/quilometragem.model';
 import { QuilometragemService } from './../quilometragem/quilometragem.service';
-import { PneuService } from './../pneu/pneu.service';
+import { PressaoService } from '../pressao/pressao.service';
 import { CombustivelService } from './../combustivel/combustivel.service';
 import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
   dataSourceKm: Object = {};
   manutencoes: ManutencaoModel[] = [];
   combustivel: CombustivelModel[] = [];
-  pneu: PneuModel[] = [];
+  pneu: PressaoModel[] = [];
   km: KmModel[] = [];
   chart_pneu: EChartsOption = {};
   chart_km: EChartsOption = {};
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
-    private pneuService: PneuService,
+    private PressaoService: PressaoService,
     private kmService: QuilometragemService
   ) {}
 
@@ -227,7 +227,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async buscaDadosPressaoPneu() {
-    this.pneuService.read_all().subscribe(
+    this.PressaoService.read_all().subscribe(
       (res) => {
         this.pneu = res;
         let lst_data: any[] = [];

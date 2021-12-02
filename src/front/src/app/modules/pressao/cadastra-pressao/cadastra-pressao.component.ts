@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PneuService } from '../pneu.service';
+import { PressaoService } from '../pressao.service';
 
 @Component({
-  selector: 'app-cadastra-pressao-pneu',
-  templateUrl: './cadastra-pressao-pneu.component.html',
-  styleUrls: ['./cadastra-pressao-pneu.component.scss'],
+  selector: 'app-cadastra-pressao',
+  templateUrl: './cadastra-pressao.component.html',
+  styleUrls: ['./cadastra-pressao.component.scss'],
 })
-export class CadastraPressaoPneuComponent implements OnInit {
+export class CadastraPressaoComponent implements OnInit {
   title: string = '';
-  cadastraPneuForm!: FormGroup;
+  cadastraPressaoForm!: FormGroup;
   public loading: boolean = false;
 
   opcoes = [
@@ -23,7 +23,7 @@ export class CadastraPressaoPneuComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private pneuService: PneuService,
+    private PressaoService: PressaoService,
     private router: Router
   ) {
     this.title = route.snapshot.data['title'];
@@ -38,8 +38,8 @@ export class CadastraPressaoPneuComponent implements OnInit {
   }
 
   initForm() {
-    this.cadastraPneuForm = this.fb.group({
-      position: ['Selecione a posição...', 
+    this.cadastraPressaoForm = this.fb.group({
+      position: ['Selecione a posição...',
       [
         Validators.required
       ]
@@ -54,10 +54,10 @@ export class CadastraPressaoPneuComponent implements OnInit {
   submit() {
     this.loading = true;
 
-    this.pneuService.create(this.cadastraPneuForm.value).subscribe(
+    this.PressaoService.create(this.cadastraPressaoForm.value).subscribe(
       (res) => {
         this.loading = false;
-        this.router.navigate(['home/pneu/visualiza']);
+        this.router.navigate(['home/pressao/visualiza']);
       },
       (err) => {
         console.log(err);

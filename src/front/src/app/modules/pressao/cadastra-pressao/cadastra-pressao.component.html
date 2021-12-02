@@ -1,0 +1,85 @@
+<header>
+  <h2 class="titulo">{{ title }}</h2>
+  <hr class="linha" />
+</header>
+
+<div class="pt-3 mb-4 container" *ngIf="!loading">
+  <form [formGroup]="cadastraPressaoForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label class="label-cad-pressao">Posição do pneu no carro: </label><br />
+      <select class="form-select" formControlName="position">
+        <option disabled selected>Selecione a posição...</option>
+        <option [value]="opcao.value" *ngFor="let opcao of opcoes">
+          {{ opcao.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pressao">Pressão antiga do pneu: </label>
+      <!-- <input class="form-control form-control-lg"  type="range" min="0" max="100" formControlName="pressure_old" placeholder="Digite o valor da pressão anterior" oninput="this.previousElementSibling.value = this.value"> -->
+      <mat-slider
+        formControlName="pressure_old"
+        color="primary"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="50"
+        aria-label="units"
+      ></mat-slider>
+      <app-vmessage
+        *ngIf="cadastraPressaoForm.get('pressure_old')?.errors?.required"
+        text="Preencha a presão antiga."
+      ></app-vmessage>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pressao">Pressão nova do pneu: </label>
+      <!-- <input class="form-control form-control-lg" type="range" min="0" max="100" formControlName="pressure_new" placeholder="Digite o valor da nova pressão" oninput="this.previousElementSibling.value = this.value"> -->
+      <mat-slider
+        color="primary"
+        formControlName="pressure_new"
+        thumbLabel
+        tickInterval="1"
+        step="1"
+        min="0"
+        max="50"
+        aria-label="units"
+      ></mat-slider>
+      <app-vmessage
+        *ngIf="cadastraPressaoForm.get('pressure_new')?.errors?.required"
+        text="Preencha a presão atualizada."
+      ></app-vmessage>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pressao">Data de Calibragem: </label>
+      <input
+        class="form-control form-control-lg"
+        type="date"
+        formControlName="date"
+      />
+      <app-vmessage
+        *ngIf="cadastraPressaoForm.get('date')?.errors?.required"
+        text="Preencha a data de calibragem."
+      ></app-vmessage>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pressao">Observações: </label>
+      <input
+        class="form-control"
+        id="observacoes"
+        formControlName="observation"
+      />
+    </div>
+    <div class="col text-center">
+      <button
+        class="btn btn-primary mb-3"
+        type="submit"
+        [disabled]="cadastraPressaoForm.invalid"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>
+
+<app-loading [loading]="loading"></app-loading>

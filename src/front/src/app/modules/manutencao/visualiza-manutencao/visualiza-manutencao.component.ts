@@ -1,6 +1,7 @@
 import { ManutencaoService } from './../manutencao.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
+
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -18,6 +19,8 @@ export class VisualizaManutencaoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private manutencaoervice: ManutencaoService
+    ,private renderer: Renderer2,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -41,6 +44,15 @@ export class VisualizaManutencaoComponent implements OnInit {
       {
         title: 'Preço',
         data: 'price'
+      },
+      {
+        title: 'Action',
+        data: '_id',
+        render: function (data: any, type: any, full: any) {
+          return `
+            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
+            `;
+        },
       }
     ]
 
@@ -59,7 +71,9 @@ export class VisualizaManutencaoComponent implements OnInit {
     .subscribe(res => {
       res.forEach(item => {
         item.price == null ? item.price = 0 : null;
-        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.price };
+        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.price ,
+        _id: item._id,
+      };
         this.data.push(row);
       });
     });
@@ -70,4 +84,20 @@ export class VisualizaManutencaoComponent implements OnInit {
     return moment(data).format('YYYY/MM/DD');
   }
 
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'click', (event) => {
+      if (event.target.hasAttribute('item-id')) {
+        switch (event.target.getAttribute('button-type')) {
+          case 'view':
+            this.manutencaoervice
+              .read_id(event.target.getAttribute('item-id'))
+              .subscribe((res) => {
+                console.log(res._id);
+                this.router.navigate(['home/manutencao/visualiza', res._id]);
+              });
+            break;
+        }
+      }
+    });
+  }
 }

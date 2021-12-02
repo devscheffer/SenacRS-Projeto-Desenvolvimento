@@ -5,4 +5,5 @@ export interface CombustivelModel {
   volume:number
   km?: string
   observation: string;
+  // _id: string|null;
 }
