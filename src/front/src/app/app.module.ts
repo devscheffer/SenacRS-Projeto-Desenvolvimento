@@ -1,28 +1,40 @@
-import { CoreModule } from './core/core.module';
-import { RouterModule } from '@angular/router';
-import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+import { CoreModule } from './core/core.module';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
+import { DialogBoxComponent } from './test-app/dialog-box/dialog-box.component';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableModule } from '@angular/material/table';
 import { registerLocaleData } from '@angular/common';
-import localePt from '@angular/common/locales/pt'
-
+import { RouterModule } from '@angular/router';
+import localePt from '@angular/common/locales/pt';
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogBoxComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    RouterModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    CoreModule,
+    FormsModule,
     HttpClientModule,
-    CoreModule
+    MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    RouterModule,
   ],
   exports: [],
   providers: [

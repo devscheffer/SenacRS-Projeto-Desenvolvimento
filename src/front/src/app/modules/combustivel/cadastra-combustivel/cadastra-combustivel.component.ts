@@ -68,7 +68,8 @@ export class CadastraCombustivelComponent implements OnInit {
     const dataKm: KmModel = {
       'km': this.cadastraCombustivelForm.get('km')?.value,
       'date': this.cadastraCombustivelForm.get('date')?.value,
-      'observation': this.cadastraCombustivelForm.get('observation')?.value
+      'observation': this.cadastraCombustivelForm.get('observation')?.value,
+      '_id': null
     };
     console.log(dataKm);
 
