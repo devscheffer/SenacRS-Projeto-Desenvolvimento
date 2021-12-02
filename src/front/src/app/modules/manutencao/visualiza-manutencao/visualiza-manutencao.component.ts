@@ -67,7 +67,7 @@ export class VisualizaManutencaoComponent implements OnInit {
   }
 
   formataData(data: string) {
-    return moment(data).format('DD/MM/YYYY');
+    return moment(data).format('YYYY/MM/DD');
   }
 
 }
