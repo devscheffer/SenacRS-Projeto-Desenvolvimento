@@ -79,14 +79,27 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
   }
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'click', (event) => {
-      console.log(event.target);
-        if (event.target.hasAttribute("item-id") && event.target.getAttribute("button-type") == "edit") {
+        if (event.target.hasAttribute("item-id")) {
+            switch(event.target.getAttribute("button-type")) {
+                case "view":
           this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
             console.log(res);
             });
+            break;
+                case "edit":
+          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
+            console.log(res);
+            });
+            break;
+                case "delete":
+          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
+            console.log(res);
+            });
+            break;
       //     this.route.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
-        }
-    });
+
+            }
+    };
 
   }
-}
+
