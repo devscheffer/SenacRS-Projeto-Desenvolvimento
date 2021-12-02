@@ -48,10 +48,47 @@ export class DashboardComponent implements OnInit {
       res => {
         this.manutencoes = res;
         let data: any[] = [];
+        let dataMotor = { label: "Motor", value: 0 };
+        let dataMecanico = { label: "Mecânico", value: 0 };
+        let dataRodas = { label: "Rodas", value: 0 };
+        let dataPecas = { label: "Peças", value: 0 };
+        let dataSuspencao = { label: "Suspenção", value: 0 };
+
         this.manutencoes.forEach(item => {
-          let dataObject = { label: item.category, value: item.price };
-          data.push(dataObject);
+
+        switch (item.category.toLowerCase()) {
+          case 'motor':
+            dataMotor.value += item.price;
+            break;
+
+          case 'mecanico':
+            dataMecanico.value += item.price;
+            break;
+
+          case 'rodas':
+            dataRodas.value += item.price;
+            break;
+
+          case 'peca':
+            dataPecas.value += item.price;
+            break;
+
+          case 'suspencao':
+            dataSuspencao.value += item.price;
+            break;
+
+          default:
+            break;
+        }
+
+          // let dataObject = { label: item.category, value: item.price };
+          // data.push(dataObject);
         });
+        data.push(dataMotor);
+        // data.push(dataMecanico);
+        data.push(dataRodas);
+        data.push(dataPecas);
+        // data.push(dataSuspencao);
 
         this.dataSourceManutencao = {
           chart: {
@@ -76,10 +113,33 @@ export class DashboardComponent implements OnInit {
       res => {
         this.combustivel = res;
         let data: any[] = [];
+        let dataGAditivada = { label: "Gasolina Aditivada", value: 0 };
+        let dataGComum = { label: "Gasolina Comum", value: 0 };
         this.combustivel.forEach(item => {
-          let dataObject = { label: item.gas_type, value: item.price };
-          data.push(dataObject);
+
+          switch (item.gas_type) {
+            case "gasolina_aditivada":
+              dataGAditivada.value += item.price;
+              break;
+
+            case "gasolina_comum":
+              dataGComum.value += item.price;
+              break;
+
+            case "gasolina_aditivada":
+              dataGAditivada.value += item.price;
+              break;
+
+            default:
+              break;
+          }
+
+          // let dataObject = { label: item.gas_type, value: item.price };
+          // data.push(dataObject);
         });
+        console.log(dataGComum.value);
+        data.push(dataGAditivada);
+        data.push(dataGComum);
 
         this.dataSourceCombustivel = {
           chart: {
