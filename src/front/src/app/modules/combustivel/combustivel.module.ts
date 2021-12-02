@@ -6,11 +6,13 @@ import { CombustivelRoutingModule } from './combustivel.routing.module';
 import { VisualizaCombustivelComponent } from './visualiza-combustivel/visualiza-combustivel.component';
 import { CadastraCombustivelComponent } from './cadastra-combustivel/cadastra-combustivel.component';
 import { SharedModule } from './../../shared/shared.module';
+import { ViewEditCombustivelComponent } from './view-edit-combustivel/view-edit-combustivel.component';
 
 @NgModule({
   declarations: [
     CadastraCombustivelComponent,
-    VisualizaCombustivelComponent
+    VisualizaCombustivelComponent,
+    ViewEditCombustivelComponent
   ],
   imports: [
     CommonModule,
