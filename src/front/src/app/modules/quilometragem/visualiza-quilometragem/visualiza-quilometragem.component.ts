@@ -86,10 +86,10 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
               .read_id(event.target.getAttribute('item-id'))
               .subscribe((res) => {
                 console.log(res._id);
-                this.router.navigate(['home/quilometragem/visualiza', res._id])
+                this.router.navigate(['home/quilometragem/visualiza', res._id]);
               });
             break;
-          }
+        }
       }
     });
   }

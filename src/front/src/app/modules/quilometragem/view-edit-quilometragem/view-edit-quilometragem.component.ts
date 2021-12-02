@@ -41,7 +41,6 @@ export class ViewEditQuilometragemComponent implements OnInit {
   buscaDadosKM() {
     this.kmService.read_id(this.id).subscribe(
       res => {
-        console.log(res);
         let dadosKM: KmModel = res;
         let data = moment(dadosKM.date).add(1, 'd').format('YYYY-MM-DD');
         this.editQuilometragemForm.controls['date'].setValue(data);
