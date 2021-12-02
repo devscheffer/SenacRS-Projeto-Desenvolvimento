@@ -71,7 +71,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
     this.kmService.update(this.id, this.editQuilometragemForm.value).subscribe(
       (res) => {
         this.loading = false;
-        this.router.navigate(['home/quilometragem/registros']);
+        this.router.navigate(['home/quilometragem/visualiza']);
       },
       (err) => {
         console.log(err);
@@ -87,7 +87,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
       res => {
         console.log(res);
         this.loading = false;
-        this.router.navigate(['home/quilometragem/registros']);
+        this.router.navigate(['home/quilometragem/visualiza']);
       }, err => {
         console.log(err);
         this.loading = false;

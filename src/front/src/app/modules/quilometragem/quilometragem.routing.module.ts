@@ -11,7 +11,7 @@ const routes : Routes = [
     data: { title: 'Cadastra Quilometragem' }
   },
 	{
-    path: 'registros',
+    path: 'visualiza',
     component: VisualizaQuilometragemComponent,
     data: { title: 'Registros de Quilometragem' }
   },

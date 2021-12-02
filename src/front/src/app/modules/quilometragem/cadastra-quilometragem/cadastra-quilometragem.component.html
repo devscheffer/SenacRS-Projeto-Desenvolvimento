@@ -12,8 +12,7 @@
     </div>
     <div class="form-group">
       <label class="label-cad-pneu">Quilometragem: </label>
-      <!-- <input class="form-control form-control-lg" type="number" formControlName="km" placeholder="Digite o valor da quilometragem"> -->
-      <mat-slider color="primary" formControlName="km" thumbLabel tickInterval="1" step="100" min="0" max="1000000" aria-label="units"></mat-slider>
+      <input class="form-control form-control-lg" type="number" formControlName="km" placeholder="Digite o valor da quilometragem">
       <app-vmessage *ngIf="cadastraQuilometragemForm.get('km')?.errors?.required" text="Preencha a quilometragem."></app-vmessage>
     </div>
     <div class="form-group">
