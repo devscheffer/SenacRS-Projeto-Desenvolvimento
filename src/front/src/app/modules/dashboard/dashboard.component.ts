@@ -220,7 +220,7 @@ export class DashboardComponent implements OnInit {
 
         let lst_data: any[] = [];
         this.combustivel.forEach((item) => {
-            lst_data.push(item);
+          lst_data.push(item);
         });
 
         let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
@@ -237,10 +237,10 @@ export class DashboardComponent implements OnInit {
 
           switch (item.gas_type) {
             case 'gasolina_aditivada':
-                lst_data_y_ga.push(data_y);
+              lst_data_y_ga.push(data_y);
               break;
             case 'gasolina_comum':
-                lst_data_y_gc.push(data_y);
+              lst_data_y_gc.push(data_y);
               break;
             case 'etanol':
               lst_data_y_e.push(data_y);
