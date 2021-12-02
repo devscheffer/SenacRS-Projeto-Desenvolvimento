@@ -1,15 +1,14 @@
 import { QuilometragemService } from './../quilometragem.service';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-visualiza-quilometragem',
   templateUrl: './visualiza-quilometragem.component.html',
-  styleUrls: ['./visualiza-quilometragem.component.scss']
+  styleUrls: ['./visualiza-quilometragem.component.scss'],
 })
-export class VisualizaQuilometragemComponent implements OnInit {
-
+export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
   title: string = '';
   public loading: boolean = false;
   columns: Object[] = [];
@@ -17,7 +16,8 @@ export class VisualizaQuilometragemComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private kmService: QuilometragemService
+    private kmService: QuilometragemService,
+    private renderer: Renderer2
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -28,43 +28,64 @@ export class VisualizaQuilometragemComponent implements OnInit {
     this.columns = [
       {
         title: 'km',
-        data: 'km'
+        data: 'km',
       },
       {
         title: 'Data',
-        data: 'date'
+        data: 'date',
       },
       {
         title: 'Observação',
-        data: 'observation'
-      }
-    ]
+        data: 'observation',
+      },
+      {
+        title: 'Action',
+        data: '_id',
+        render: function (data: any, type: any, full: any) {
+            return `
+            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
+            <button class="btn btn-primary" item-id="${data}" button-type="edit">Edit</button>
+            <button class="btn btn-primary" item-id="${data}" button-type="delete">Delete</button>
+            `;
+        },
+      },
+    ];
 
     await this.buscaDados();
     setTimeout(() => {
       this.loading = false;
     }, 500);
-
   }
 
   async buscaDados() {
     this.data = [];
 
-    this.kmService.read_all()
-    .subscribe(res => {
-
-      res.forEach(item => {
-        item.km == null ? item.km = 0 : item.km;
-        let row = { 'km': item.km, 'date': this.formataData(item.date), 'observation': item.observation };
+    this.kmService.read_all().subscribe((res) => {
+      res.forEach((item) => {
+        item.km == null ? (item.km = 0) : item.km;
+        let row = {
+          km: item.km,
+          date: this.formataData(item.date),
+          observation: item.observation,
+          _id: item._id,
+        };
         this.data.push(row);
       });
-
     });
-
   }
 
   formataData(data: string) {
     return moment(data).format('YYYY/MM/DD');
   }
-
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'click', (event) => {
+      console.log(event.target);
+        if (event.target.hasAttribute("item-id") && event.target.getAttribute("button-type") == "edit") {
+          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
+            console.log(res);
+            });
+      //     this.route.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
+        }
+    });
+  }
 }
