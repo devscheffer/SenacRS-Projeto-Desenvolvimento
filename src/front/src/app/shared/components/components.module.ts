@@ -6,12 +6,14 @@ import { DataTablesModule } from 'angular-datatables';
 import { LoadingComponent } from './loading/loading.component';
 import { NgxLoadingModule } from 'ngx-loading';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { VmessageComponent } from './vmessage/vmessage.component';
 
 @NgModule({
   declarations: [
     DatatableComponent,
     LoadingComponent,
-    ButtonPlusComponent
+    ButtonPlusComponent,
+    VmessageComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   exports: [
     DatatableComponent,
     LoadingComponent,
-    ButtonPlusComponent
+    ButtonPlusComponent,
+    VmessageComponent
   ]
 })
 export class ComponentsModule { }
