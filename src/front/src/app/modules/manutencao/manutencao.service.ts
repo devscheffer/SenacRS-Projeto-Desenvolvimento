@@ -10,7 +10,6 @@ const url = environment.apiUrl;
   providedIn: 'root',
 })
 export class ManutencaoService {
-
   constructor(private http: HttpClient) {}
 
   create(pneu: ManutencaoModel): Observable<ManutencaoModel> {
@@ -21,16 +20,15 @@ export class ManutencaoService {
     return this.http.get<ManutencaoModel[]>(`${url}/manutencao`);
   }
 
-  read_id(id: number): Observable<ManutencaoModel> {
+  read_id(id: string): Observable<ManutencaoModel> {
     return this.http.get<ManutencaoModel>(`${url}/manutencao/${id}`);
   }
 
-  update(id: number, pneu: ManutencaoModel): Observable<any> {
-    return this.http.patch(`${url}/${id}`, pneu);
+  update(id: string, pneu: ManutencaoModel): Observable<any> {
+    return this.http.patch(`${url}/manutencao/${id}`, pneu);
   }
 
-  delete(id: number): Observable<ManutencaoModel> {
-    return this.http.delete<ManutencaoModel>(`${url}/${id}`);
+  delete(id: string): Observable<ManutencaoModel> {
+    return this.http.delete<ManutencaoModel>(`${url}/manutencao/${id}`);
   }
-
 }

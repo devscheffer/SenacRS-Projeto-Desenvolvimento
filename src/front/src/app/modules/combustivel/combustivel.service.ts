@@ -21,16 +21,16 @@ export class CombustivelService {
     return this.http.get<CombustivelModel[]>(`${url}/combustivel`);
   }
 
-  read_id(id: number): Observable<CombustivelModel> {
+  read_id(id: string): Observable<CombustivelModel> {
     return this.http.get<CombustivelModel>(`${url}/combustivel/${id}`);
   }
 
-  update(id: number, pneu: CombustivelModel): Observable<any> {
-    return this.http.patch(`${url}/${id}`, pneu);
+  update(id: string, pneu: CombustivelModel): Observable<any> {
+    return this.http.patch(`${url}/combustivel/${id}`, pneu);
   }
 
-  delete(id: number): Observable<CombustivelModel> {
-    return this.http.delete<CombustivelModel>(`${url}/${id}`);
+  delete(id: string): Observable<CombustivelModel> {
+    return this.http.delete<CombustivelModel>(`${url}/combustivel/${id}`);
   }
 
 }

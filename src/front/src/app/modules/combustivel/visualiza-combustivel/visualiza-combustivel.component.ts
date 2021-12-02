@@ -1,6 +1,6 @@
 import { CombustivelService } from './../combustivel.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -8,7 +8,7 @@ import * as moment from 'moment';
   templateUrl: './visualiza-combustivel.component.html',
   styleUrls: ['./visualiza-combustivel.component.scss'],
 })
-export class VisualizaCombustivelComponent implements OnInit {
+export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
   title: string = '';
   columns: Object[] = [];
   data: Object[] = [];
@@ -24,7 +24,9 @@ export class VisualizaCombustivelComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private combustivelService: CombustivelService
+    private combustivelService: CombustivelService,
+    private renderer: Renderer2,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -48,6 +50,15 @@ export class VisualizaCombustivelComponent implements OnInit {
         title: 'Preço',
         data: 'price',
       },
+      {
+        title: 'Action',
+        data: '_id',
+        render: function (data: any, type: any, full: any) {
+          return `
+            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
+            `;
+        },
+      },
     ];
 
     await this.buscaDados();
@@ -66,6 +77,7 @@ export class VisualizaCombustivelComponent implements OnInit {
           volume: item.volume,
           date: this.formataData(item.date),
           price: item.price,
+          _id: item._id,
         };
         this.data.push(row);
 
@@ -83,4 +95,26 @@ export class VisualizaCombustivelComponent implements OnInit {
     );
     return tipo[0].name;
   }
+
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'click', (event) => {
+
+      if (event.target.hasAttribute('item-id')) {
+        // console.log(event.target.getAttribute('item-id'));
+        switch (event.target.getAttribute('button-type')) {
+          case 'view':
+
+            this.combustivelService
+              .read_id(event.target.getAttribute('item-id'))
+              .subscribe((res) => {
+                console.log(res);
+                this.router.navigate(['home/combustivel/visualiza', res._id]);
+              }, err => {
+                console.log(err);
+              });
+            break;
+        }
+      }
+    });
+};
 }
