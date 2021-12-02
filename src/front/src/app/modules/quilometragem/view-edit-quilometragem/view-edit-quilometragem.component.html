@@ -1,0 +1,30 @@
+<header>
+  <h2 class="titulo">{{title}}</h2>
+  <hr class="linha">
+</header>
+
+<div class="pt-3 mb-4 container" *ngIf="!loading">
+  <form [formGroup]="editQuilometragemForm">
+    <div class="form-group">
+      <label class="label-cad-pneu">Data: </label>
+      <input class="form-control form-control-lg" type="date" formControlName="date">
+      <app-vmessage *ngIf="editQuilometragemForm.get('date')?.errors?.required" text="Preencha a data."></app-vmessage>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Quilometragem: </label>
+      <input class="form-control form-control-lg" type="number" formControlName="km" placeholder="Digite o valor da quilometragem">
+      <app-vmessage *ngIf="editQuilometragemForm.get('km')?.errors?.required" text="Preencha a quilometragem."></app-vmessage>
+    </div>
+    <div class="form-group">
+      <label class="label-cad-pneu">Observações: </label>
+      <input class="form-control form-control-lg" id="observacoes" type="text" formControlName="observation">
+    </div>
+    <div class="col text-center">
+      <!-- <button class="btn btn-primary mb-3" type="submit" [disabled]="editQuilometragemForm.invalid">Salvar</button> -->
+      <button class="btn btn-primary mb-3 mr-3" (click)="editar()">Editar</button>
+      <button class="btn btn-primary mb-3 ml-3" (click)="remover()">Excluir</button>
+    </div>
+  </form>
+</div>
+
+<app-loading [loading]="loading"></app-loading>
