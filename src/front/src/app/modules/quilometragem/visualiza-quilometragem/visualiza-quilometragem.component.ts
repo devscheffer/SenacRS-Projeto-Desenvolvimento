@@ -1,6 +1,6 @@
 import { QuilometragemService } from './../quilometragem.service';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 
 @Component({
@@ -17,7 +17,8 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
   constructor(
     private route: ActivatedRoute,
     private kmService: QuilometragemService,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -42,10 +43,8 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
         title: 'Action',
         data: '_id',
         render: function (data: any, type: any, full: any) {
-            return `
+          return `
             <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
-            <button class="btn btn-primary" item-id="${data}" button-type="edit">Edit</button>
-            <button class="btn btn-primary" item-id="${data}" button-type="delete">Delete</button>
             `;
         },
       },
@@ -77,29 +76,21 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
   formataData(data: string) {
     return moment(data).format('YYYY/MM/DD');
   }
+
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'click', (event) => {
-        if (event.target.hasAttribute("item-id")) {
-            switch(event.target.getAttribute("button-type")) {
-                case "view":
-          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
-            console.log(res);
-            });
+      if (event.target.hasAttribute('item-id')) {
+        switch (event.target.getAttribute('button-type')) {
+          case 'view':
+            this.kmService
+              .read_id(event.target.getAttribute('item-id'))
+              .subscribe((res) => {
+                console.log(res._id);
+                this.router.navigate(['home/quilometragem/visualiza', res._id])
+              });
             break;
-                case "edit":
-          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
-            console.log(res);
-            });
-            break;
-                case "delete":
-          this.kmService.read_id(event.target.getAttribute("item-id")).subscribe((res) => {
-            console.log(res);
-            });
-            break;
-      //     this.route.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
-
-            }
-    };
-
+          }
+      }
+    });
   }
-
+}

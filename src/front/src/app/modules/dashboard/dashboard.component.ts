@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
         this.manutencoes.forEach((item) => {
             lst_data.push(item);
         });
+        // data.push(dataSuspencao);
 
         let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
         let lst_data_x: any[] = [];
@@ -140,6 +141,7 @@ export class DashboardComponent implements OnInit {
     this.combustivelService.read_all().subscribe(
       (res) => {
         this.combustivel = res;
+
         let lst_data: any[] = [];
         this.combustivel.forEach((item) => {
             lst_data.push(item);

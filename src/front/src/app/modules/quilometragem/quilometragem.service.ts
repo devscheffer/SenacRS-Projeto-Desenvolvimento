@@ -21,16 +21,16 @@ export class QuilometragemService {
     return this.http.get<KmModel[]>(`${url}/km`);
   }
 
-  read_id(id: number): Observable<KmModel> {
+  read_id(id: string): Observable<KmModel> {
     return this.http.get<KmModel>(`${url}/km/${id}`);
   }
 
-  update(id: number, pneu: KmModel): Observable<any> {
-    return this.http.patch(`${url}/${id}`, pneu);
+  update(id: string, pneu: KmModel): Observable<any> {
+    return this.http.patch(`${url}/km/${id}`, pneu);
   }
 
-  delete(id: number): Observable<KmModel> {
-    return this.http.delete<KmModel>(`${url}/${id}`);
+  delete(id: string): Observable<KmModel> {
+    return this.http.delete<KmModel>(`${url}/km/${id}`);
   }
 
 }
