@@ -87,5 +87,6 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
       //     this.route.navigate(["/person/" + event.target.getAttribute("view-person-id")]);
         }
     });
+
   }
 }
