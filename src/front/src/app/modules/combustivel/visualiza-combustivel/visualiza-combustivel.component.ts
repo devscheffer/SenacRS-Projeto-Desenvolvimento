@@ -1,8 +1,6 @@
 import { CombustivelService } from './../combustivel.service';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-
 import * as moment from 'moment';
 
 @Component({
@@ -79,6 +77,7 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
           volume: item.volume,
           date: this.formataData(item.date),
           price: item.price,
+          _id: item._id,
         };
         this.data.push(row);
 
@@ -96,17 +95,22 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     );
     return tipo[0].name;
   }
+
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'click', (event) => {
 
       if (event.target.hasAttribute('item-id')) {
+        // console.log(event.target.getAttribute('item-id'));
         switch (event.target.getAttribute('button-type')) {
           case 'view':
+
             this.combustivelService
               .read_id(event.target.getAttribute('item-id'))
               .subscribe((res) => {
-                console.log(res._id);
+                console.log(res);
                 this.router.navigate(['home/combustivel/visualiza', res._id]);
+              }, err => {
+                console.log(err);
               });
             break;
         }

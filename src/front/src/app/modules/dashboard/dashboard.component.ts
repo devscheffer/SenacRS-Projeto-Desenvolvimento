@@ -8,9 +8,7 @@ import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-//https://echarts.apache.org/en/index.html
 import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -31,6 +29,11 @@ export class DashboardComponent implements OnInit {
   chart_km: EChartsOption = {};
   chart_gas: EChartsOption = {};
   chart_manutencao: EChartsOption = {};
+  initOpts = {
+    renderer: 'svg',
+    width: 300,
+    height: 300,
+  };
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
@@ -55,81 +58,154 @@ export class DashboardComponent implements OnInit {
         this.manutencoes = res;
         let lst_data: any[] = [];
         this.manutencoes.forEach((item) => {
-            lst_data.push(item);
+          lst_data.push(item);
         });
-        // data.push(dataSuspencao);
+
+        let dataSeries: any[] = [];
+
+        let data_motor_valores: any[] = [];
+        let data_motor_object = {};
+
+        let data_rodas_valores: any[] = [];
+        let data_rodas_object = {};
 
         let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
-        let lst_data_x: any[] = [];
-        let lst_data_y_m: any[] = [];
-        let lst_data_y_r: any[] = [];
-        let lst_data_y_s: any[] = [];
-        let lst_data_y_a: any[] = [];
-        let lst_data_y_p: any[] = [];
+        let data_dates: any[] = [];
+        let data_motor: any[] = [];
+        let data_rodas: any[] = [];
+        let data_suspencao: any[] = [];
+        let data_arrefecimento: any[] = [];
+        let data_pecas: any[] = [];
+
         lst_data_sort.forEach((item) => {
-          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
-          lst_data_x.push(data_x);
-          let data_y = item.price;
-          switch (item.category) {
-            case 'Motor':
-                lst_data_y_m.push(data_y);
-              break;
-            case 'Rodas':
-                lst_data_y_r.push(data_y);
-              break;
-            case 'Suspencao':
-              lst_data_y_s.push(data_y);
-              break;
-            case 'Arrefecimento':
-              lst_data_y_a.push(data_y);
-              break;
-            case 'peca':
-              lst_data_y_p.push(data_y);
-              break;
-            default:
-              console.log('erro');
+          // console.log(item);
+
+          let data_formatada = moment(item.date, 'YYYY-MM-DD').format(
+            'YYYY-MM-DD'
+          );
+          data_dates.push(data_formatada);
+
+          if (item.category.toLowerCase() == 'motor') {
+            let valor = item.price;
+            data_motor_valores.push(valor)
           }
+
+          if (item.category.toLowerCase() == 'rodas') {
+            let valor = item.price;
+            data_rodas_valores.push(valor)
+          } else {
+            data_rodas_valores.push(null)
+          }
+
+          // if (item.category.toLowerCase() == 'rodas') {
+          //   let data_formatada = moment(item.date, 'YYYY-MM-DD').format(
+          //     'YYYY-MM-DD'
+          //   );
+          //   data_dates.push(data_formatada);
+          //   let valor = item.price;
+          //   data_rodas_valores.push(valor)
+          // }
+
+          // switch (item.category.toLowerCase()) {
+          //   case 'motor':
+
+          //     break;
+          //   case 'rodas':
+
+          //     data_rodas_valores.push(valor);
+
+          //     data_rodas_object = {
+          //       name: 'Rodas',
+          //       data: data_rodas_valores,
+          //       type: 'bar',
+          //       color: 'green'
+          //     };
+
+          //     data_rodas.push(valor);
+          //     break;
+          //   case 'suspencao':
+          //     data_suspencao.push(valor);
+          //     break;
+          //   case 'arrefecimento':
+          //     data_arrefecimento.push(valor);
+          //     break;
+          //   case 'peca':
+          //     data_pecas.push(valor);
+          //     break;
+          //   default:
+          //     console.log('erro');
+          // }
+
+
+          // item.category.toLowerCase() == 'rodas' ? data_rodas_valores.push(valor) : data_rodas_valores.push(0);
+
+          // data_rodas_object = { name: 'Rodas', data: data_rodas_valores, type: 'bar', color: 'green' };
         });
+        data_motor_object = { name: 'Motor', data: data_motor_valores, type: 'bar', color: 'red' };
+        data_rodas_object = { name: 'Rodas', data: data_rodas_valores, type: 'bar', color: 'green' };
+        console.log(data_dates);
+        console.log(data_motor_object);
+        console.log(data_rodas_object);
+        dataSeries.push(data_motor_object);
+        dataSeries.push(data_rodas_object);
+
         this.chart_manutencao = {
-          grid: { containLabel: true },
-          legend: {
-            data: ['Motor', 'Rodas', 'Suspencao', 'Arrefecimento', 'peca'],
+          color: ['#3398DB'],
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
           },
           xAxis: {
             type: 'category',
-            data: [...new Set(lst_data_x)],
+            data: [...new Set(data_dates)],
           },
           yAxis: {
             type: 'value',
           },
-          series: [
-            {
-              name: 'Motor',
-              data: lst_data_y_m,
-              type: 'line',
-            },
-            {
-              name: 'Rodas',
-              data: lst_data_y_r,
-              type: 'line',
-            },
-            {
-              name: 'Suspencao',
-              data: lst_data_y_s,
-              type: 'line',
-            },
-            {
-              name: 'Arrefecimento',
-              data: lst_data_y_a,
-              type: 'line',
-            },
-            {
-              name: 'peca',
-              data: lst_data_y_p,
-              type: 'line',
-            },
-          ],
+          series: dataSeries,
         };
+
+        // this.chart_manutencao = {
+        //   color: ['#3398DB'],
+        //   tooltip: {
+        //     trigger: 'axis',
+        //     axisPointer: {
+        //       type: 'shadow'
+        //     }
+        //   },
+        //   grid: {
+        //     left: '3%',
+        //     right: '4%',
+        //     bottom: '3%',
+        //     containLabel: true
+        //   },
+        //   xAxis: [
+        //     {
+        //       type: 'category',
+        //       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+        //       axisTick: {
+        //         alignWithLabel: true
+        //       }
+        //     }
+        //   ],
+        //   yAxis: [{
+        //     type: 'value'
+        //   }],
+        //   series: [{
+        //     name: 'Counters',
+        //     type: 'bar',
+        //     barWidth: '60%',
+        //     data: [50, 70, 30, 60, 120]
+        //   }]
+        // };
       },
       (err) => {
         console.log(err);
@@ -181,7 +257,14 @@ export class DashboardComponent implements OnInit {
         });
         this.chart_gas = {
           grid: { containLabel: true },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           legend: {
+            show: true,
             data: ['gasolina_comum', 'gasolina_aditivada', 'etanol', 'gnv', 'diesel'],
           },
           xAxis: {
