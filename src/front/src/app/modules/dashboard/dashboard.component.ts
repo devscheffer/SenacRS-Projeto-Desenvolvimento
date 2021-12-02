@@ -7,14 +7,17 @@ import { CombustivelService } from './../combustivel/combustivel.service';
 import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
 import { Component, OnInit } from '@angular/core';
+import { EChartsOption } from 'echarts';
+//https://echarts.apache.org/en/index.html
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-
   public loading: boolean = false;
   dataSourceManutencao: Object = {};
   dataSourceCombustivel: Object = {};
@@ -24,13 +27,16 @@ export class DashboardComponent implements OnInit {
   combustivel: CombustivelModel[] = [];
   pneu: PneuModel[] = [];
   km: KmModel[] = [];
-
+  chart_pneu: EChartsOption = {};
+  chart_km: EChartsOption = {};
+  chart_gas: EChartsOption = {};
+  chart_manutencao: EChartsOption = {};
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
     private pneuService: PneuService,
     private kmService: QuilometragemService
-  ) { }
+  ) {}
 
   async ngOnInit() {
     this.loading = true;
@@ -45,113 +51,294 @@ export class DashboardComponent implements OnInit {
 
   async buscaDadosManutencoes() {
     this.manutencaoService.read_all().subscribe(
-      res => {
+      (res) => {
         this.manutencoes = res;
-        let data: any[] = [];
-        this.manutencoes.forEach(item => {
-          let dataObject = { label: item.category, value: item.price };
-          data.push(dataObject);
+        let lst_data: any[] = [];
+        this.manutencoes.forEach((item) => {
+            lst_data.push(item);
         });
 
-        this.dataSourceManutencao = {
-          chart: {
-            caption: 'Gráfico de Manutenções',
-            // subCaption: 'In MMbbl = One Million barrels',
-            // xAxisName: 'Country',
-            yAxisName: 'Reais (R$)',
-            numberSuffix: 'R$',
-            theme: 'fusion'
+        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
+        let lst_data_x: any[] = [];
+        let lst_data_y_m: any[] = [];
+        let lst_data_y_r: any[] = [];
+        let lst_data_y_s: any[] = [];
+        let lst_data_y_a: any[] = [];
+        let lst_data_y_p: any[] = [];
+        lst_data_sort.forEach((item) => {
+          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          lst_data_x.push(data_x);
+          let data_y = item.price;
+            console.log(item.category);
+          switch (item.category) {
+            case 'Motor':
+                lst_data_y_m.push(data_y);
+              break;
+            case 'Rodas':
+                lst_data_y_r.push(data_y);
+              break;
+            case 'Suspencao':
+              lst_data_y_s.push(data_y);
+              break;
+            case 'Arrefecimento':
+              lst_data_y_a.push(data_y);
+              break;
+            case 'peca':
+              lst_data_y_p.push(data_y);
+              break;
+            default:
+              console.log('erro');
+          }
+        });
+        this.chart_manutencao = {
+          grid: { containLabel: true },
+          legend: {
+            data: ['Motor', 'Rodas', 'Suspencao', 'Arrefecimento', 'peca'],
           },
-          data
+          xAxis: {
+            type: 'category',
+            data: [...new Set(lst_data_x)],
+          },
+          yAxis: {
+            type: 'value',
+          },
+          series: [
+            {
+              name: 'Motor',
+              data: lst_data_y_m,
+              type: 'line',
+            },
+            {
+              name: 'Rodas',
+              data: lst_data_y_r,
+              type: 'line',
+            },
+            {
+              name: 'Suspencao',
+              data: lst_data_y_s,
+              type: 'line',
+            },
+            {
+              name: 'Arrefecimento',
+              data: lst_data_y_a,
+              type: 'line',
+            },
+            {
+              name: 'peca',
+              data: lst_data_y_p,
+              type: 'line',
+            },
+          ],
         };
-
-      }, err => {
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
-      res => {
+      (res) => {
         this.combustivel = res;
-        let data: any[] = [];
-        this.combustivel.forEach(item => {
-          let dataObject = { label: item.gas_type, value: item.price };
-          data.push(dataObject);
+        let lst_data: any[] = [];
+        this.combustivel.forEach((item) => {
+            lst_data.push(item);
         });
 
-        this.dataSourceCombustivel = {
-          chart: {
-            caption: 'Gráfico de Combustível',
-            // subCaption: 'In MMbbl = One Million barrels',
-            // xAxisName: 'Country',
-            yAxisName: 'Reais (R$)',
-            numberSuffix: 'R$',
-            theme: 'fusion'
-          },
-          data
-        };
+        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
+        let lst_data_x: any[] = [];
+        let lst_data_y_ga: any[] = [];
+        let lst_data_y_gc: any[] = [];
+        let lst_data_y_e: any[] = [];
+        let lst_data_y_gv: any[] = [];
+        let lst_data_y_d: any[] = [];
+        lst_data_sort.forEach((item) => {
+          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          lst_data_x.push(data_x);
+          let data_y = item.price;
 
-      }, err => {
+          switch (item.gas_type) {
+            case 'gasolina_aditivada':
+                lst_data_y_ga.push(data_y);
+              break;
+            case 'gasolina_comum':
+                lst_data_y_gc.push(data_y);
+              break;
+            case 'etanol':
+              lst_data_y_e.push(data_y);
+              break;
+            case 'gnv':
+              lst_data_y_gv.push(data_y);
+              break;
+            case 'diesel':
+              lst_data_y_d.push(data_y);
+              break;
+            default:
+              console.log('erro');
+          }
+        });
+        this.chart_gas = {
+          grid: { containLabel: true },
+          legend: {
+            data: ['gasolina_comum', 'gasolina_aditivada', 'etanol', 'gnv', 'diesel'],
+          },
+          xAxis: {
+            type: 'category',
+            data: [...new Set(lst_data_x)],
+          },
+          yAxis: {
+            type: 'value',
+          },
+          series: [
+            {
+              name: 'gasolina_comum',
+              data: lst_data_y_ga,
+              type: 'line',
+            },
+            {
+              name: 'gasolina_aditivada',
+              data: lst_data_y_gc,
+              type: 'line',
+            },
+            {
+              name: 'etanol',
+              data: lst_data_y_e,
+              type: 'line',
+            },
+            {
+              name: 'gnv',
+              data: lst_data_y_gv,
+              type: 'line',
+            },
+            {
+              name: 'diesel',
+              data: lst_data_y_d,
+              type: 'line',
+            },
+          ],
+        };
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   async buscaDadosPressaoPneu() {
     this.pneuService.read_all().subscribe(
-      res => {
+      (res) => {
         this.pneu = res;
-        let data: any[] = [];
-        this.pneu.forEach(item => {
-          let dataObject = { label: item.position, value: item.pressure_new };
-          data.push(dataObject);
+        let lst_data: any[] = [];
+        this.pneu.forEach((item) => {
+          lst_data.push(item);
         });
+        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
+        let lst_data_x: any[] = [];
+        let lst_data_y_fl: any[] = [];
+        let lst_data_y_fr: any[] = [];
+        let lst_data_y_bl: any[] = [];
+        let lst_data_y_br: any[] = [];
+        lst_data_sort.forEach((item) => {
+          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          lst_data_x.push(data_x);
+          let data_y = item.pressure_old;
 
-        this.dataSourcePneu = {
-          chart: {
-            caption: 'Gráfico de Pressão do Pneu',
-            // subCaption: 'In MMbbl = One Million barrels',
-            // xAxisName: 'Country',
-            // yAxisName: 'Reais (R$)',
-            numberSuffix: '',
-            theme: 'fusion'
+          switch (item.position) {
+            case 'fl':
+              lst_data_y_fl.push(data_y);
+              break;
+            case 'fr':
+              lst_data_y_fr.push(data_y);
+              break;
+            case 'bl':
+              lst_data_y_bl.push(data_y);
+              break;
+            case 'br':
+              lst_data_y_br.push(data_y);
+              break;
+            default:
+              console.log('erro');
+          }
+        });
+        this.chart_pneu = {
+          grid: { containLabel: true },
+          legend: {
+            data: [
+              'Frente Esquerda',
+              'Frente Direita',
+              'Traseira Esquerda',
+              'Traseira Direita',
+            ],
           },
-          data
+          xAxis: {
+            type: 'category',
+            data: [...new Set(lst_data_x)],
+          },
+          yAxis: {
+            type: 'value',
+          },
+          series: [
+            {
+              name: 'Frente Esquerda',
+              data: lst_data_y_fl,
+              type: 'line',
+            },
+            {
+              name: 'Frente Direita',
+              data: lst_data_y_fr,
+              type: 'line',
+            },
+            {
+              name: 'Traseira Esquerda',
+              data: lst_data_y_bl,
+              type: 'line',
+            },
+            {
+              name: 'Traseira Direita',
+              data: lst_data_y_br,
+              type: 'line',
+            },
+          ],
         };
-
-      }, err => {
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 
   async buscaDadosKm() {
     this.kmService.read_all().subscribe(
-      res => {
+      (res) => {
         this.km = res;
-        let data: any[] = [];
-        this.km.forEach(item => {
-          let dataObject = { label: item.observation, value: item.km };
-          data.push(dataObject);
+        let lst_data_x: any[] = [];
+        let lst_data_y: any[] = [];
+        this.km.forEach((item) => {
+          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          lst_data_x.push(data_x);
+          let data_y = item.km;
+          lst_data_y.push(data_y);
         });
-
-        this.dataSourceKm = {
-          chart: {
-            caption: 'Gráfico de Quilometragem',
-            // subCaption: 'In MMbbl = One Million barrels',
-            // xAxisName: 'Country',
-            // yAxisName: 'Reais (R$)',
-            numberSuffix: 'km',
-            theme: 'fusion'
+        this.chart_km = {
+          xAxis: {
+            type: 'category',
+            data: lst_data_x,
           },
-          data
+          yAxis: {
+            type: 'value',
+          },
+          series: [
+            {
+              data: lst_data_y,
+              type: 'line',
+            },
+          ],
         };
-
-      }, err => {
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
 }

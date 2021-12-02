@@ -1,8 +1,6 @@
-<div>
-  <fusioncharts width="100%" type="Column2D" dataFormat="JSON" [dataSource]="dataSourceManutencao"></fusioncharts>
-  <fusioncharts width="100%" type="Column2D" dataFormat="JSON" [dataSource]="dataSourceCombustivel"></fusioncharts>
-  <fusioncharts width="100%" type="Column2D" dataFormat="JSON" [dataSource]="dataSourcePneu"></fusioncharts>
-  <fusioncharts width="100%" type="Column2D" dataFormat="JSON" [dataSource]="dataSourceKm"></fusioncharts>
-</div>
+<div echarts [options]="chart_manutencao" class="demo-chart"></div>
+<div echarts [options]="chart_gas" class="demo-chart"></div>
+<div echarts [options]="chart_pneu" class="demo-chart"></div>
+<div echarts [options]="chart_km" class="demo-chart"></div>
 
 <app-loading [loading]="loading"></app-loading>
