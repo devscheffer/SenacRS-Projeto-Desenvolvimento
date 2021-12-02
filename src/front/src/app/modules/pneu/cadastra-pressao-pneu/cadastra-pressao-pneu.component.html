@@ -16,19 +16,22 @@
       <label class="label-cad-pneu">Pressão antiga do pneu: </label>
       <!-- <input class="form-control form-control-lg"  type="range" min="0" max="100" formControlName="pressure_old" placeholder="Digite o valor da pressão anterior" oninput="this.previousElementSibling.value = this.value"> -->
       <mat-slider formControlName="pressure_old" color="primary" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
+      <app-vmessage *ngIf="cadastraPneuForm.get('pressure_old')?.errors?.required" text="Preencha a presão antiga."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pneu">Pressão nova do pneu: </label>
       <!-- <input class="form-control form-control-lg" type="range" min="0" max="100" formControlName="pressure_new" placeholder="Digite o valor da nova pressão" oninput="this.previousElementSibling.value = this.value"> -->
-      <mat-slider formControlName="pressure_old" color="primary" formControlName="pressure_new" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
+      <mat-slider color="primary" formControlName="pressure_new" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
+      <app-vmessage *ngIf="cadastraPneuForm.get('pressure_new')?.errors?.required" text="Preencha a presão atualizada."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pneu">Data de Calibragem: </label>
       <input class="form-control form-control-lg" type="date" formControlName="date">
+      <app-vmessage *ngIf="cadastraPneuForm.get('date')?.errors?.required" text="Preencha a data de calibragem."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pneu">Observações: </label>
-      <textarea class="form-control" id="observacoes" rows="3" formControlName="observation"></textarea>
+      <input class="form-control" id="observacoes" formControlName="observation">
     </div>
     <div class="col text-center">
       <button class="btn btn-primary mb-3" type="submit" [disabled]="cadastraPneuForm.invalid">Cadastrar</button>

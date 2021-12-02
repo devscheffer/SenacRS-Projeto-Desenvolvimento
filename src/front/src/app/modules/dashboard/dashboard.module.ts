@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { DashboardRoutingModule } from './dashboard.routing.module';
 import { DashboardComponent } from './dashboard.component';
+import { DashboardRoutingModule } from './dashboard.routing.module';
+import { NgModule } from '@angular/core';
+import { NgxEchartsModule } from 'ngx-echarts';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 // Import angular-fusioncharts
@@ -21,7 +21,10 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme);
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    FusionChartsModule
-  ]
+    FusionChartsModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts'),
+    }),
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

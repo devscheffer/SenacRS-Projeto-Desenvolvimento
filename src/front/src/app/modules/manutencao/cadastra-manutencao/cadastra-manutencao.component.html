@@ -8,6 +8,7 @@
     <div class="form-group">
       <label class="label-cad-manu">Data da realização da manutenção: </label>
       <input class="form-control form-control-lg" type="date" formControlName="date">
+      <app-vmessage *ngIf="cadastraManutencaoForm.get('date')?.errors?.required" text="Preencha a data."></app-vmessage>
     </div>
     <label class="label-cad-manu">Categoria do serviço: </label>
     <select class="form-control form-control-lg" formControlName="category">
@@ -19,10 +20,12 @@
     <div class="form-group mt-3">
       <label class="label-cad-manu">Resumo do serviço executado: </label>
       <input type="text" class="form-control form-control-lg" formControlName="service">
+      <app-vmessage *ngIf="cadastraManutencaoForm.get('service')?.errors?.required" text="Preencha o resumo do serviço."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-manu">Preço: </label>
       <input class="form-control form-control-lg" formControlName="price" type="number" step="0.01" placeholder="Digite o preço">
+      <app-vmessage *ngIf="cadastraManutencaoForm.get('price')?.errors?.required" text="Preencha o valor do serviço."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-manu">Observações: </label>
