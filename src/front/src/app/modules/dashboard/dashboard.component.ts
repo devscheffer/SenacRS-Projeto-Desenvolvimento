@@ -69,7 +69,6 @@ export class DashboardComponent implements OnInit {
           let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
           lst_data_x.push(data_x);
           let data_y = item.price;
-            console.log(item.category);
           switch (item.category) {
             case 'Motor':
                 lst_data_y_m.push(data_y);
