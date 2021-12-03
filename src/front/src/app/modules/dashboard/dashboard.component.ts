@@ -192,13 +192,19 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.chart_gas = {
-          grid: { containLabel: true },
+          title: {
+            text: 'Combustível',
+            subtext: 'Preço por litro (R$/L)',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
               type: 'shadow',
             },
           },
+          grid: { containLabel: true },
           legend: {
             show: true,
             data: [
@@ -290,6 +296,18 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.chart_pneu = {
+          title: {
+            text: 'Pressão dos Pneus',
+            subtext: 'Valor em PSI',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           grid: { containLabel: true },
           legend: {
             data: [
@@ -298,6 +316,8 @@ export class DashboardComponent implements OnInit {
               'Traseira Esquerda',
               'Traseira Direita',
             ],
+            backgroundColor: '#ccc',
+            bottom: 35,
           },
           xAxis: {
             type: 'category',
@@ -351,6 +371,18 @@ export class DashboardComponent implements OnInit {
           lst_data_y.push(data_y);
         });
         this.chart_km = {
+          title: {
+            text: 'Quilometragem',
+            subtext: 'Valor em km',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           xAxis: {
             type: 'category',
             data: lst_data_x,
@@ -362,6 +394,7 @@ export class DashboardComponent implements OnInit {
             {
               data: lst_data_y,
               type: 'line',
+              areaStyle: {},
             },
           ],
         };
