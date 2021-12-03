@@ -16,7 +16,7 @@ export class CadastraManutencaoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private manutencaoService: ManutencaoService,
+    private ManutencaoService: ManutencaoService,
     private router: Router
   ) {
     this.title = route.snapshot.data['title'];
@@ -43,7 +43,7 @@ export class CadastraManutencaoComponent implements OnInit {
   submit() {
     this.loading = true;
 
-    this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
+    this.ManutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
       (res) => {
         this.loading = false;
         this.router.navigate(['home/manutencao/visualiza']);

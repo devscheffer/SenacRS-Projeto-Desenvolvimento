@@ -1,8 +1,8 @@
-import { PneuModel } from 'src/app/shared/models/pneu.model';
+import { PressaoModel } from 'src/app/shared/models/pressao.model';
 import { CombustivelModel } from './../../shared/models/combustivel.model';
 import { KmModel } from './../../shared/models/quilometragem.model';
 import { QuilometragemService } from './../quilometragem/quilometragem.service';
-import { PneuService } from './../pneu/pneu.service';
+import { PressaoService } from '../pressao/pressao.service';
 import { CombustivelService } from './../combustivel/combustivel.service';
 import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
@@ -10,7 +10,6 @@ import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 //https://echarts.apache.org/en/index.html
 import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +24,7 @@ export class DashboardComponent implements OnInit {
   dataSourceKm: Object = {};
   manutencoes: ManutencaoModel[] = [];
   combustivel: CombustivelModel[] = [];
-  pneu: PneuModel[] = [];
+  pneu: PressaoModel[] = [];
   km: KmModel[] = [];
   chart_pneu: EChartsOption = {};
   chart_km: EChartsOption = {};
@@ -34,7 +33,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
-    private pneuService: PneuService,
+    private PressaoService: PressaoService,
     private kmService: QuilometragemService
   ) {}
 
@@ -55,7 +54,7 @@ export class DashboardComponent implements OnInit {
         this.manutencoes = res;
         let lst_data: any[] = [];
         this.manutencoes.forEach((item) => {
-            lst_data.push(item);
+          lst_data.push(item);
         });
         // data.push(dataSuspencao);
 
@@ -72,10 +71,10 @@ export class DashboardComponent implements OnInit {
           let data_y = item.price;
           switch (item.category) {
             case 'Motor':
-                lst_data_y_m.push(data_y);
+              lst_data_y_m.push(data_y);
               break;
             case 'Rodas':
-                lst_data_y_r.push(data_y);
+              lst_data_y_r.push(data_y);
               break;
             case 'Suspencao':
               lst_data_y_s.push(data_y);
@@ -91,9 +90,23 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.chart_manutencao = {
+          title: {
+            text: 'Manutenção',
+            subtext: 'Valor em Reais',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           grid: { containLabel: true },
           legend: {
             data: ['Motor', 'Rodas', 'Suspencao', 'Arrefecimento', 'peca'],
+            backgroundColor: '#ccc',
+            bottom: 35,
           },
           xAxis: {
             type: 'category',
@@ -144,7 +157,7 @@ export class DashboardComponent implements OnInit {
 
         let lst_data: any[] = [];
         this.combustivel.forEach((item) => {
-            lst_data.push(item);
+          lst_data.push(item);
         });
 
         let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
@@ -161,10 +174,10 @@ export class DashboardComponent implements OnInit {
 
           switch (item.gas_type) {
             case 'gasolina_aditivada':
-                lst_data_y_ga.push(data_y);
+              lst_data_y_ga.push(data_y);
               break;
             case 'gasolina_comum':
-                lst_data_y_gc.push(data_y);
+              lst_data_y_gc.push(data_y);
               break;
             case 'etanol':
               lst_data_y_e.push(data_y);
@@ -180,9 +193,29 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.chart_gas = {
+          title: {
+            text: 'Combustível',
+            subtext: 'Preço por litro (R$/L)',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           grid: { containLabel: true },
           legend: {
-            data: ['gasolina_comum', 'gasolina_aditivada', 'etanol', 'gnv', 'diesel'],
+            data: [
+              'gasolina_comum',
+              'gasolina_aditivada',
+              'etanol',
+              'gnv',
+              'diesel',
+            ],
+            backgroundColor: '#ccc',
+            bottom: 35,
           },
           xAxis: {
             type: 'category',
@@ -227,7 +260,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async buscaDadosPressaoPneu() {
-    this.pneuService.read_all().subscribe(
+    this.PressaoService.read_all().subscribe(
       (res) => {
         this.pneu = res;
         let lst_data: any[] = [];
@@ -263,6 +296,18 @@ export class DashboardComponent implements OnInit {
           }
         });
         this.chart_pneu = {
+          title: {
+            text: 'Pressão dos Pneus',
+            subtext: 'Valor em PSI',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           grid: { containLabel: true },
           legend: {
             data: [
@@ -271,6 +316,8 @@ export class DashboardComponent implements OnInit {
               'Traseira Esquerda',
               'Traseira Direita',
             ],
+            backgroundColor: '#ccc',
+            bottom: 35,
           },
           xAxis: {
             type: 'category',
@@ -322,6 +369,18 @@ export class DashboardComponent implements OnInit {
           lst_data_y.push(data_y);
         });
         this.chart_km = {
+          title: {
+            text: 'Quilometragem',
+            subtext: 'Valor em km',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
           xAxis: {
             type: 'category',
             data: lst_data_x,
@@ -333,6 +392,7 @@ export class DashboardComponent implements OnInit {
             {
               data: lst_data_y,
               type: 'line',
+              areaStyle: {},
             },
           ],
         };

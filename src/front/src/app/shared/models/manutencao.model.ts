@@ -4,4 +4,5 @@ export interface ManutencaoModel {
   category: string;
   observation: string;
   price: number;
+  _id: string|null;
 }

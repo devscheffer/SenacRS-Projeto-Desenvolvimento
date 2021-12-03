@@ -1,0 +1,12 @@
+<header>
+  <h2 class="titulo">{{title}}</h2>
+  <hr class="linha">
+</header>
+
+<!-- <app-button-plus [rota]="'/pressao/cadastra'" *ngIf="!loading"></app-button-plus> -->
+
+<div class="mb-4">
+  <app-datatable *ngIf="data.length > 0" [columns]="columns" [data]="data" class="mt-2"></app-datatable>
+</div>
+
+<app-loading [loading]="loading"></app-loading>

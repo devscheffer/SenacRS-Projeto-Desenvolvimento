@@ -1,7 +1,7 @@
-import { QuilometragemService } from './../quilometragem.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { QuilometragemService } from './../quilometragem.service';
 
 @Component({
   selector: 'app-cadastra-quilometragem',

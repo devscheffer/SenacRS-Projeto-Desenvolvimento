@@ -8,11 +8,11 @@ const routes : Routes = [
     redirectTo: 'dashboard'
   },
   {
-    path: 'pneu',
+    path: 'pressao',
     data: {
-      title: 'Pneu'
+      title: 'pressao'
     },
-    loadChildren: () => import('./pneu/pneu.module').then(m => m.PneuModule)
+    loadChildren: () => import('./pressao/pressao.module').then(m => m.PressaoModule)
   },
   {
     path: 'combustivel',

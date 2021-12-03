@@ -41,7 +41,6 @@ export class ViewEditQuilometragemComponent implements OnInit {
   buscaDadosKM() {
     this.kmService.read_id(this.id).subscribe(
       res => {
-        console.log(res);
         let dadosKM: KmModel = res;
         let data = moment(dadosKM.date).add(1, 'd').format('YYYY-MM-DD');
         this.editQuilometragemForm.controls['date'].setValue(data);
@@ -71,7 +70,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
     this.kmService.update(this.id, this.editQuilometragemForm.value).subscribe(
       (res) => {
         this.loading = false;
-        this.router.navigate(['home/quilometragem/registros']);
+        this.router.navigate(['home/quilometragem/visualiza']);
       },
       (err) => {
         console.log(err);
@@ -87,7 +86,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
       res => {
         console.log(res);
         this.loading = false;
-        this.router.navigate(['home/quilometragem/registros']);
+        this.router.navigate(['home/quilometragem/visualiza']);
       }, err => {
         console.log(err);
         this.loading = false;

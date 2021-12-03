@@ -1,23 +1,4 @@
-.titulo {
-  font-size: 1.2rem;
-  color: #EEEEEE;
-  text-align: center;
-  margin-top: 1rem;
-}
-
-#formulario_login>label {
-  padding: 10px;
-}
-
-#formulario_login>input {
-  padding: 10px;
-}
-
-input, select {
-  color: #495057;
-}
-
-label.label-cad-pressao {
+label.label-cad-manu {
   color: rgb(255, 255, 255);
 }
 
@@ -48,6 +29,13 @@ input[type="date"], input[type="number"] {
   font-size: 1rem;
 }
 
+.titulo {
+  font-size: 1.2rem;
+  color: #EEEEEE;
+  text-align: center;
+  margin-top: 1rem;
+}
+
 .linha {
   background-color: #EEEEEE;
   width: 10px;
@@ -57,4 +45,8 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
+}
+
+input, select {
+  color: #495057;
 }
