@@ -112,6 +112,12 @@ export class DashboardComponent implements OnInit {
         }
 
         this.chart_manutencao = {
+          title: {
+            text: 'Manutenção',
+            subtext: 'Valor em Reais',
+            textStyle: { color: '#ccc' },
+            left: 'center',
+          },
           tooltip: {
             trigger: 'axis',
             axisPointer: {
