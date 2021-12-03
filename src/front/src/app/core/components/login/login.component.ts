@@ -48,8 +48,7 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.loginService.login(this.loginForm.value)
-    .subscribe(retorno =>{
-          // console.log(retorno);
+    .subscribe(res =>{
           this.router.navigate(['home'])
         });
 

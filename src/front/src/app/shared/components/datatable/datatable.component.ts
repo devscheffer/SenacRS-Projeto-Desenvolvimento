@@ -30,6 +30,5 @@ export class DatatableComponent implements OnInit {
         zeroRecords: 'Nenhum dado correspondente.',
       },
     };
-    console.log(this.dtOptions);
   }
 }

@@ -2,13 +2,13 @@ import { PressaoModel } from 'src/app/shared/models/pressao.model';
 import { CombustivelModel } from './../../shared/models/combustivel.model';
 import { KmModel } from './../../shared/models/quilometragem.model';
 import { QuilometragemService } from './../quilometragem/quilometragem.service';
-import { PressaoService } from '../pressao/pressao.service';
 import { CombustivelService } from './../combustivel/combustivel.service';
 import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
 import * as moment from 'moment';
+import { PressaoService } from '../pressao/pressao.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,10 +34,12 @@ export class DashboardComponent implements OnInit {
     width: 300,
     height: 300,
   };
+  semValores: boolean = true;
+
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
-    private PressaoService: PressaoService,
+    private pressaoService: PressaoService,
     private kmService: QuilometragemService
   ) {}
 
@@ -55,103 +57,61 @@ export class DashboardComponent implements OnInit {
   async buscaDadosManutencoes() {
     this.manutencaoService.read_all().subscribe(
       (res) => {
-        this.manutencoes = res;
-        let lst_data: any[] = [];
-        this.manutencoes.forEach((item) => {
-          lst_data.push(item);
-        });
-        // data.push(dataSuspencao);
+        res ? this.semValores = false : null;
+        let dadosNomes: any[] = [];
+        let dadosManutencao: any[] = [];
 
-        let dataSeries: any[] = [];
+        let precoMotor: number = 0;
+        let motorList = res.filter(item => item.category.toLowerCase() === 'motor');
+        motorList.forEach(item => {
+          precoMotor += item.price;
+        })
+        if (precoMotor > 0) {
+          dadosNomes.push('Motor');
+          dadosManutencao.push({ value: precoMotor, itemStyle: { color: '#5a78db' }, label: { show: true, position: 'inside' } });
+        }
 
-        let data_motor_valores: any[] = [];
-        let data_motor_object = {};
+        let precoRodas: number = 0;
+        let rodasList = res.filter(item => item.category.toLowerCase() === 'rodas');
+        rodasList.forEach(item => {
+          precoRodas += item.price;
+        })
+        if (precoRodas > 0) {
+          dadosNomes.push('Rodas');
+          dadosManutencao.push({ value: precoRodas, itemStyle: { color: '#269120' }, label: { show: true, position: 'inside' } });
+        }
 
-        let data_rodas_valores: any[] = [];
-        let data_rodas_object = {};
+        let precoSuspencao: number = 0;
+        let suspencaoList = res.filter(item => item.category.toLowerCase() === 'suspencao');
+        suspencaoList.forEach(item => {
+          precoSuspencao += item.price;
+        })
+        if (precoSuspencao > 0) {
+          dadosNomes.push('Suspenção');
+          dadosManutencao.push({ value: precoSuspencao, itemStyle: { color: '#94155b' }, label: { show: true, position: 'inside' } });
+        }
 
-        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
-        let data_dates: any[] = [];
-        let data_motor: any[] = [];
-        let data_rodas: any[] = [];
-        let data_suspencao: any[] = [];
-        let data_arrefecimento: any[] = [];
-        let data_pecas: any[] = [];
+        let precoArrefecimento: number = 0;
+        let arrefecimentoList = res.filter(item => item.category.toLowerCase() === 'arrefecimento');
+        arrefecimentoList.forEach(item => {
+          precoArrefecimento += item.price;
+        })
+        if (precoArrefecimento > 0) {
+          dadosNomes.push('Arrefecimento');
+          dadosManutencao.push({ value: precoArrefecimento, itemStyle: { color: '#a32f24' }, label: { show: true, position: 'inside' }  });
+        }
 
-        lst_data_sort.forEach((item) => {
-          // console.log(item);
-
-          let data_formatada = moment(item.date, 'YYYY-MM-DD').format(
-            'YYYY-MM-DD'
-          );
-          data_dates.push(data_formatada);
-
-          if (item.category.toLowerCase() == 'motor') {
-            let valor = item.price;
-            data_motor_valores.push(valor)
-          }
-
-          if (item.category.toLowerCase() == 'rodas') {
-            let valor = item.price;
-            data_rodas_valores.push(valor)
-          } else {
-            data_rodas_valores.push(null)
-          }
-
-          // if (item.category.toLowerCase() == 'rodas') {
-          //   let data_formatada = moment(item.date, 'YYYY-MM-DD').format(
-          //     'YYYY-MM-DD'
-          //   );
-          //   data_dates.push(data_formatada);
-          //   let valor = item.price;
-          //   data_rodas_valores.push(valor)
-          // }
-
-          // switch (item.category.toLowerCase()) {
-          //   case 'motor':
-
-          //     break;
-          //   case 'rodas':
-
-          //     data_rodas_valores.push(valor);
-
-          //     data_rodas_object = {
-          //       name: 'Rodas',
-          //       data: data_rodas_valores,
-          //       type: 'bar',
-          //       color: 'green'
-          //     };
-
-          //     data_rodas.push(valor);
-          //     break;
-          //   case 'suspencao':
-          //     data_suspencao.push(valor);
-          //     break;
-          //   case 'arrefecimento':
-          //     data_arrefecimento.push(valor);
-          //     break;
-          //   case 'peca':
-          //     data_pecas.push(valor);
-          //     break;
-          //   default:
-          //     console.log('erro');
-          // }
-
-
-          // item.category.toLowerCase() == 'rodas' ? data_rodas_valores.push(valor) : data_rodas_valores.push(0);
-
-          // data_rodas_object = { name: 'Rodas', data: data_rodas_valores, type: 'bar', color: 'green' };
-        });
-        data_motor_object = { name: 'Motor', data: data_motor_valores, type: 'bar', color: 'red' };
-        data_rodas_object = { name: 'Rodas', data: data_rodas_valores, type: 'bar', color: 'green' };
-        console.log(data_dates);
-        console.log(data_motor_object);
-        console.log(data_rodas_object);
-        dataSeries.push(data_motor_object);
-        dataSeries.push(data_rodas_object);
+        let precoPecas: number = 0;
+        let pecasList = res.filter(item => item.category.toLowerCase() === 'peca');
+        pecasList.forEach(item => {
+          precoPecas += item.price;
+        })
+        if (precoPecas > 0) {
+          dadosNomes.push('Peças');
+          dadosManutencao.push({ value: precoPecas, itemStyle: { color: '#721c87' },  label: { show: true, position: 'inside' }  });
+        }
 
         this.chart_manutencao = {
-          color: ['#3398DB'],
           tooltip: {
             trigger: 'axis',
             axisPointer: {
@@ -166,47 +126,20 @@ export class DashboardComponent implements OnInit {
           },
           xAxis: {
             type: 'category',
-            data: [...new Set(data_dates)],
+            data: [...new Set(dadosNomes)],
+            show: false
           },
           yAxis: {
             type: 'value',
           },
-          series: dataSeries,
+          series: [
+            {
+              name: 'Manutenção',
+              data: dadosManutencao,
+              type: 'bar',
+            },
+          ],
         };
-
-        // this.chart_manutencao = {
-        //   color: ['#3398DB'],
-        //   tooltip: {
-        //     trigger: 'axis',
-        //     axisPointer: {
-        //       type: 'shadow'
-        //     }
-        //   },
-        //   grid: {
-        //     left: '3%',
-        //     right: '4%',
-        //     bottom: '3%',
-        //     containLabel: true
-        //   },
-        //   xAxis: [
-        //     {
-        //       type: 'category',
-        //       data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-        //       axisTick: {
-        //         alignWithLabel: true
-        //       }
-        //     }
-        //   ],
-        //   yAxis: [{
-        //     type: 'value'
-        //   }],
-        //   series: [{
-        //     name: 'Counters',
-        //     type: 'bar',
-        //     barWidth: '60%',
-        //     data: [50, 70, 30, 60, 120]
-        //   }]
-        // };
       },
       (err) => {
         console.log(err);
@@ -217,6 +150,8 @@ export class DashboardComponent implements OnInit {
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
       (res) => {
+        res ? this.semValores = false : null;
+
         this.combustivel = res;
 
         let lst_data: any[] = [];
@@ -266,7 +201,13 @@ export class DashboardComponent implements OnInit {
           },
           legend: {
             show: true,
-            data: ['gasolina_comum', 'gasolina_aditivada', 'etanol', 'gnv', 'diesel'],
+            data: [
+              'gasolina_comum',
+              'gasolina_aditivada',
+              'etanol',
+              'gnv',
+              'diesel',
+            ],
           },
           xAxis: {
             type: 'category',
@@ -311,8 +252,10 @@ export class DashboardComponent implements OnInit {
   }
 
   async buscaDadosPressaoPneu() {
-    this.PressaoService.read_all().subscribe(
+    this.pressaoService.read_all().subscribe(
       (res) => {
+        res ? this.semValores = false : null;
+
         this.pneu = res;
         let lst_data: any[] = [];
         this.pneu.forEach((item) => {
@@ -396,6 +339,8 @@ export class DashboardComponent implements OnInit {
   async buscaDadosKm() {
     this.kmService.read_all().subscribe(
       (res) => {
+        res ? this.semValores = false : null;
+
         this.km = res;
         let lst_data_x: any[] = [];
         let lst_data_y: any[] = [];

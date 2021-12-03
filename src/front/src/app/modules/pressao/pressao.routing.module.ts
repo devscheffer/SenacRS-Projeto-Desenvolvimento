@@ -10,14 +10,17 @@ const routes: Routes = [
     data: { title: 'Cadastro de pressão do pneu' },
   },
   {
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaPressaoComponent,
-    data: { title: 'Visualiza pressão do pneu' },
+    data: { title: 'Registros de Pressão do Pneu' },
   },
   {
     path: 'visualiza/:id',
     component: ViewEditPressaoComponent,
-    data: { title: 'Visualiza Pressão do pneu' },
+    data: {
+      titleView: 'Visualiza Pressão do Pneu',
+      titleEdit: 'Edita Pressão do Pneu'
+    }
   },
 ];
 

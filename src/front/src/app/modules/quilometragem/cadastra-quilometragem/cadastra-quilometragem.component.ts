@@ -44,7 +44,7 @@ export class CadastraQuilometragemComponent implements OnInit {
     this.kmService.create(this.cadastraQuilometragemForm.value).subscribe(
       (res) => {
         this.loading = false;
-        this.router.navigate(['home/quilometragem/visualiza']);
+        this.router.navigate(['home/quilometragem/registros']);
       },
       (err) => {
         console.log(err);

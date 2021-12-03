@@ -18,7 +18,10 @@ const routes : Routes = [
 	{
     path: 'visualiza/:id',
     component: ViewEditQuilometragemComponent,
-    data: { title: 'Visualiza Quilometragem' }
+    data: {
+      titleView: 'Visualiza Quilometragem',
+      titleEdit: 'Edita Quilometragem'
+    }
   }
 ]
 

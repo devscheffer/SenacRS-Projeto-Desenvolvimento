@@ -35,10 +35,6 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     this.loading = true;
     this.columns = [
       {
-        title: 'Tipo',
-        data: 'gas_type',
-      },
-      {
         title: 'Volume',
         data: 'volume',
       },
@@ -51,12 +47,12 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
         data: 'price',
       },
       {
-        title: 'Action',
+        title: 'Visualizar',
         data: '_id',
         render: function (data: any, type: any, full: any) {
           return `
-            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
-            `;
+          <button class="btn btn-primary" item-id="${data}" button-type="view"><i class="fa fa-eye fa-2x" aria-hidden="false"></i></button>
+          `;
         },
       },
     ];
@@ -73,7 +69,6 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     this.combustivelService.read_all().subscribe((res) => {
       res.forEach((item) => {
         let row = {
-          gas_type: this.validaPosicao(item.gas_type),
           volume: item.volume,
           date: this.formataData(item.date),
           price: item.price,
@@ -100,14 +95,12 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     this.renderer.listen('document', 'click', (event) => {
 
       if (event.target.hasAttribute('item-id')) {
-        // console.log(event.target.getAttribute('item-id'));
         switch (event.target.getAttribute('button-type')) {
           case 'view':
 
             this.combustivelService
               .read_id(event.target.getAttribute('item-id'))
               .subscribe((res) => {
-                console.log(res);
                 this.router.navigate(['home/combustivel/visualiza', res._id]);
               }, err => {
                 console.log(err);

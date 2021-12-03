@@ -77,7 +77,6 @@ export class CadastraCombustivelComponent implements OnInit {
 
     this.kmService.create(dataKm).subscribe(
       (res) => {
-        console.log(res);
         confirmaEnvioCombustivel = true;
       },
       (err) => {
@@ -87,7 +86,6 @@ export class CadastraCombustivelComponent implements OnInit {
 
     this.combustivelService.create(dataCombustivel).subscribe(
       (res) => {
-        console.log(res);
         confirmaEnvioKm = true;
       },
       (err) => {
@@ -97,7 +95,7 @@ export class CadastraCombustivelComponent implements OnInit {
 
     setTimeout(() => {
       this.loading = false;
-      this.router.navigate(['home/combustivel/visualiza']);
+      this.router.navigate(['home/combustivel/registros']);
     }, 500);
   }
 }

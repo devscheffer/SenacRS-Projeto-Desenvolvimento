@@ -1,5 +1,6 @@
 <header>
-  <h2 class="titulo">{{ title }}</h2>
+  <h2 *ngIf="!edit" class="titulo">{{titleView}}</h2>
+  <h2 *ngIf="edit" class="titulo">{{titleEdit}}</h2>
   <hr class="linha" />
 </header>
 
@@ -7,15 +8,8 @@
   <form [formGroup]="editManutencaoForm">
     <div class="form-group">
       <label class="label-cad-manu">Data da realização da manutenção: </label>
-      <input
-        class="form-control form-control-lg"
-        type="date"
-        formControlName="date"
-      />
-      <app-vmessage
-        *ngIf="editManutencaoForm.get('date')?.errors?.required"
-        text="Preencha a data."
-      ></app-vmessage>
+      <input class="form-control form-control-lg" type="date" formControlName="date" />
+      <app-vmessage *ngIf="editManutencaoForm.get('date')?.errors?.required" text="Preencha a data."></app-vmessage>
     </div>
     <label class="label-cad-manu">Categoria do serviço: </label>
     <select class="form-control form-control-lg" formControlName="category">
@@ -26,45 +20,32 @@
     </select>
     <div class="form-group mt-3">
       <label class="label-cad-manu">Resumo do serviço executado: </label>
-      <input
-        type="text"
-        class="form-control form-control-lg"
-        formControlName="service"
-      />
-      <app-vmessage
-        *ngIf="editManutencaoForm.get('service')?.errors?.required"
-        text="Preencha o resumo do serviço."
-      ></app-vmessage>
+      <input type="text" class="form-control form-control-lg" formControlName="service" />
+      <app-vmessage *ngIf="editManutencaoForm.get('service')?.errors?.required" text="Preencha o resumo do serviço.">
+      </app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-manu">Preço: </label>
-      <input
-        class="form-control form-control-lg"
-        formControlName="price"
-        type="number"
-        step="0.01"
-        placeholder="Digite o preço"
-      />
-      <app-vmessage
-        *ngIf="editManutencaoForm.get('price')?.errors?.required"
-        text="Preencha o valor do serviço."
-      ></app-vmessage>
+      <input class="form-control form-control-lg" formControlName="price" type="number" step="0.01"
+        placeholder="Digite o preço" />
+      <app-vmessage *ngIf="editManutencaoForm.get('price')?.errors?.required" text="Preencha o valor do serviço.">
+      </app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-manu">Observações: </label>
-      <textarea
-        class="form-control"
-        formControlName="observation"
-        rows="3"
-      ></textarea>
+      <textarea class="form-control" formControlName="observation" rows="3"></textarea>
     </div>
-    <div class="col text-center">
-      <button class="btn btn-primary mb-3 mr-3" (click)="editar()">
-        Editar
-      </button>
-      <button class="btn btn-primary mb-3 ml-3" (click)="remover()">
-        Excluir
-      </button>
+    <div class="row p-3">
+      <div class="col-4 text-right">
+          <button class="btn btn-secondary" (click)="voltar()"><i class="fa fa-arrow-circle-left fa-2x" aria-hidden="false"></i> Voltar</button>
+      </div>
+      <div class="col-4 text-center">
+        <button *ngIf="!edit" class="btn btn-primary" (click)="liberarEdicao()"><i class="fa fa-edit fa-2x" aria-hidden="false"></i> Editar</button>
+        <button *ngIf="edit" class="btn btn-success" (click)="liberarEdicao()" [disabled]="!save"><i class="fa fa-check-circle fa-2x" aria-hidden="false"></i> Salvar</button>
+      </div>
+      <div class="col-4 text-left">
+          <button class="btn btn-danger" (click)="remover()"><i class="fa fa-trash fa-2x" aria-hidden="false"></i> Excluir</button>
+      </div>
     </div>
   </form>
 </div>
