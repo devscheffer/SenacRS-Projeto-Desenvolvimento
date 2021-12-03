@@ -44,8 +44,7 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
         data: '_id',
         render: function (data: any, type: any, full: any) {
           return `
-          <button class="btn btn-primary" item-id="${data}" button-type="view"><i class="fa fa-eye fa-2x" aria-hidden="false"></i></button>
-          `;
+          <button class="btn btn-primary fa fa-eye fa-2x" item-id="${data}" button-type="view"></button>          `;
         },
       },
     ];

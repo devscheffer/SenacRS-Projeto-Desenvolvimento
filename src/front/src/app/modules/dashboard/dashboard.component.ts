@@ -156,8 +156,6 @@ export class DashboardComponent implements OnInit {
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
       (res) => {
-        res ? this.semValores = false : null;
-
         this.combustivel = res;
 
         let lst_data: any[] = [];
@@ -212,7 +210,6 @@ export class DashboardComponent implements OnInit {
           },
           grid: { containLabel: true },
           legend: {
-            show: true,
             data: [
               'gasolina_comum',
               'gasolina_aditivada',
@@ -220,6 +217,8 @@ export class DashboardComponent implements OnInit {
               'gnv',
               'diesel',
             ],
+            backgroundColor: '#ccc',
+            bottom: 35,
           },
           xAxis: {
             type: 'category',

@@ -13,8 +13,8 @@ export class CombustivelService {
 
   constructor(private http: HttpClient) {}
 
-  create(pneu: CombustivelModel): Observable<CombustivelModel> {
-    return this.http.post<CombustivelModel>(`${url}/combustivel`, pneu);
+  create(combustivel: CombustivelModel): Observable<CombustivelModel> {
+    return this.http.post<CombustivelModel>(`${url}/combustivel`, combustivel);
   }
 
   read_all(): Observable<CombustivelModel[]> {
@@ -25,8 +25,8 @@ export class CombustivelService {
     return this.http.get<CombustivelModel>(`${url}/combustivel/${id}`);
   }
 
-  update(id: string, pneu: CombustivelModel): Observable<any> {
-    return this.http.patch(`${url}/combustivel/${id}`, pneu);
+  update(id: string, combustivel: CombustivelModel): Observable<any> {
+    return this.http.patch(`${url}/combustivel/${id}`, combustivel);
   }
 
   delete(id: string): Observable<CombustivelModel> {

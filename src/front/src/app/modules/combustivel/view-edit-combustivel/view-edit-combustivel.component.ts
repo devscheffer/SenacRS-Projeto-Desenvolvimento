@@ -42,7 +42,6 @@ export class ViewEditCombustivelComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.initForm();
     this.buscaDadoscombustivel();
     setTimeout(() => {
       this.loading = false;
@@ -68,10 +67,6 @@ export class ViewEditCombustivelComponent implements OnInit {
         console.log(err);
       }
     )
-  }
-
-  initForm() {
-
   }
 
   liberarEdicao() {
