@@ -1,6 +1,6 @@
-<div *ngIf="!loading;">
-  <div *ngIf="semValores; else possuiValores" class="p-3">
-    <p>Você ainda não possui registros.</p>
+<div *ngIf="!loading" class="mb-3">
+  <div *ngIf="semValores; else possuiValores" class="p-3 text-center semValor">
+    <h3 class="text-white"><i class="fa fa-exclamation-circle fa-1x mr-1" aria-hidden="false"></i> Você ainda não possui registros.</h3>
   </div>
 
   <ng-template #possuiValores>

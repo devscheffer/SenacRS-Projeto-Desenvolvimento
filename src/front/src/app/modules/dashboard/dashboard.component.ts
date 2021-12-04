@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosManutencoes() {
     this.manutencaoService.read_all().subscribe(
       (res) => {
-        res ? this.semValores = false : null;
+        res.length > 0 ? this.semValores = false : null;
         let dadosNomes: any[] = [];
         let dadosManutencao: any[] = [];
 
@@ -115,7 +115,10 @@ export class DashboardComponent implements OnInit {
           title: {
             text: 'Manutenção',
             subtext: 'Valor em Reais',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -137,6 +140,10 @@ export class DashboardComponent implements OnInit {
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+                color: '#FFFFFF',
+                formatter: '{value} BRL'
+            }
           },
           series: [
             {
@@ -156,6 +163,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
       (res) => {
+        res.length > 0 ? this.semValores = false : null;
         this.combustivel = res;
 
         let lst_data: any[] = [];
@@ -199,7 +207,10 @@ export class DashboardComponent implements OnInit {
           title: {
             text: 'Combustível',
             subtext: 'Preço por litro (R$/L)',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -217,15 +228,22 @@ export class DashboardComponent implements OnInit {
               'gnv',
               'diesel',
             ],
-            backgroundColor: '#ccc',
-            bottom: 35,
+            backgroundColor: '#FFFFFF',
+            bottom: 0,
           },
           xAxis: {
             type: 'category',
             data: [...new Set(lst_data_x)],
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value} BRL/L'
+            }
           },
           series: [
             {
@@ -265,7 +283,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosPressaoPneu() {
     this.pressaoService.read_all().subscribe(
       (res) => {
-        res ? this.semValores = false : null;
+        res.length > 0 ? this.semValores = false : null;
 
         this.pneu = res;
         let lst_data: any[] = [];
@@ -304,7 +322,10 @@ export class DashboardComponent implements OnInit {
           title: {
             text: 'Pressão dos Pneus',
             subtext: 'Valor em PSI',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -321,15 +342,22 @@ export class DashboardComponent implements OnInit {
               'Traseira Esquerda',
               'Traseira Direita',
             ],
-            backgroundColor: '#ccc',
-            bottom: 35,
+            backgroundColor: '#FFFFFF',
+            bottom: 0,
           },
           xAxis: {
             type: 'category',
             data: [...new Set(lst_data_x)],
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value} PSI'
+            }
           },
           series: [
             {
@@ -364,7 +392,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosKm() {
     this.kmService.read_all().subscribe(
       (res) => {
-        res ? this.semValores = false : null;
+        res.length > 0 ? this.semValores = false : null;
 
         this.km = res;
         let lst_data_x: any[] = [];
@@ -372,14 +400,17 @@ export class DashboardComponent implements OnInit {
         this.km.forEach((item) => {
           let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
           lst_data_x.push(data_x);
-          let data_y = item.km;
+          let data_y = item.km / 1000;
           lst_data_y.push(data_y);
         });
         this.chart_km = {
           title: {
             text: 'Quilometragem',
             subtext: 'Valor em km',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -388,12 +419,25 @@ export class DashboardComponent implements OnInit {
               type: 'shadow',
             },
           },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
+          },
           xAxis: {
             type: 'category',
             data: lst_data_x,
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value}k km'
+            }
           },
           series: [
             {

@@ -1,59 +1,25 @@
 <div class="conteudo">
   <h2 class="titulo mb-3 text-center">{{ title }}</h2>
   <form [formGroup]="loginForm" class="formulario_login">
-    <div *ngIf="!emailPreenchido" class="form-group">
+    <div class="form-group">
       <label for="email">E-mail:</label>
-      <input
-        #emailInput
-        type="email"
-        id="email"
-        formControlName="email"
-        placeholder="Digite seu e-mail"
-      />
-      <app-vmessage
-        *ngIf="loginForm.get('email')?.errors?.required"
-        text="Email obrigatorio."
-      ></app-vmessage>
-      <app-vmessage
-        *ngIf="loginForm.get('email')?.errors?.email"
-        text="Coloque um email valido."
-      ></app-vmessage>
+      <input #emailInput type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" />
+      <app-vmessage *ngIf="loginForm.get('email')?.errors?.required" text="Email obrigatorio."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('email')?.errors?.email" text="Coloque um email valido."></app-vmessage>
     </div>
-    <div *ngIf="emailPreenchido" class="form-group">
+    <div class="form-group">
       <label for="password">Senha:</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        placeholder="Digite sua senha"
-        autofocus
-      />
-      <app-vmessage
-        *ngIf="loginForm.get('password')?.errors?.required"
-        text="Preencha a sua senha."
-      ></app-vmessage>
-      <app-vmessage
-        *ngIf="loginForm.get('password')?.errors?.minlength"
-        text="No minimo 4 caracteres."
-      ></app-vmessage>
+      <input type="password" id="password" formControlName="password" placeholder="Digite sua senha" autofocus />
+      <app-vmessage *ngIf="loginForm.get('password')?.errors?.required" text="Preencha a sua senha."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('password')?.errors?.minlength" text="No minimo 4 caracteres."></app-vmessage>
     </div>
-    <button
-      (click)="seguinte()"
-      *ngIf="!emailPreenchido"
-      class="btn mb-3"
-      [disabled]="loginForm.controls.email.invalid"
-    >
-      Seguinte
-    </button>
-    <button
-      (click)="submit()"
-      *ngIf="emailPreenchido"
-      class="btn mb-3"
-      type="submit"
-      [disabled]="loginForm.invalid"
-    >
-      Entrar
-    </button>
-    <button routerLink="/cadastro">Crie uma conta</button>
+    <div class="row">
+      <div class="col-6">
+        <button class="w-100 v" routerLink="/cadastro">Crie uma conta</button>
+      </div>
+      <div class="col-6">
+        <button (click)="submit()" class="btn botaoLogin mb-3 w-100" type="submit" [disabled]="loginForm.invalid">Entrar</button>
+      </div>
+    </div>
   </form>
 </div>
