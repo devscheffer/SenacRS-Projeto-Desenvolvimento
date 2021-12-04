@@ -40,12 +40,11 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
         data: 'observation',
       },
       {
-        title: 'Action',
+        title: 'Visualizar',
         data: '_id',
         render: function (data: any, type: any, full: any) {
           return `
-            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
-            `;
+          <button class="btn btn-primary fa fa-eye fa-2x" item-id="${data}" button-type="view"></button>          `;
         },
       },
     ];
@@ -85,11 +84,10 @@ export class VisualizaQuilometragemComponent implements AfterViewInit, OnInit {
             this.kmService
               .read_id(event.target.getAttribute('item-id'))
               .subscribe((res) => {
-                console.log(res._id);
-                this.router.navigate(['home/quilometragem/visualiza', res._id]);
+                this.router.navigate(['home/quilometragem/visualiza', res._id])
               });
             break;
-        }
+          }
       }
     });
   }

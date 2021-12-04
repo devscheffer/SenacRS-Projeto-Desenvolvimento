@@ -44,24 +44,17 @@ export class CadastroComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.cadastroForm.get('password')?.value);
-
-    console.log(this.cadastroForm.get('confirmPassword')?.value);
     if (this.cadastroForm.get('password')?.value == this.cadastroForm.get('confirmPassword')?.value) {
       let dataForm = {
         email: this.cadastroForm.get('email'),
         password: this.cadastroForm.get('password')
       };
       this.cadastroService.cadastro(this.cadastroForm.value)
-        .subscribe(retorno => {
-          console.log(retorno);
+        .subscribe(res => {
           this.router.navigate(['login'])
         }, err => {
           console.log(err);
         });
     }
-    else{
-      console.log("Confirmação de senha incorreta!");
-    }
-  } 
+  }
 }

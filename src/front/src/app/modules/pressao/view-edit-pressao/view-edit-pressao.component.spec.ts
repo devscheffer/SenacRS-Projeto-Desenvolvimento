@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewEditQuilometragemComponent } from './view-edit-pressao.component';
+import { ViewEditPressaoComponent } from './view-edit-pressao.component';
 
 describe('ViewEditQuilometragemComponent', () => {
-  let component: ViewEditQuilometragemComponent;
-  let fixture: ComponentFixture<ViewEditQuilometragemComponent>;
+  let component: ViewEditPressaoComponent;
+  let fixture: ComponentFixture<ViewEditPressaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewEditQuilometragemComponent ]
+      declarations: [ ViewEditPressaoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewEditQuilometragemComponent);
+    fixture = TestBed.createComponent(ViewEditPressaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

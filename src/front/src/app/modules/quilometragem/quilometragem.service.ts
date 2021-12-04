@@ -14,8 +14,8 @@ export class QuilometragemService {
 
   constructor(private http: HttpClient) {}
 
-  create(pneu: KmModel): Observable<KmModel> {
-    return this.http.post<KmModel>(`${url}/km`, pneu);
+  create(km: KmModel): Observable<KmModel> {
+    return this.http.post<KmModel>(`${url}/km`, km);
   }
 
   read_all(): Observable<KmModel[]> {
@@ -26,8 +26,8 @@ export class QuilometragemService {
     return this.http.get<KmModel>(`${url}/km/${id}`);
   }
 
-  update(id: string, pneu: KmModel): Observable<any> {
-    return this.http.patch(`${url}/km/${id}`, pneu);
+  update(id: string, km: KmModel): Observable<any> {
+    return this.http.patch(`${url}/km/${id}`, km);
   }
 
   delete(id: string): Observable<KmModel> {

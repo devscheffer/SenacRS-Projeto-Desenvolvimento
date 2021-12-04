@@ -3,42 +3,25 @@
   <form [formGroup]="cadastroForm" class="formulario_login">
     <div class="form-group">
       <label for="email">E-mail:</label>
-      <input
-        #emailInput
-        type="email"
-        id="email"
-        formControlName="email"
-        placeholder="Digite seu e-mail"
-      />
+      <input #emailInput type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" />
     </div>
     <div class="form-group">
       <label for="password">Senha:</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        placeholder="Digite sua senha"
-        autofocus
-      />
+      <input type="password" id="password" formControlName="password" placeholder="Digite sua senha" autofocus />
     </div>
     <div class="form-group">
       <label for="confirmPassword">Confirme sua senha:</label>
-      <input
-        type="password"
-        id="confirmPassword"
-        formControlName="confirmPassword"
-        placeholder="Confirme sua senha"
-        autofocus
-      />
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirme sua senha"
+        autofocus />
     </div>
-    <button
-      (click)="submit()"
-      class="btn mb-3"
-      type="submit"
-      [disabled]="cadastroForm.invalid"
-    >
-      Entrar
-    </button>
-    <button routerLink="/login">Faça login</button>
+    <div class="row">
+      <div class="col-6">
+        <button (click)="submit()" class="btn mb-3 w-100" type="submit" [disabled]="cadastroForm.invalid">
+          Criar conta
+        </button>      </div>
+      <div class="col-6">
+        <button class="w-100 botaoLogin" routerLink="/login">Faça login</button>
+      </div>
+    </div>
   </form>
 </div>

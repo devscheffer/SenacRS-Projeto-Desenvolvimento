@@ -11,14 +11,17 @@ const routes : Routes = [
     data: { title: 'Cadastro de combustível' }
   },
   {
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaCombustivelComponent,
-    data: { title: 'Visualização do combustível'}
+    data: { title: 'Registros de Combustível'}
   },
   {
     path: 'visualiza/:id',
     component: ViewEditCombustivelComponent,
-    data: { title: 'Visualiza combustivel' },
+    data: {
+      titleView: 'Visualiza Combustível',
+      titleEdit: 'Edita Combustível'
+    }
   },
 ]
 

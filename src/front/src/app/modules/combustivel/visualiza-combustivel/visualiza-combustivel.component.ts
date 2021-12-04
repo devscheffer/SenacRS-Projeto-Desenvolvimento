@@ -1,8 +1,6 @@
 import { CombustivelService } from './../combustivel.service';
 import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-
 import * as moment from 'moment';
 
 @Component({
@@ -37,10 +35,6 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     this.loading = true;
     this.columns = [
       {
-        title: 'Tipo',
-        data: 'gas_type',
-      },
-      {
         title: 'Volume',
         data: 'volume',
       },
@@ -53,12 +47,11 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
         data: 'price',
       },
       {
-        title: 'Action',
+        title: 'Visualizar',
         data: '_id',
         render: function (data: any, type: any, full: any) {
           return `
-            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
-            `;
+          <button class="btn btn-primary fa fa-eye fa-2x" item-id="${data}" button-type="view"></button>          `;
         },
       },
     ];
@@ -75,10 +68,10 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     this.combustivelService.read_all().subscribe((res) => {
       res.forEach((item) => {
         let row = {
-          gas_type: this.validaPosicao(item.gas_type),
           volume: item.volume,
           date: this.formataData(item.date),
           price: item.price,
+          _id: item._id,
         };
         this.data.push(row);
 
@@ -96,17 +89,20 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
     );
     return tipo[0].name;
   }
+
   ngAfterViewInit(): void {
     this.renderer.listen('document', 'click', (event) => {
 
       if (event.target.hasAttribute('item-id')) {
         switch (event.target.getAttribute('button-type')) {
           case 'view':
+
             this.combustivelService
               .read_id(event.target.getAttribute('item-id'))
               .subscribe((res) => {
-                console.log(res._id);
                 this.router.navigate(['home/combustivel/visualiza', res._id]);
+              }, err => {
+                console.log(err);
               });
             break;
         }

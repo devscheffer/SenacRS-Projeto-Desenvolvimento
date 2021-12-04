@@ -4,6 +4,7 @@ import { ManutencaoService } from '../manutencao.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-edit-manutencao',
@@ -13,30 +14,33 @@ import * as moment from 'moment';
 export class ViewEditManutencaoComponent implements OnInit {
 
   id: string = '';
-  title: string = '';
+  titleView: string = '';
+  titleEdit: string = '';
   loading: boolean = false;
   editManutencaoForm!: FormGroup;
   edit: boolean = false;
+  save: boolean = false;
   opcoes = [
     { name: 'Frente Esquerda', value: 'fl' },
     { name: 'Frente Direita', value: 'fr' },
     { name: 'Traseira Esquerda', value: 'bl' },
     { name: 'Traseira Direita', value: 'br' },
   ];
+
   constructor(
     private route: ActivatedRoute,
     private ManutencaoService: ManutencaoService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location
   ) {
     this.id = this.route.snapshot.params.id;
-    this.title = this.route.snapshot.data.title;
-    console.log('id: ', this.id);
+    this.titleView = this.route.snapshot.data.titleView;
+    this.titleEdit = this.route.snapshot.data.titleEdit;
   }
 
   ngOnInit(): void {
     this.loading = true;
-    this.initForm();
     this.buscaDadosmanutencao();
     setTimeout(() => {
       this.loading = false;
@@ -46,40 +50,52 @@ export class ViewEditManutencaoComponent implements OnInit {
   buscaDadosmanutencao() {
     this.ManutencaoService.read_id(this.id).subscribe(
       res => {
-        let dadosmanutencao: ManutencaoModel = res;
-        let data = moment(dadosmanutencao.date).add(1, 'd').format('YYYY-MM-DD');
-        this.editManutencaoForm.controls['date'].setValue(data);
-        this.editManutencaoForm.controls['service'].setValue(dadosmanutencao.service);
-        this.editManutencaoForm.controls['category'].setValue(dadosmanutencao.category);
-        this.editManutencaoForm.controls['price'].setValue(dadosmanutencao.price);
-        this.editManutencaoForm.controls['observation'].setValue(dadosmanutencao.observation);
+        let dadosManutencao: ManutencaoModel = res;
+        let data = moment(dadosManutencao.date).add(1, 'd').format('YYYY-MM-DD');
+
+        this.editManutencaoForm = this.fb.group({
+          date: [{ value: data, disabled: true }, [Validators.required]],
+          service: [{ value: dadosManutencao.service, disabled: true }, [Validators.required]],
+          category: [{ value: dadosManutencao.category, disabled: true }, [Validators.required]],
+          price: [{ value: dadosManutencao.price, disabled: true }, [Validators.required]],
+          observation: [{ value: dadosManutencao.observation, disabled: true }],
+        });
+
       }, err => {
         console.log(err);
       }
     )
   }
 
-  initForm() {
-    this.editManutencaoForm = this.fb.group({
-      date: ['', [Validators.required]],
-      service: ['', [Validators.required]],
-      category: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      observation: [''],
-    });
-  }
-
   liberarEdicao() {
-    // this.edit = true;
+    if (this.edit) {
+      this.editar();
+    } else {
+      this.loading = true;
+
+      this.editManutencaoForm.controls['date'].enable();
+      this.editManutencaoForm.controls['service'].enable();
+      this.editManutencaoForm.controls['category'].enable();
+      this.editManutencaoForm.controls['price'].enable();
+      this.editManutencaoForm.controls['observation'].enable();
+
+      this.edit = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 100);
+
+      setTimeout(() => {
+        this.save = true;
+      }, 2000);
+    }
   }
 
   editar() {
     this.loading = true;
-    console.log(this.editManutencaoForm.value);
     this.ManutencaoService.update(this.id, this.editManutencaoForm.value).subscribe(
       (res) => {
         this.loading = false;
-        this.router.navigate(['home/manutencao/visualiza']);
+        this.router.navigate(['home/manutencao/registros']);
       },
       (err) => {
         console.log(err);
@@ -88,14 +104,17 @@ export class ViewEditManutencaoComponent implements OnInit {
     );
   }
 
+  voltar() {
+    this.location.back();
+  }
+
   remover() {
     this.loading = true;
 
     this.ManutencaoService.delete(this.id).subscribe(
       res => {
-        console.log(res);
         this.loading = false;
-        this.router.navigate(['home/manutencao/visualiza']);
+        this.router.navigate(['home/manutencao/registros']);
       }, err => {
         console.log(err);
         this.loading = false;

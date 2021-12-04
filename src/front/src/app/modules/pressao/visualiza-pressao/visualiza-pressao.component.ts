@@ -50,16 +50,12 @@ export class VisualizaPressaoComponent implements AfterViewInit, OnInit {
         data: 'date',
       },
       {
-        title: 'Observação',
-        data: 'observation',
-      },
-      {
-        title: 'Action',
+        title: 'Visualizar',
         data: '_id',
         render: function (data: any, type: any, full: any) {
           return `
-            <button class="btn btn-primary" item-id="${data}" button-type="view">View</button>
-            `;
+          <button class="btn btn-primary fa fa-eye fa-2x" item-id="${data}" button-type="view"></button>
+          `;
         },
       },
     ];
@@ -80,7 +76,6 @@ export class VisualizaPressaoComponent implements AfterViewInit, OnInit {
           position: this.validaPosicao(item.position),
           pressure: item.pressure_old,
           date: this.formataData(item.date),
-          observation: item.observation,
           _id: item._id,
         };
         this.data.push(row);
@@ -106,7 +101,6 @@ export class VisualizaPressaoComponent implements AfterViewInit, OnInit {
               this.PressaoService
                 .read_id(event.target.getAttribute('item-id'))
                 .subscribe((res) => {
-                  console.log(res._id);
                   this.router.navigate(['home/pressao/visualiza', res._id]);
                 });
               break;

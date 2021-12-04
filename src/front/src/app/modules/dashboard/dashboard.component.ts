@@ -2,14 +2,13 @@ import { PressaoModel } from 'src/app/shared/models/pressao.model';
 import { CombustivelModel } from './../../shared/models/combustivel.model';
 import { KmModel } from './../../shared/models/quilometragem.model';
 import { QuilometragemService } from './../quilometragem/quilometragem.service';
-import { PressaoService } from '../pressao/pressao.service';
 import { CombustivelService } from './../combustivel/combustivel.service';
 import { ManutencaoModel } from './../../shared/models/manutencao.model';
 import { ManutencaoService } from './../manutencao/manutencao.service';
 import { Component, OnInit } from '@angular/core';
 import { EChartsOption } from 'echarts';
-//https://echarts.apache.org/en/index.html
 import * as moment from 'moment';
+import { PressaoService } from '../pressao/pressao.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,10 +29,17 @@ export class DashboardComponent implements OnInit {
   chart_km: EChartsOption = {};
   chart_gas: EChartsOption = {};
   chart_manutencao: EChartsOption = {};
+  initOpts = {
+    renderer: 'svg',
+    width: 300,
+    height: 300,
+  };
+  semValores: boolean = true;
+
   constructor(
     private manutencaoService: ManutencaoService,
     private combustivelService: CombustivelService,
-    private PressaoService: PressaoService,
+    private pressaoService: PressaoService,
     private kmService: QuilometragemService
   ) {}
 
@@ -51,49 +57,68 @@ export class DashboardComponent implements OnInit {
   async buscaDadosManutencoes() {
     this.manutencaoService.read_all().subscribe(
       (res) => {
-        this.manutencoes = res;
-        let lst_data: any[] = [];
-        this.manutencoes.forEach((item) => {
-          lst_data.push(item);
-        });
-        // data.push(dataSuspencao);
+        res.length > 0 ? this.semValores = false : null;
+        let dadosNomes: any[] = [];
+        let dadosManutencao: any[] = [];
 
-        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
-        let lst_data_x: any[] = [];
-        let lst_data_y_m: any[] = [];
-        let lst_data_y_r: any[] = [];
-        let lst_data_y_s: any[] = [];
-        let lst_data_y_a: any[] = [];
-        let lst_data_y_p: any[] = [];
-        lst_data_sort.forEach((item) => {
-          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
-          lst_data_x.push(data_x);
-          let data_y = item.price;
-          switch (item.category) {
-            case 'Motor':
-              lst_data_y_m.push(data_y);
-              break;
-            case 'Rodas':
-              lst_data_y_r.push(data_y);
-              break;
-            case 'Suspencao':
-              lst_data_y_s.push(data_y);
-              break;
-            case 'Arrefecimento':
-              lst_data_y_a.push(data_y);
-              break;
-            case 'peca':
-              lst_data_y_p.push(data_y);
-              break;
-            default:
-              console.log('erro');
-          }
-        });
+        let precoMotor: number = 0;
+        let motorList = res.filter(item => item.category.toLowerCase() === 'motor');
+        motorList.forEach(item => {
+          precoMotor += item.price;
+        })
+        if (precoMotor > 0) {
+          dadosNomes.push('Motor');
+          dadosManutencao.push({ value: precoMotor, itemStyle: { color: '#5a78db' }, label: { show: true, position: 'inside' } });
+        }
+
+        let precoRodas: number = 0;
+        let rodasList = res.filter(item => item.category.toLowerCase() === 'rodas');
+        rodasList.forEach(item => {
+          precoRodas += item.price;
+        })
+        if (precoRodas > 0) {
+          dadosNomes.push('Rodas');
+          dadosManutencao.push({ value: precoRodas, itemStyle: { color: '#269120' }, label: { show: true, position: 'inside' } });
+        }
+
+        let precoSuspencao: number = 0;
+        let suspencaoList = res.filter(item => item.category.toLowerCase() === 'suspencao');
+        suspencaoList.forEach(item => {
+          precoSuspencao += item.price;
+        })
+        if (precoSuspencao > 0) {
+          dadosNomes.push('Suspenção');
+          dadosManutencao.push({ value: precoSuspencao, itemStyle: { color: '#94155b' }, label: { show: true, position: 'inside' } });
+        }
+
+        let precoArrefecimento: number = 0;
+        let arrefecimentoList = res.filter(item => item.category.toLowerCase() === 'arrefecimento');
+        arrefecimentoList.forEach(item => {
+          precoArrefecimento += item.price;
+        })
+        if (precoArrefecimento > 0) {
+          dadosNomes.push('Arrefecimento');
+          dadosManutencao.push({ value: precoArrefecimento, itemStyle: { color: '#a32f24' }, label: { show: true, position: 'inside' }  });
+        }
+
+        let precoPecas: number = 0;
+        let pecasList = res.filter(item => item.category.toLowerCase() === 'peca');
+        pecasList.forEach(item => {
+          precoPecas += item.price;
+        })
+        if (precoPecas > 0) {
+          dadosNomes.push('Peças');
+          dadosManutencao.push({ value: precoPecas, itemStyle: { color: '#721c87' },  label: { show: true, position: 'inside' }  });
+        }
+
         this.chart_manutencao = {
           title: {
             text: 'Manutenção',
             subtext: 'Valor em Reais',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -102,44 +127,29 @@ export class DashboardComponent implements OnInit {
               type: 'shadow',
             },
           },
-          grid: { containLabel: true },
-          legend: {
-            data: ['Motor', 'Rodas', 'Suspencao', 'Arrefecimento', 'peca'],
-            backgroundColor: '#ccc',
-            bottom: 35,
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
           },
           xAxis: {
             type: 'category',
-            data: [...new Set(lst_data_x)],
+            data: [...new Set(dadosNomes)],
+            show: false
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+                color: '#FFFFFF',
+                formatter: '{value} BRL'
+            }
           },
           series: [
             {
-              name: 'Motor',
-              data: lst_data_y_m,
-              type: 'line',
-            },
-            {
-              name: 'Rodas',
-              data: lst_data_y_r,
-              type: 'line',
-            },
-            {
-              name: 'Suspencao',
-              data: lst_data_y_s,
-              type: 'line',
-            },
-            {
-              name: 'Arrefecimento',
-              data: lst_data_y_a,
-              type: 'line',
-            },
-            {
-              name: 'peca',
-              data: lst_data_y_p,
-              type: 'line',
+              name: 'Manutenção',
+              data: dadosManutencao,
+              type: 'bar',
             },
           ],
         };
@@ -153,6 +163,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
       (res) => {
+        res.length > 0 ? this.semValores = false : null;
         this.combustivel = res;
 
         let lst_data: any[] = [];
@@ -196,7 +207,10 @@ export class DashboardComponent implements OnInit {
           title: {
             text: 'Combustível',
             subtext: 'Preço por litro (R$/L)',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -214,15 +228,22 @@ export class DashboardComponent implements OnInit {
               'gnv',
               'diesel',
             ],
-            backgroundColor: '#ccc',
-            bottom: 35,
+            backgroundColor: '#FFFFFF',
+            bottom: 0,
           },
           xAxis: {
             type: 'category',
             data: [...new Set(lst_data_x)],
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value} BRL/L'
+            }
           },
           series: [
             {
@@ -260,8 +281,10 @@ export class DashboardComponent implements OnInit {
   }
 
   async buscaDadosPressaoPneu() {
-    this.PressaoService.read_all().subscribe(
+    this.pressaoService.read_all().subscribe(
       (res) => {
+        res.length > 0 ? this.semValores = false : null;
+
         this.pneu = res;
         let lst_data: any[] = [];
         this.pneu.forEach((item) => {
@@ -299,7 +322,10 @@ export class DashboardComponent implements OnInit {
           title: {
             text: 'Pressão dos Pneus',
             subtext: 'Valor em PSI',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -316,15 +342,22 @@ export class DashboardComponent implements OnInit {
               'Traseira Esquerda',
               'Traseira Direita',
             ],
-            backgroundColor: '#ccc',
-            bottom: 35,
+            backgroundColor: '#FFFFFF',
+            bottom: 0,
           },
           xAxis: {
             type: 'category',
             data: [...new Set(lst_data_x)],
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value} PSI'
+            }
           },
           series: [
             {
@@ -359,20 +392,25 @@ export class DashboardComponent implements OnInit {
   async buscaDadosKm() {
     this.kmService.read_all().subscribe(
       (res) => {
+        res.length > 0 ? this.semValores = false : null;
+
         this.km = res;
         let lst_data_x: any[] = [];
         let lst_data_y: any[] = [];
         this.km.forEach((item) => {
           let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
           lst_data_x.push(data_x);
-          let data_y = item.km;
+          let data_y = item.km / 1000;
           lst_data_y.push(data_y);
         });
         this.chart_km = {
           title: {
             text: 'Quilometragem',
             subtext: 'Valor em km',
-            textStyle: { color: '#ccc' },
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
             left: 'center',
           },
           tooltip: {
@@ -381,12 +419,25 @@ export class DashboardComponent implements OnInit {
               type: 'shadow',
             },
           },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true,
+          },
           xAxis: {
             type: 'category',
             data: lst_data_x,
+            axisLabel: {
+              color: '#FFFFFF',
+            }
           },
           yAxis: {
             type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value}k km'
+            }
           },
           series: [
             {

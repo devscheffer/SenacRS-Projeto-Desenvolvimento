@@ -13,8 +13,6 @@ export class LoginComponent implements OnInit {
 
   title: string = '';
   loginForm!: FormGroup;
-  emailPreenchido: boolean = false;
-  senhaPreenchida: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -48,19 +46,9 @@ export class LoginComponent implements OnInit {
 
   submit() {
     this.loginService.login(this.loginForm.value)
-    .subscribe(retorno =>{
-          // console.log(retorno);
+    .subscribe(res =>{
           this.router.navigate(['home'])
         });
 
-  }
-
-  seguinte() {
-    if (this.loginForm.get('email')) {
-      this.emailPreenchido = true;
-    } else if (this.loginForm.get('email') && this.loginForm.get('password')) {
-      this.emailPreenchido = true;
-      this.senhaPreenchida = true;
-    }
   }
 }

@@ -11,14 +11,17 @@ const routes : Routes = [
     data: { title: 'Cadastro de manutenção'}
   },
 	{
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaManutencaoComponent,
-    data: { title: 'Visualiza manutenção'}
+    data: { title: 'Registros de Manutenção'}
   },
   {
     path: 'visualiza/:id',
     component: ViewEditManutencaoComponent,
-    data: { title: 'Visualiza manutenção' },
+    data: {
+      titleView: 'Visualiza Manutenção',
+      titleEdit: 'Edita Manutenção'
+    }
   },
 ]
 
