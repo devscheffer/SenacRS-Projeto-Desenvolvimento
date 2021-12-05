@@ -64,21 +64,24 @@ export class VisualizaPressaoPneuComponent implements OnInit {
     this.data = [];
 
     this.pneuService.read_all()
-    .subscribe(res => {
+      .subscribe(res => {
 
-      res.forEach(item => {
-        item.pressure_old == null ? item.pressure_old = 0 : item.pressure_old;
-        let row = { 'position': this.validaPosicao(item.position), 'pressure': item.pressure_old, 'date': this.formataData(item.date), 'observation': item.observation };
-        this.data.push(row);
+        res.forEach(item => {
+          item.pressure_old == null ? item.pressure_old = 0 : item.pressure_old;
+
+          let row = { 'position': this.validaPosicao(item.position), 'pressure': item.pressure_old, 'date': this.formataData(item.date), 'observation': item.observation };
+          this.data.push(row);
+
+        }
+        );
+
       });
-
-    });
 
   }
 
   formataData(data: string) {
-    return moment(data).format('YYYY/MM/DD');
-  }
+    return moment(data).add(1, 'd').format('YYYY/MM/DD');
+    }
 
   validaPosicao(siglaPosicao: string) {
     let posicao = this.opcoes.filter(posicao => posicao.value == siglaPosicao);

@@ -12,6 +12,8 @@ export class CadastraManutencaoComponent implements OnInit {
   title: string = '';
   cadastraManutencaoForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
+
 
   constructor(
     private fb: FormBuilder,
@@ -42,16 +44,23 @@ export class CadastraManutencaoComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
-      (res) => {
-        this.loading = false;
-        this.router.navigate(['home/manutencao/visualiza']);
-      },
-      (err) => {
-        console.log(err);
-        this.loading = false;
-      }
-    );
+    if (!this.cadastraManutencaoForm.invalid) {
+      this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
+        (res) => {
+          this.loading = false;
+          this.router.navigate(['home/manutencao/visualiza']);
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+          this.validaSubmit = false;
+        }
+      );
+    }
+    else {
+      this.loading = false;
+    }
   }
 }

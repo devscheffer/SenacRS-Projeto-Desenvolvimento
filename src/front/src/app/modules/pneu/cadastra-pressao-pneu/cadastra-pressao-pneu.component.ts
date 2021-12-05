@@ -12,6 +12,8 @@ export class CadastraPressaoPneuComponent implements OnInit {
   title: string = '';
   cadastraPneuForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
+  validaPosicao: boolean = false;
 
   opcoes = [
     { name: 'Frente Esquerda', value: 'fl' },
@@ -39,10 +41,10 @@ export class CadastraPressaoPneuComponent implements OnInit {
 
   initForm() {
     this.cadastraPneuForm = this.fb.group({
-      position: ['Selecione a posição...', 
-      [
-        Validators.required
-      ]
+      position: ['Selecione a posição...',
+        [
+          Validators.required
+        ]
       ],
       pressure_old: ['', [Validators.required]],
       pressure_new: ['', [Validators.required]],
@@ -53,16 +55,29 @@ export class CadastraPressaoPneuComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    this.pneuService.create(this.cadastraPneuForm.value).subscribe(
-      (res) => {
-        this.loading = false;
-        this.router.navigate(['home/pneu/visualiza']);
-      },
-      (err) => {
-        console.log(err);
-        this.loading = false;
+    if (!this.cadastraPneuForm.invalid) {
+      if (this.cadastraPneuForm.get('position')?.value != 'Selecione a posição...') {
+        this.pneuService.create(this.cadastraPneuForm.value).subscribe(
+          (res) => {
+            this.loading = false;
+            this.router.navigate(['home/pneu/visualiza']);
+          },
+          (err) => {
+            console.log(err);
+            this.loading = false;
+            this.validaSubmit = false;
+          }
+        );
       }
-    );
+      else{
+        this.loading = false;
+        this.validaPosicao = true;
+      }
+    }
+    else {
+      this.loading = false;
+    }
   }
 }

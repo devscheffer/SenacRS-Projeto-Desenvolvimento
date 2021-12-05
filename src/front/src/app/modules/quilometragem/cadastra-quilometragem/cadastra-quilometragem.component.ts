@@ -12,6 +12,7 @@ export class CadastraQuilometragemComponent implements OnInit {
   title: string = '';
   cadastraQuilometragemForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -40,16 +41,23 @@ export class CadastraQuilometragemComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    this.kmService.create(this.cadastraQuilometragemForm.value).subscribe(
-      (res) => {
-        this.loading = false;
-        this.router.navigate(['home/quilometragem/visualiza']);
-      },
-      (err) => {
-        console.log(err);
-        this.loading = false;
-      }
-    );
+    if (!this.cadastraQuilometragemForm.invalid) {
+      this.kmService.create(this.cadastraQuilometragemForm.value).subscribe(
+        (res) => {
+          this.loading = false;
+          this.router.navigate(['home/quilometragem/visualiza']);
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+          this.validaSubmit = false;
+        }
+      );
+    }
+    else{
+      this.loading = false;
+    }
   }
 }
