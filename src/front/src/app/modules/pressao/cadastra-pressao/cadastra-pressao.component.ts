@@ -12,6 +12,8 @@ export class CadastraPressaoComponent implements OnInit {
   title: string = '';
   cadastraPressaoForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
+  validaPosicao: boolean = false;
 
   opcoes = [
     { name: 'Frente Esquerda', value: 'fl' },
@@ -23,7 +25,7 @@ export class CadastraPressaoComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private PressaoService: PressaoService,
+    private pressaoService: PressaoService,
     private router: Router
   ) {
     this.title = route.snapshot.data['title'];
@@ -40,9 +42,9 @@ export class CadastraPressaoComponent implements OnInit {
   initForm() {
     this.cadastraPressaoForm = this.fb.group({
       position: ['Selecione a posição...',
-      [
-        Validators.required
-      ]
+        [
+          Validators.required
+        ]
       ],
       pressure_old: ['', [Validators.required]],
       pressure_new: ['', [Validators.required]],
@@ -53,16 +55,29 @@ export class CadastraPressaoComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    this.PressaoService.create(this.cadastraPressaoForm.value).subscribe(
-      (res) => {
-        this.loading = false;
-        this.router.navigate(['home/pressao/registros']);
-      },
-      (err) => {
-        console.log(err);
-        this.loading = false;
+    if (!this.cadastraPressaoForm.invalid) {
+      if (this.cadastraPressaoForm.get('position')?.value != 'Selecione a posição...') {
+        this.pressaoService.create(this.cadastraPressaoForm.value).subscribe(
+          (res) => {
+            this.loading = false;
+            this.router.navigate(['home/pneu/registros']);
+          },
+          (err) => {
+            console.log(err);
+            this.loading = false;
+            this.validaSubmit = false;
+          }
+        );
       }
-    );
+      else{
+        this.loading = false;
+        this.validaPosicao = true;
+      }
+    }
+    else {
+      this.loading = false;
+    }
   }
 }

@@ -1,60 +1,48 @@
 .conteudo {
-    height: 100vh;
-    margin: auto;
-    padding: 50px;
-    background-image: url('./../../../../assets/img/tela_login.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+  height: 100vh;
+  margin: auto;
+  padding: 50px;
+  background-image: url('./../../../../assets/img/tela_login-2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
 
-  h1 {
-    text-align: center;
-  }
+h1 {
+  text-align: center;
+}
 
-  .formulario_login>label {
-    padding: 10px;
-  }
+.formulario_login > label {
+  padding: 10px;
+}
 
-  .formulario_login>input {
-    padding: 10px;
-  }
+.formulario_login > input {
+  padding: 10px;
+}
 
-  input[type=email],
-  input[type=password],
-  select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: auto;
-    display: inline-block;
-    border: 0;
-    border-radius: 25px;
-    box-sizing: border-box;
-    background-color: rgba(255, 255, 255, 1);
-  }
+input[type="email"],
+input[type="password"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: auto;
+  display: inline-block;
+  border: 0;
+  border-radius: 25px;
+  box-sizing: border-box;
+  background-color: rgba(255, 255, 255, 1);
+}
 
-  input:focus {outline:none!important;}
+input:focus {
+  outline: none !important;
+}
 
-  button {
-    width: 100%;
-    background-color: #154b82;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 25px;
-    width: 50%;
-    cursor: pointer;
-    float: right;
-  }
+button {
+  margin: 8px 0;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 500;
+}
 
-  label {
-    font-weight: 600;
-  }
-
-  .bottonCriarConta {
-    padding: 1rem 0;
-  }
-
-  .botaoLogin {
-    background-color: rgb(56, 148, 182);
-  }
+label {
+  font-weight: 600;
+}

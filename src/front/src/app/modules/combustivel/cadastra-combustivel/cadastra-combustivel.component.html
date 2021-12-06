@@ -11,42 +11,19 @@
   >
     <div class="form-group">
       <label class="label-cad-pressao">Data de Reabastecimento:</label>
-      <input
-        class="form-control form-control-lg"
-        type="date"
-        formControlName="date"
-      />
-      <app-vmessage
-        *ngIf="cadastraCombustivelForm.get('date')?.errors?.required"
-        text="Preencha a data."
-      ></app-vmessage>
+      <input class="form-control form-control-lg" type="date" formControlName="date">
+      <app-vmessage *ngIf="cadastraCombustivelForm.get('date')?.errors?.required && validaSubmit" text="Preencha a data."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pressao">Quilometragem (km):</label>
-      <input
-        class="form-control form-control-lg"
-        type="number"
-        formControlName="km"
-      />
+      <input class="form-control form-control-lg" type="number" formControlName="km">
       <!-- <mat-slider color="primary" formControlName="km" thumbLabel tickInterval="1" step="100" min="0" max="1000000" aria-label="units"></mat-slider> -->
-      <app-vmessage
-        *ngIf="cadastraCombustivelForm.get('km')?.errors?.required"
-        text="Preencha a quilometragem."
-      ></app-vmessage>
+      <app-vmessage *ngIf="cadastraCombustivelForm.get('km')?.errors?.required && validaSubmit" text="Preencha a quilometragem."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pressao">Preço do Combustível:</label>
-      <input
-        class="form-control form-control-lg"
-        type="number"
-        min="1"
-        step="any"
-        formControlName="price"
-      />
-      <app-vmessage
-        *ngIf="cadastraCombustivelForm.get('price')?.errors?.required"
-        text="Preencha o valor."
-      ></app-vmessage>
+      <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="price">
+      <app-vmessage *ngIf="cadastraCombustivelForm.get('price')?.errors?.required && validaSubmit" text="Preencha o valor."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pressao">Tipo do Combustível:</label>
@@ -62,20 +39,8 @@
     <div class="form-group">
       <label class="label-cad-pressao">Litros:</label>
       <!-- <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume"> -->
-      <mat-slider
-        color="primary"
-        formControlName="volume"
-        thumbLabel
-        tickInterval="1"
-        step="1"
-        min="0"
-        max="100"
-        aria-label="units"
-      ></mat-slider>
-      <app-vmessage
-        *ngIf="cadastraCombustivelForm.get('volume')?.errors?.required"
-        text="Preencha a quantidade abastecida."
-      ></app-vmessage>
+      <mat-slider color="primary" formControlName="volume" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
+      <app-vmessage *ngIf="cadastraCombustivelForm.get('volume')?.errors?.required && validaSubmit" text="Preencha a quantidade abastecida."></app-vmessage>
     </div>
     <div class="form-group">
       <label class="label-cad-pressao">Observações: </label>
@@ -86,13 +51,7 @@
       />
     </div>
     <div class="col text-center">
-      <button
-        class="btn btn-primary mb-3"
-        type="submit"
-        [disabled]="cadastraCombustivelForm.invalid"
-      >
-        Cadastrar
-      </button>
+      <button class="btn btn-primary mb-3" type="submit">Cadastrar</button>
     </div>
   </form>
 </div>

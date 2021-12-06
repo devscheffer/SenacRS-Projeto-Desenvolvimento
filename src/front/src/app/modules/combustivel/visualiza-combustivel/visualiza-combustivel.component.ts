@@ -80,7 +80,7 @@ export class VisualizaCombustivelComponent implements AfterViewInit,OnInit {
   }
 
   formataData(data: string) {
-    return moment(data).format('YYYY/MM/DD');
+    return moment(data).add(1, 'd').format('YYYY/MM/DD');
   }
 
   validaPosicao(tipoEscolhido: string) {

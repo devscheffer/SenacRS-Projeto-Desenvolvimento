@@ -35,26 +35,12 @@ select {
 input:focus {outline:none!important;}
 
 button {
-  width: 100%;
-  background-color: #154b82;
-  color: white;
-  padding: 14px 20px;
   margin: 8px 0;
-  border: none;
   border-radius: 25px;
-  width: 50%;
   cursor: pointer;
-  float: right;
+  font-weight: 500;
 }
 
 label {
   font-weight: 600;
-}
-
-.bottonCriarConta {
-  padding: 1rem 0;
-}
-
-.botaoLogin {
-  background-color: rgb(56, 148, 182);
 }

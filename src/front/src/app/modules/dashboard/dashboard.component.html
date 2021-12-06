@@ -4,10 +4,11 @@
   </div>
 
   <ng-template #possuiValores>
-    <div echarts [options]="chart_manutencao" class="demo-chart"></div>
-    <div echarts [options]="chart_gas" class="demo-chart"></div>
-    <div echarts [options]="chart_pneu" class="demo-chart"></div>
-    <div echarts [options]="chart_km" class="demo-chart"></div>
+    <div *ngIf="manutencoes.length > 0" echarts [options]="chart_manutencao" class="demo-chart"></div>
+    <div *ngIf="manutencoes.length > 0" echarts [options]="chart_manutencao_line" class="demo-chart"></div>
+    <div *ngIf="combustivel.length > 0" echarts [options]="chart_gas" class="demo-chart"></div>
+    <div *ngIf="pneu.length > 0" echarts [options]="chart_pneu" class="demo-chart"></div>
+    <div *ngIf="km.length > 0" echarts [options]="chart_km" class="demo-chart"></div>
   </ng-template>
 </div>
 

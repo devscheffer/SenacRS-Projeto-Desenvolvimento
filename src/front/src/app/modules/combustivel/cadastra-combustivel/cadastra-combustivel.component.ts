@@ -15,6 +15,8 @@ export class CadastraCombustivelComponent implements OnInit {
   title: string = '';
   cadastraCombustivelForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
+
 
   tiposCombustiveis = [
     { name: 'Comum', value: 'gasolina_comum' },
@@ -55,47 +57,53 @@ export class CadastraCombustivelComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    const dataCombustivel: CombustivelModel = {
-      gas_type: this.cadastraCombustivelForm.get('gas_type')?.value,
-      date: this.cadastraCombustivelForm.get('date')?.value,
-      price: this.cadastraCombustivelForm.get('price')?.value,
-      volume: this.cadastraCombustivelForm.get('volume')?.value,
-      observation: this.cadastraCombustivelForm.get('observation')?.value,
-      _id: null,
-    };
+    if (!this.cadastraCombustivelForm.invalid) {
+      const dataCombustivel: CombustivelModel = {
+        'gas_type': this.cadastraCombustivelForm.get('gas_type')?.value,
+        'date': this.cadastraCombustivelForm.get('date')?.value,
+        'price': this.cadastraCombustivelForm.get('price')?.value,
+        'volume': this.cadastraCombustivelForm.get('volume')?.value,
+        'observation': this.cadastraCombustivelForm.get('observation')?.value
+      };
 
-    const dataKm: KmModel = {
-      km: this.cadastraCombustivelForm.get('km')?.value,
-      date: this.cadastraCombustivelForm.get('date')?.value,
-      observation: this.cadastraCombustivelForm.get('observation')?.value,
-      _id: null,
-    };
+      const dataKm: KmModel = {
+        'km': this.cadastraCombustivelForm.get('km')?.value,
+        'date': this.cadastraCombustivelForm.get('date')?.value,
+        'observation': this.cadastraCombustivelForm.get('observation')?.value
+      };
+      console.log(dataKm);
 
-    let confirmaEnvioCombustivel = false;
-    let confirmaEnvioKm = false;
+      let confirmaEnvioCombustivel = false;
+      let confirmaEnvioKm = false;
 
-    this.kmService.create(dataKm).subscribe(
-      (res) => {
-        confirmaEnvioCombustivel = true;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      this.kmService.create(dataKm).subscribe(
+        (res) => {
+          confirmaEnvioCombustivel = true;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
 
-    this.combustivelService.create(dataCombustivel).subscribe(
-      (res) => {
-        confirmaEnvioKm = true;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      this.combustivelService.create(dataCombustivel).subscribe(
+        (res) => {
+          confirmaEnvioKm = true;
+        },
+        (err) => {
+          console.log(err);
+          this.validaSubmit = false;
+        }
+      );
 
-    setTimeout(() => {
+      setTimeout(() => {
+        confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['home/combustivel/registros']) : null;
+        this.loading = false;
+      }, 500);
+    }
+    else{
       this.loading = false;
-      this.router.navigate(['home/combustivel/registros']);
-    }, 500);
+    }
   }
 }

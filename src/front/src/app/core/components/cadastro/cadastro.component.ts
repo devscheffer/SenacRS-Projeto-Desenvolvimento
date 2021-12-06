@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { UserModel } from './../../models/login.model';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CadastroService } from '../../services/cadastro/cadastro.service';
@@ -12,6 +13,8 @@ export class CadastroComponent implements OnInit {
 
   title: string = '';
   cadastroForm!: FormGroup;
+  validaSubmit: boolean = false;
+  @ViewChild('emailInput') emailInput!: ElementRef; // Utilizando ViewChield para manipular o DOM.
 
   constructor(
     private fb: FormBuilder,
@@ -23,14 +26,16 @@ export class CadastroComponent implements OnInit {
   }
   ngOnInit(): void {
     this.initForm();
+    setTimeout(()=>{ // this will make the execution after the above boolean has changed
+      this.emailInput.nativeElement.focus();
+    },0);
   }
 
   initForm() {
     this.cadastroForm = this.fb.group({
       email: ['', [
         Validators.required,
-        Validators.email,
-        Validators.minLength(4)
+        Validators.email
       ]],
       password: ['', [
         Validators.required,
@@ -44,17 +49,21 @@ export class CadastroComponent implements OnInit {
   }
 
   submit() {
-    if (this.cadastroForm.get('password')?.value == this.cadastroForm.get('confirmPassword')?.value) {
-      let dataForm = {
-        email: this.cadastroForm.get('email'),
-        password: this.cadastroForm.get('password')
-      };
-      this.cadastroService.cadastro(this.cadastroForm.value)
-        .subscribe(res => {
-          this.router.navigate(['login'])
-        }, err => {
-          console.log(err);
-        });
+    this.validaSubmit = true;
+    if (!this.cadastroForm.invalid) {
+      if (this.cadastroForm.get('password')?.value == this.cadastroForm.get('confirmPassword')?.value) {
+        let dataForm: UserModel = {
+          email: this.cadastroForm.get('email')?.value,
+          password: this.cadastroForm.get('password')?.value
+        };
+        this.cadastroService.cadastro(dataForm)
+          .subscribe(res => {
+            this.router.navigate(['login'])
+          }, err => {
+            console.log(err);
+            this.validaSubmit = false;
+          });
+      }
     }
   }
 }

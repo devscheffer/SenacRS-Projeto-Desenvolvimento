@@ -4,21 +4,21 @@
     <div class="form-group">
       <label for="email">E-mail:</label>
       <input #emailInput type="email" id="email" formControlName="email" placeholder="Digite seu e-mail" />
-      <app-vmessage *ngIf="loginForm.get('email')?.errors?.required" text="Email obrigatorio."></app-vmessage>
-      <app-vmessage *ngIf="loginForm.get('email')?.errors?.email" text="Coloque um email valido."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('email')?.errors?.required && validaSubmit" text="Preencha seu email."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('email')?.errors?.email && validaSubmit" text="Coloque um email valido."></app-vmessage>
     </div>
     <div class="form-group">
       <label for="password">Senha:</label>
       <input type="password" id="password" formControlName="password" placeholder="Digite sua senha" autofocus />
-      <app-vmessage *ngIf="loginForm.get('password')?.errors?.required" text="Preencha a sua senha."></app-vmessage>
-      <app-vmessage *ngIf="loginForm.get('password')?.errors?.minlength" text="No minimo 4 caracteres."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('password')?.errors?.required && validaSubmit" text="Preencha a sua senha."></app-vmessage>
+      <app-vmessage *ngIf="loginForm.get('password')?.errors?.minlength && validaSubmit" text="A senha deve ter no minimo 4 caracteres."></app-vmessage>
     </div>
     <div class="row">
       <div class="col-6">
-        <button class="w-100 v" routerLink="/cadastro">Crie uma conta</button>
+        <button class="btn btn-outline-primary w-100" routerLink="/cadastro">Criar Conta</button>
       </div>
       <div class="col-6">
-        <button (click)="submit()" class="btn botaoLogin mb-3 w-100" type="submit" [disabled]="loginForm.invalid">Entrar</button>
+        <button (click)="submit()" class="btn btn-primary mb-3 w-100" type="submit">Entrar</button>
       </div>
     </div>
   </form>

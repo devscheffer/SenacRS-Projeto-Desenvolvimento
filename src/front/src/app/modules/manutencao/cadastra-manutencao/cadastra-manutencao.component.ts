@@ -12,11 +12,19 @@ export class CadastraManutencaoComponent implements OnInit {
   title: string = '';
   cadastraManutencaoForm!: FormGroup;
   public loading: boolean = false;
+  validaSubmit: boolean = false;
+  opcoes = [
+    { name: 'Motor', value: 'motor' },
+    { name: 'Rodas', value: 'rodas' },
+    { name: 'Suspenção', value: 'suspencao' },
+    { name: 'Arrefecimento', value: 'arrefecimento' },
+    { name: 'Peça', value: 'peca' },
+  ];
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private ManutencaoService: ManutencaoService,
+    private manutencaoService: ManutencaoService,
     private router: Router
   ) {
     this.title = route.snapshot.data['title'];
@@ -34,7 +42,7 @@ export class CadastraManutencaoComponent implements OnInit {
     this.cadastraManutencaoForm = this.fb.group({
       price: ['', [Validators.required]],
       service: ['', [Validators.required]],
-      category: ['', [Validators.required]],
+      category: ['Selecione a posição...', [Validators.required]],
       date: ['', [Validators.required]],
       observation: [''],
     });
@@ -42,16 +50,31 @@ export class CadastraManutencaoComponent implements OnInit {
 
   submit() {
     this.loading = true;
+    this.validaSubmit = true;
 
-    this.ManutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
-      (res) => {
-        this.loading = false;
-        this.router.navigate(['home/manutencao/registros']);
-      },
-      (err) => {
-        console.log(err);
+    if (!this.cadastraManutencaoForm.invalid) {
+      if (
+        this.cadastraManutencaoForm.get('position')?.value !=
+        'Selecione a posição...'
+      ) {
+        this.manutencaoService
+          .create(this.cadastraManutencaoForm.value)
+          .subscribe(
+            (res) => {
+              this.loading = false;
+              this.router.navigate(['home/manutencao/registros']);
+            },
+            (err) => {
+              console.log(err);
+              this.loading = false;
+              this.validaSubmit = false;
+            }
+          );
+      } else{
         this.loading = false;
       }
-    );
+    } else {
+      this.loading = false;
+    }
   }
 }
