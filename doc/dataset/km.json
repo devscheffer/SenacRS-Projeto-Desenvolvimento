@@ -1,0 +1,878 @@
+[
+  {
+    "date": "2019-06-05",
+    "km": 45120,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-06-05",
+    "km": 45120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-06-12",
+    "km": 45870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-06-19",
+    "km": 46620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-06-26",
+    "km": 47370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-07-03",
+    "km": 48120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-07-10",
+    "km": 48870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-07-17",
+    "km": 49620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-07-24",
+    "km": 50370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-07-31",
+    "km": 51120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-08-07",
+    "km": 51870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-08-14",
+    "km": 52620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-08-21",
+    "km": 53370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-08-28",
+    "km": 54120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-09-04",
+    "km": 54870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-06-05",
+    "km": 55100,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-10",
+    "km": 55100,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-10",
+    "km": 55100,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-10",
+    "km": 55100,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-09-11",
+    "km": 55620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-09-18",
+    "km": 56370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-09-25",
+    "km": 57120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-10-02",
+    "km": 57870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-10-09",
+    "km": 58620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-10-16",
+    "km": 59370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-10-23",
+    "km": 60120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-10-30",
+    "km": 60870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-11-06",
+    "km": 61620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-11-13",
+    "km": 62370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-11-20",
+    "km": 63120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-11-27",
+    "km": 63870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-04",
+    "km": 64620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-06-07",
+    "km": 65200,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-11",
+    "km": 65370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-18",
+    "km": 66120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2019-12-25",
+    "km": 66870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-01-01",
+    "km": 67620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-01-08",
+    "km": 68370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-01-15",
+    "km": 69120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-01-22",
+    "km": 69870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-01-29",
+    "km": 70620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-02-05",
+    "km": 71370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-02-12",
+    "km": 72120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-02-19",
+    "km": 72870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-02-26",
+    "km": 73620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-03-04",
+    "km": 74370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-12",
+    "km": 75105,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-03-11",
+    "km": 75120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-03-18",
+    "km": 75870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-03-25",
+    "km": 76620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-04-01",
+    "km": 77370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-04-08",
+    "km": 78120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-04-15",
+    "km": 78870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-04-22",
+    "km": 79620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-04-29",
+    "km": 80370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-05-06",
+    "km": 81120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-05-13",
+    "km": 81870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-05-20",
+    "km": 82620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-05-27",
+    "km": 83370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-06-03",
+    "km": 84120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-06-10",
+    "km": 84870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-15",
+    "km": 85150,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-15",
+    "km": 85150,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-06-17",
+    "km": 85620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-06-24",
+    "km": 86370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-07-01",
+    "km": 87120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-07-08",
+    "km": 87870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-07-15",
+    "km": 88620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-07-22",
+    "km": 89370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-07-29",
+    "km": 90120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-07",
+    "km": 90340,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-08-05",
+    "km": 90870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-08-12",
+    "km": 91620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-08-19",
+    "km": 92370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-08-26",
+    "km": 93120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-09-02",
+    "km": 93870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-09-09",
+    "km": 94620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-06",
+    "km": 95215,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-09-16",
+    "km": 95370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-09-23",
+    "km": 96120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-09-30",
+    "km": 96870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-10-07",
+    "km": 97620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-10-14",
+    "km": 98370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-10-21",
+    "km": 99120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-22",
+    "km": 99712,
+    "observation": "manutenção",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-10-28",
+    "km": 99870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-11-04",
+    "km": 100620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-11-11",
+    "km": 101370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-11-18",
+    "km": 102120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-11-25",
+    "km": 102870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-02",
+    "km": 103620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-09",
+    "km": 104370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-16",
+    "km": 105120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-23",
+    "km": 105870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2020-12-30",
+    "km": 106620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-01-06",
+    "km": 107370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-01-13",
+    "km": 108120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-01-20",
+    "km": 108870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-01-27",
+    "km": 109620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-02-03",
+    "km": 110370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-02-10",
+    "km": 111120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-02-17",
+    "km": 111870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-02-24",
+    "km": 112620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-03-03",
+    "km": 113370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-03-10",
+    "km": 114120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-03-17",
+    "km": 114870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-03-24",
+    "km": 115620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-03-31",
+    "km": 116370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-04-07",
+    "km": 117120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-04-14",
+    "km": 117870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-04-21",
+    "km": 118620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-04-28",
+    "km": 119370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-05-05",
+    "km": 120120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-05-12",
+    "km": 120870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-05-19",
+    "km": 121620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-05-26",
+    "km": 122370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-02",
+    "km": 123120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-09",
+    "km": 123870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-16",
+    "km": 124620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-23",
+    "km": 125370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-06-30",
+    "km": 126120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-07-07",
+    "km": 126870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-07-14",
+    "km": 127620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-07-21",
+    "km": 128370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-07-28",
+    "km": 129120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-08-04",
+    "km": 129870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-08-11",
+    "km": 130620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-08-18",
+    "km": 131370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-08-25",
+    "km": 132120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-01",
+    "km": 132870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-08",
+    "km": 133620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-15",
+    "km": 134370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-22",
+    "km": 135120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-09-29",
+    "km": 135870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-10-06",
+    "km": 136620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-10-13",
+    "km": 137370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-10-20",
+    "km": 138120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-10-27",
+    "km": 138870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-11-03",
+    "km": 139620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-11-10",
+    "km": 140370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-11-17",
+    "km": 141120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-11-24",
+    "km": 141870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-01",
+    "km": 142620,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-08",
+    "km": 143370,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-15",
+    "km": 144120,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  },
+  {
+    "date": "2021-12-22",
+    "km": 144870,
+    "observation": "Gasolina",
+    "user": {"$oid": "6198218980099c805d009400"}
+  }
+]
