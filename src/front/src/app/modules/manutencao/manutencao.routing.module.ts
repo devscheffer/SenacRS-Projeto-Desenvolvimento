@@ -2,6 +2,7 @@ import { VisualizaManutencaoComponent } from './visualiza-manutencao/visualiza-m
 import { CadastraManutencaoComponent } from './cadastra-manutencao/cadastra-manutencao.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ViewEditManutencaoComponent } from './view-edit-manutencao/view-edit-manutencao.component';
 
 const routes : Routes = [
 	{
@@ -10,10 +11,18 @@ const routes : Routes = [
     data: { title: 'Cadastro de manutenção'}
   },
 	{
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaManutencaoComponent,
-    data: { title: 'Visualiza manutenção'}
-  }
+    data: { title: 'Registros de Manutenção'}
+  },
+  {
+    path: 'visualiza/:id',
+    component: ViewEditManutencaoComponent,
+    data: {
+      titleView: 'Visualiza Manutenção',
+      titleEdit: 'Edita Manutenção'
+    }
+  },
 ]
 
 @NgModule({

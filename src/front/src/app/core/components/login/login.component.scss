@@ -2,7 +2,7 @@
   height: 100vh;
   margin: auto;
   padding: 50px;
-  background-image: url('./../../../../assets/img/tela_login.png');
+  background-image: url('./../../../../assets/img/tela_login-2.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -49,4 +49,12 @@ button {
 
 label {
   font-weight: 600;
+}
+
+.bottonCriarConta {
+  padding: 1rem 0;
+}
+
+.botaoLogin {
+  background-color: rgb(56, 148, 182);
 }

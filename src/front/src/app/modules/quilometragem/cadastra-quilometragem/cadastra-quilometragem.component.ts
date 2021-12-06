@@ -1,7 +1,7 @@
-import { QuilometragemService } from './../quilometragem.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { QuilometragemService } from './../quilometragem.service';
 
 @Component({
   selector: 'app-cadastra-quilometragem',
@@ -47,7 +47,7 @@ export class CadastraQuilometragemComponent implements OnInit {
       this.kmService.create(this.cadastraQuilometragemForm.value).subscribe(
         (res) => {
           this.loading = false;
-          this.router.navigate(['home/quilometragem/visualiza']);
+          this.router.navigate(['home/quilometragem/registros']);
         },
         (err) => {
           console.log(err);

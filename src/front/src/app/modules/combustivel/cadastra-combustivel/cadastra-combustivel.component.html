@@ -1,41 +1,54 @@
 <header>
-  <h2 class="titulo">{{title}}</h2>
-  <hr class="linha">
+  <h2 class="titulo">{{ title }}</h2>
+  <hr class="linha" />
 </header>
 
 <div *ngIf="!loading" class="pt-3 mb-4 container">
-  <form id="formulario_cadastro_combustivel" [formGroup]="cadastraCombustivelForm" (ngSubmit)="submit()">
+  <form
+    id="formulario_cadastro_combustivel"
+    [formGroup]="cadastraCombustivelForm"
+    (ngSubmit)="submit()"
+  >
     <div class="form-group">
-      <label class="label-cad-pneu">Data de Reabastecimento:</label>
+      <label class="label-cad-pressao">Data de Reabastecimento:</label>
       <input class="form-control form-control-lg" type="date" formControlName="date">
       <app-vmessage *ngIf="cadastraCombustivelForm.get('date')?.errors?.required && validaSubmit" text="Preencha a data."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Quilometragem (km):</label>
+      <label class="label-cad-pressao">Quilometragem (km):</label>
       <input class="form-control form-control-lg" type="number" formControlName="km">
       <!-- <mat-slider color="primary" formControlName="km" thumbLabel tickInterval="1" step="100" min="0" max="1000000" aria-label="units"></mat-slider> -->
       <app-vmessage *ngIf="cadastraCombustivelForm.get('km')?.errors?.required && validaSubmit" text="Preencha a quilometragem."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Preço do Combustível:</label>
+      <label class="label-cad-pressao">Preço do Combustível:</label>
       <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="price">
       <app-vmessage *ngIf="cadastraCombustivelForm.get('price')?.errors?.required && validaSubmit" text="Preencha o valor."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Tipo do Combustível:</label>
+      <label class="label-cad-pressao">Tipo do Combustível:</label>
       <select formControlName="gas_type">
-        <option *ngFor="let combustivel of tiposCombustiveis" [value]="combustivel.value">{{combustivel.name}}</option>
+        <option
+          *ngFor="let combustivel of tiposCombustiveis"
+          [value]="combustivel.value"
+        >
+          {{ combustivel.name }}
+        </option>
       </select>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Litros:</label>
+      <label class="label-cad-pressao">Litros:</label>
       <!-- <input class="form-control form-control-lg" type="number" min="1" step="any" formControlName="volume"> -->
       <mat-slider color="primary" formControlName="volume" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
       <app-vmessage *ngIf="cadastraCombustivelForm.get('volume')?.errors?.required && validaSubmit" text="Preencha a quantidade abastecida."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Observações: </label>
-      <input class="form-control" id="observacoes" formControlName="observation">
+      <label class="label-cad-pressao">Observações: </label>
+      <input
+        class="form-control"
+        id="observacoes"
+        formControlName="observation"
+      />
     </div>
     <div class="col text-center">
       <button class="btn btn-primary mb-3" type="submit">Cadastrar</button>

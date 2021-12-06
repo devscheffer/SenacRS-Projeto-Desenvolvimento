@@ -1,5 +1,6 @@
-import { KmModel } from './../../shared/models/quilometragem.model';
+import { TokenService } from '../../core/services/token/token.service';
 import { environment } from './../../../environments/environment';
+import { KmModel } from './../../shared/models/quilometragem.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -13,24 +14,24 @@ export class QuilometragemService {
 
   constructor(private http: HttpClient) {}
 
-  create(pneu: KmModel): Observable<KmModel> {
-    return this.http.post<KmModel>(`${url}/km`, pneu);
+  create(km: KmModel): Observable<KmModel> {
+    return this.http.post<KmModel>(`${url}/km`, km);
   }
 
   read_all(): Observable<KmModel[]> {
     return this.http.get<KmModel[]>(`${url}/km`);
   }
 
-  read_id(id: number): Observable<KmModel> {
+  read_id(id: string): Observable<KmModel> {
     return this.http.get<KmModel>(`${url}/km/${id}`);
   }
 
-  update(id: number, pneu: KmModel): Observable<any> {
-    return this.http.patch(`${url}/${id}`, pneu);
+  update(id: string, km: KmModel): Observable<any> {
+    return this.http.patch(`${url}/km/${id}`, km);
   }
 
-  delete(id: number): Observable<KmModel> {
-    return this.http.delete<KmModel>(`${url}/${id}`);
+  delete(id: string): Observable<KmModel> {
+    return this.http.delete<KmModel>(`${url}/km/${id}`);
   }
 
 }

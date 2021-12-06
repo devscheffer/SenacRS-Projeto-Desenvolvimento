@@ -1,3 +1,4 @@
+import { ViewEditQuilometragemComponent } from './view-edit-quilometragem/view-edit-quilometragem.component';
 import { VisualizaQuilometragemComponent } from './visualiza-quilometragem/visualiza-quilometragem.component';
 import { CadastraQuilometragemComponent } from './cadastra-quilometragem/cadastra-quilometragem.component';
 import { NgModule } from '@angular/core';
@@ -10,9 +11,17 @@ const routes : Routes = [
     data: { title: 'Cadastra Quilometragem' }
   },
 	{
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaQuilometragemComponent,
-    data: { title: 'Visualiza Quilometragem' }
+    data: { title: 'Registros de Quilometragem' }
+  },
+	{
+    path: 'visualiza/:id',
+    component: ViewEditQuilometragemComponent,
+    data: {
+      titleView: 'Visualiza Quilometragem',
+      titleEdit: 'Edita Quilometragem'
+    }
   }
 ]
 

@@ -3,15 +3,14 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-datatable',
   templateUrl: './datatable.component.html',
-  styleUrls: ['./datatable.component.scss']
+  styleUrls: ['./datatable.component.scss'],
 })
 export class DatatableComponent implements OnInit {
-
   dtOptions: DataTables.Settings = {};
   @Input() columns: Object[] = [];
   @Input() data: Object[] = [];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -24,12 +23,12 @@ export class DatatableComponent implements OnInit {
           first: 'Primeiro',
           last: 'Último',
           next: 'Próximo',
-          previous: 'Anterior'
+          previous: 'Anterior',
         },
         search: 'Buscar',
         emptyTable: 'Não há dados na tabela.',
-        zeroRecords: 'Nenhum dado correspondente.'
-      }
+        zeroRecords: 'Nenhum dado correspondente.',
+      },
     };
   }
 }

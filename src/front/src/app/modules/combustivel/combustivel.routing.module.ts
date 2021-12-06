@@ -2,6 +2,7 @@ import { VisualizaCombustivelComponent } from './visualiza-combustivel/visualiza
 import { CadastraCombustivelComponent } from './cadastra-combustivel/cadastra-combustivel.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ViewEditCombustivelComponent } from './view-edit-combustivel/view-edit-combustivel.component';
 
 const routes : Routes = [
 	{
@@ -10,10 +11,18 @@ const routes : Routes = [
     data: { title: 'Cadastro de combustível' }
   },
   {
-    path: 'visualiza',
+    path: 'registros',
     component: VisualizaCombustivelComponent,
-    data: { title: 'Visualização do combustível'}
-  }
+    data: { title: 'Registros de Combustível'}
+  },
+  {
+    path: 'visualiza/:id',
+    component: ViewEditCombustivelComponent,
+    data: {
+      titleView: 'Visualiza Combustível',
+      titleEdit: 'Edita Combustível'
+    }
+  },
 ]
 
 @NgModule({

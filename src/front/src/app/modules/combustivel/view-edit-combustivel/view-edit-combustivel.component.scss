@@ -1,11 +1,24 @@
-label.label-cad-pneu {
-  color: rgb(255, 255, 255);
+.titulo {
+  font-size: 1.2rem;
+  color: #EEEEEE;
+  text-align: center;
+  margin-top: 1rem;
 }
 
-.btn-primary {
-  color: #fff;
-  background-color: #656565;
-  border-color: #656565;
+#formulario_login>label {
+  padding: 10px;
+}
+
+#formulario_login>input {
+  padding: 10px;
+}
+
+input, select {
+  color: #495057;
+}
+
+label.label-cad-pressao {
+  color: rgb(255, 255, 255);
 }
 
 ::-webkit-input-placeholder {
@@ -29,13 +42,6 @@ input[type="date"], input[type="number"] {
   font-size: 1rem;
 }
 
-.titulo {
-  font-size: 1.2rem;
-  color: #EEEEEE;
-  text-align: center;
-  margin-top: 1rem;
-}
-
 .linha {
   background-color: #EEEEEE;
   width: 10px;
@@ -45,12 +51,4 @@ select {
   width: 100%;
   padding: 10px;
   border-radius: 4px;
-}
-
-input, select {
-  color: #495057;
-}
-
-mat-slider {
-  width: 100%;
 }

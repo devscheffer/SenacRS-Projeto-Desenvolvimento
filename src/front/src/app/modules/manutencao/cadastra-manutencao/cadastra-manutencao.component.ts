@@ -50,7 +50,7 @@ export class CadastraManutencaoComponent implements OnInit {
       this.manutencaoService.create(this.cadastraManutencaoForm.value).subscribe(
         (res) => {
           this.loading = false;
-          this.router.navigate(['home/manutencao/visualiza']);
+          this.router.navigate(['home/manutencao/registros']);
         },
         (err) => {
           console.log(err);

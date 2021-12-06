@@ -4,9 +4,9 @@
 </header>
 
 <div class="pt-3 mb-4 container" *ngIf="!loading">
-  <form [formGroup]="cadastraPneuForm" (ngSubmit)="submit()">
+  <form [formGroup]="cadastraPressaoForm" (ngSubmit)="submit()">
     <div class="form-group">
-      <label class="label-cad-pneu">Posição do pneu no carro: </label><br>
+      <label class="label-cad-pressao">Posição do pneu no carro: </label><br>
       <select class="form-select" formControlName="position">
           <option disabled selected>Selecione a posição...</option>
           <option [value]="opcao.value" *ngFor="let opcao of opcoes">{{opcao.name}}</option>
@@ -14,24 +14,22 @@
         <app-vmessage *ngIf="validaPosicao && validaSubmit" text="Escolha uma posição."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Pressão antiga do pneu: </label>
-      <!-- <input class="form-control form-control-lg"  type="range" min="0" max="100" formControlName="pressure_old" placeholder="Digite o valor da pressão anterior" oninput="this.previousElementSibling.value = this.value"> -->
+      <label class="label-cad-pressao">Pressão antiga do pneu: </label>
       <mat-slider formControlName="pressure_old" color="primary" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
-      <app-vmessage *ngIf="cadastraPneuForm.get('pressure_old')?.errors?.required && validaSubmit" text="Preencha a presão antiga."></app-vmessage>
+      <app-vmessage *ngIf="cadastraPressaoForm.get('pressure_old')?.errors?.required && validaSubmit" text="Preencha a presão antiga."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Pressão nova do pneu: </label>
-      <!-- <input class="form-control form-control-lg" type="range" min="0" max="100" formControlName="pressure_new" placeholder="Digite o valor da nova pressão" oninput="this.previousElementSibling.value = this.value"> -->
+      <label class="label-cad-pressao">Pressão nova do pneu: </label>
       <mat-slider color="primary" formControlName="pressure_new" thumbLabel tickInterval="1" step="1" min="0" max="100" aria-label="units"></mat-slider>
-      <app-vmessage *ngIf="cadastraPneuForm.get('pressure_new')?.errors?.required && validaSubmit" text="Preencha a presão atualizada."></app-vmessage>
+      <app-vmessage *ngIf="cadastraPressaoForm.get('pressure_new')?.errors?.required && validaSubmit" text="Preencha a presão atualizada."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Data de Calibragem: </label>
+      <label class="label-cad-pressao">Data de Calibragem: </label>
       <input class="form-control form-control-lg" type="date" formControlName="date">
-      <app-vmessage *ngIf="cadastraPneuForm.get('date')?.errors?.required && validaSubmit" text="Preencha a data de calibragem."></app-vmessage>
+      <app-vmessage *ngIf="cadastraPressaoForm.get('date')?.errors?.required && validaSubmit" text="Preencha a data de calibragem."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Observações: </label>
+      <label class="label-cad-pressao">Observações: </label>
       <input class="form-control" id="observacoes" formControlName="observation">
     </div>
     <div class="col text-center">

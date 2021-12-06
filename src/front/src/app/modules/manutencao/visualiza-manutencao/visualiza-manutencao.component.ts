@@ -1,7 +1,9 @@
 import { ManutencaoService } from './../manutencao.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit, Renderer2 } from '@angular/core';
+
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-visualiza-manutencao',
@@ -14,10 +16,13 @@ export class VisualizaManutencaoComponent implements OnInit {
   public loading: boolean = false;
   columns: Object[] = [];
   data: Object[] = [];
+  iconeLogin = faUser;
 
   constructor(
     private route: ActivatedRoute,
     private manutencaoervice: ManutencaoService
+    ,private renderer: Renderer2,
+    private router: Router
   ) {
     this.title = route.snapshot.data['title'];
   }
@@ -26,10 +31,6 @@ export class VisualizaManutencaoComponent implements OnInit {
     this.loading = true;
 
     this.columns = [
-      {
-        title: 'Servico',
-        data: 'service'
-      },
       {
         title: 'Categoria',
         data: 'category'
@@ -41,6 +42,14 @@ export class VisualizaManutencaoComponent implements OnInit {
       {
         title: 'Preço',
         data: 'price'
+      },
+      {
+        title: 'Visualizar',
+        data: '_id',
+        render: function (data: any, type: any, full: any) {
+          return `
+          <button class="btn btn-primary fa fa-eye fa-2x" item-id="${data}" button-type="view"></button>            `;
+        },
       }
     ]
 
@@ -59,7 +68,9 @@ export class VisualizaManutencaoComponent implements OnInit {
     .subscribe(res => {
       res.forEach(item => {
         item.price == null ? item.price = 0 : null;
-        let row = { 'service': item.service, 'category': item.category, 'date': this.formataData(item.date), 'price': item.price };
+        let row = { 'category': item.category, 'date': this.formataData(item.date), 'price': item.price ,
+        _id: item._id,
+      };
         this.data.push(row);
       });
     });
@@ -70,4 +81,19 @@ export class VisualizaManutencaoComponent implements OnInit {
     return moment(data).add(1, 'd').format('YYYY/MM/DD');
   }
 
+  ngAfterViewInit(): void {
+    this.renderer.listen('document', 'click', (event) => {
+      if (event.target.hasAttribute('item-id')) {
+        switch (event.target.getAttribute('button-type')) {
+          case 'view':
+            this.manutencaoervice
+              .read_id(event.target.getAttribute('item-id'))
+              .subscribe((res) => {
+                this.router.navigate(['home/manutencao/visualiza', res._id]);
+              });
+            break;
+        }
+      }
+    });
+  }
 }

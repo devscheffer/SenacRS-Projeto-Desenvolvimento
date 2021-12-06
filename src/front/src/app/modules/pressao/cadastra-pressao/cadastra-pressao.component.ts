@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PneuService } from '../pneu.service';
+import { PressaoService } from '../pressao.service';
 
 @Component({
-  selector: 'app-cadastra-pressao-pneu',
-  templateUrl: './cadastra-pressao-pneu.component.html',
-  styleUrls: ['./cadastra-pressao-pneu.component.scss'],
+  selector: 'app-cadastra-pressao',
+  templateUrl: './cadastra-pressao.component.html',
+  styleUrls: ['./cadastra-pressao.component.scss'],
 })
-export class CadastraPressaoPneuComponent implements OnInit {
+export class CadastraPressaoComponent implements OnInit {
   title: string = '';
-  cadastraPneuForm!: FormGroup;
+  cadastraPressaoForm!: FormGroup;
   public loading: boolean = false;
   validaSubmit: boolean = false;
   validaPosicao: boolean = false;
@@ -25,7 +25,7 @@ export class CadastraPressaoPneuComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private pneuService: PneuService,
+    private pressaoService: PressaoService,
     private router: Router
   ) {
     this.title = route.snapshot.data['title'];
@@ -40,7 +40,7 @@ export class CadastraPressaoPneuComponent implements OnInit {
   }
 
   initForm() {
-    this.cadastraPneuForm = this.fb.group({
+    this.cadastraPressaoForm = this.fb.group({
       position: ['Selecione a posição...',
         [
           Validators.required
@@ -57,12 +57,12 @@ export class CadastraPressaoPneuComponent implements OnInit {
     this.loading = true;
     this.validaSubmit = true;
 
-    if (!this.cadastraPneuForm.invalid) {
-      if (this.cadastraPneuForm.get('position')?.value != 'Selecione a posição...') {
-        this.pneuService.create(this.cadastraPneuForm.value).subscribe(
+    if (!this.cadastraPressaoForm.invalid) {
+      if (this.cadastraPressaoForm.get('position')?.value != 'Selecione a posição...') {
+        this.pressaoService.create(this.cadastraPressaoForm.value).subscribe(
           (res) => {
             this.loading = false;
-            this.router.navigate(['home/pneu/visualiza']);
+            this.router.navigate(['home/pneu/registros']);
           },
           (err) => {
             console.log(err);

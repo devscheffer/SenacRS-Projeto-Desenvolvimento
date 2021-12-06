@@ -1,10 +1,10 @@
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { KmModel } from './../../../shared/models/quilometragem.model';
 import { CombustivelModel } from './../../../shared/models/combustivel.model';
 import { QuilometragemService } from './../../quilometragem/quilometragem.service';
 import { CombustivelService } from './../combustivel.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastra-combustivel',
@@ -46,9 +46,9 @@ export class CadastraCombustivelComponent implements OnInit {
 
   initForm() {
     this.cadastraCombustivelForm = this.fb.group({
-      gas_type: ['', [Validators.required]],
-      km: ['', [Validators.required]],
       date: ['', [Validators.required]],
+      km: ['', [Validators.required]],
+      gas_type: ['', [Validators.required]],
       price: ['', [Validators.required]],
       volume: ['', [Validators.required]],
       observation: [''],
@@ -67,7 +67,6 @@ export class CadastraCombustivelComponent implements OnInit {
         'volume': this.cadastraCombustivelForm.get('volume')?.value,
         'observation': this.cadastraCombustivelForm.get('observation')?.value
       };
-      console.log(dataCombustivel);
 
       const dataKm: KmModel = {
         'km': this.cadastraCombustivelForm.get('km')?.value,
@@ -81,7 +80,6 @@ export class CadastraCombustivelComponent implements OnInit {
 
       this.kmService.create(dataKm).subscribe(
         (res) => {
-          console.log(res);
           confirmaEnvioCombustivel = true;
         },
         (err) => {
@@ -91,7 +89,6 @@ export class CadastraCombustivelComponent implements OnInit {
 
       this.combustivelService.create(dataCombustivel).subscribe(
         (res) => {
-          console.log(res);
           confirmaEnvioKm = true;
         },
         (err) => {
@@ -101,7 +98,7 @@ export class CadastraCombustivelComponent implements OnInit {
       );
 
       setTimeout(() => {
-        confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['home/combustivel/visualiza']) : null;
+        confirmaEnvioCombustivel && confirmaEnvioKm ? this.router.navigate(['home/combustivel/registros']) : null;
         this.loading = false;
       }, 500);
     }

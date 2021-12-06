@@ -6,18 +6,17 @@
 <div class="pt-3 mb-4 container" *ngIf="!loading">
   <form [formGroup]="cadastraQuilometragemForm" (ngSubmit)="submit()">
     <div class="form-group">
-      <label class="label-cad-pneu">Data: </label>
+      <label class="label-card-km">Data: </label>
       <input class="form-control form-control-lg" type="date" formControlName="date">
       <app-vmessage *ngIf="cadastraQuilometragemForm.get('date')?.errors?.required && validaSubmit" text="Preencha a data."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Quilometragem: </label>
+      <label class="label-card-km">Quilometragem: </label>
       <input class="form-control form-control-lg" type="number" formControlName="km" placeholder="Digite o valor da quilometragem">
-      <!-- <mat-slider color="primary" formControlName="km" thumbLabel tickInterval="1" step="100" min="0" max="1000000" aria-label="units"></mat-slider> -->
       <app-vmessage *ngIf="cadastraQuilometragemForm.get('km')?.errors?.required && validaSubmit" text="Preencha a quilometragem."></app-vmessage>
     </div>
     <div class="form-group">
-      <label class="label-cad-pneu">Observações: </label>
+      <label class="label-card-km">Observações: </label>
       <input class="form-control form-control-lg" id="observacoes" type="text" formControlName="observation">
     </div>
     <div class="col text-center">

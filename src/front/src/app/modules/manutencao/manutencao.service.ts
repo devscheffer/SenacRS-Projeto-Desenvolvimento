@@ -10,27 +10,25 @@ const url = environment.apiUrl;
   providedIn: 'root',
 })
 export class ManutencaoService {
-
   constructor(private http: HttpClient) {}
 
-  create(pneu: ManutencaoModel): Observable<ManutencaoModel> {
-    return this.http.post<ManutencaoModel>(`${url}/manutencao`, pneu);
+  create(manutencao: ManutencaoModel): Observable<ManutencaoModel> {
+    return this.http.post<ManutencaoModel>(`${url}/manutencao`, manutencao);
   }
 
   read_all(): Observable<ManutencaoModel[]> {
     return this.http.get<ManutencaoModel[]>(`${url}/manutencao`);
   }
 
-  read_id(id: number): Observable<ManutencaoModel> {
+  read_id(id: string): Observable<ManutencaoModel> {
     return this.http.get<ManutencaoModel>(`${url}/manutencao/${id}`);
   }
 
-  update(id: number, pneu: ManutencaoModel): Observable<any> {
-    return this.http.patch(`${url}/${id}`, pneu);
+  update(id: string, manutencao: ManutencaoModel): Observable<any> {
+    return this.http.patch(`${url}/manutencao/${id}`, manutencao);
   }
 
-  delete(id: number): Observable<ManutencaoModel> {
-    return this.http.delete<ManutencaoModel>(`${url}/${id}`);
+  delete(id: string): Observable<ManutencaoModel> {
+    return this.http.delete<ManutencaoModel>(`${url}/manutencao/${id}`);
   }
-
 }

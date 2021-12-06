@@ -1,0 +1,56 @@
+label.label-cad-pressao {
+  color: rgb(255, 255, 255);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #656565;
+  border-color: #656565;
+}
+
+::-webkit-input-placeholder {
+  color: #999999;
+  font-size: 1rem;
+}
+::-moz-placeholder {
+  color: #999999;
+  font-size: 1rem;
+}
+:-ms-input-placeholder {
+  color: #999999;
+  font-size: 1rem;
+}
+::placeholder {
+  color: #999999;
+  font-size: 1rem;
+}
+
+input[type="date"], input[type="number"] {
+  font-size: 1rem;
+}
+
+.titulo {
+  font-size: 1.2rem;
+  color: #EEEEEE;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.linha {
+  background-color: #EEEEEE;
+  width: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+input, select {
+  color: #495057;
+}
+
+mat-slider {
+  width: 100%;
+}
