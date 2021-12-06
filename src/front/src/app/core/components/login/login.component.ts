@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   title: string = '';
   loginForm!: FormGroup;
+  validaSubmit: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,10 +46,19 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    this.loginService.login(this.loginForm.value)
-    .subscribe(res =>{
-          this.router.navigate(['home'])
-        });
 
+    this.validaSubmit = true;
+
+    if (!this.loginForm.invalid) {
+      this.loginService.login(this.loginForm.value).subscribe(
+        (res) => {
+          this.router.navigate(['home/dashboard']);
+        },
+        (err) => {
+          console.log(err);
+          this.validaSubmit = false;
+        }
+      );
+    }
   }
 }

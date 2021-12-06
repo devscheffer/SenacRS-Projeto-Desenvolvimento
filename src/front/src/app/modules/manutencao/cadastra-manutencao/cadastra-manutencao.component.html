@@ -11,11 +11,9 @@
       <app-vmessage *ngIf="cadastraManutencaoForm.get('date')?.errors?.required  && validaSubmit" text="Preencha a data."></app-vmessage>
     </div>
     <label class="label-cad-manu">Categoria do serviço: </label>
-    <select class="form-control form-control-lg" formControlName="category">
-      <option></option>
-      <option>Mecanico</option>
-      <option>Pintura</option>
-      <option>Limpeza</option>
+    <select class="form-select" formControlName="category">
+      <option disabled selected>Selecione a categoria...</option>
+      <option [value]="opcao.value" *ngFor="let opcao of opcoes">{{opcao.name}}</option>
     </select>
     <div class="form-group mt-3">
       <label class="label-cad-manu">Resumo do serviço executado: </label>

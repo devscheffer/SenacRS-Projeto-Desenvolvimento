@@ -29,6 +29,7 @@ export class DashboardComponent implements OnInit {
   chart_km: EChartsOption = {};
   chart_gas: EChartsOption = {};
   chart_manutencao: EChartsOption = {};
+  chart_manutencao_line: EChartsOption = {};
   initOpts = {
     renderer: 'svg',
     width: 300,
@@ -46,6 +47,7 @@ export class DashboardComponent implements OnInit {
   async ngOnInit() {
     this.loading = true;
     await this.buscaDadosManutencoes();
+    await this.buscaDadosManutencoesLine();
     await this.buscaDadosCombustivel();
     await this.buscaDadosPressaoPneu();
     await this.buscaDadosKm();
@@ -113,7 +115,7 @@ export class DashboardComponent implements OnInit {
 
         this.chart_manutencao = {
           title: {
-            text: 'Manutenção',
+            text: 'Totais Manutenções',
             subtext: 'Valor em Reais',
             subtextStyle: {
               color: '#FFFFFF'
@@ -150,6 +152,119 @@ export class DashboardComponent implements OnInit {
               name: 'Manutenção',
               data: dadosManutencao,
               type: 'bar',
+            },
+          ],
+        };
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  async buscaDadosManutencoesLine() {
+    this.manutencaoService.read_all().subscribe(
+      (res) => {
+        res.length > 0 ? this.semValores = false : null;
+        this.manutencoes = res;
+        let lst_data: any[] = [];
+        this.manutencoes.forEach((item) => {
+          lst_data.push(item);
+        });
+        // data.push(dataSuspencao);
+
+        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
+        let lst_data_x: any[] = [];
+        let lst_data_y_m: any[] = [];
+        let lst_data_y_r: any[] = [];
+        let lst_data_y_s: any[] = [];
+        let lst_data_y_a: any[] = [];
+        let lst_data_y_p: any[] = [];
+        lst_data_sort.forEach((item) => {
+          let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
+          lst_data_x.push(data_x);
+          let data_y = item.price;
+          switch (item.category) {
+            case 'Motor':
+              lst_data_y_m.push(data_y);
+              break;
+            case 'Rodas':
+              lst_data_y_r.push(data_y);
+              break;
+            case 'Suspencao':
+              lst_data_y_s.push(data_y);
+              break;
+            case 'Arrefecimento':
+              lst_data_y_a.push(data_y);
+              break;
+            case 'peca':
+              lst_data_y_p.push(data_y);
+              break;
+            default:
+              console.log('erro');
+          }
+        });
+        this.chart_manutencao_line = {
+          title: {
+            text: 'Detalhes Manutenções',
+            subtext: 'Valor em Reais',
+            subtextStyle: {
+              color: '#FFFFFF'
+            },
+            textStyle: { color: '#FFFFFF' },
+            left: 'center',
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'shadow',
+            },
+          },
+          grid: { containLabel: true },
+          legend: {
+            data: ['Motor', 'Rodas', 'Suspencao', 'Arrefecimento', 'peca'],
+            backgroundColor: '#ccc',
+            bottom: 0,
+          },
+          xAxis: {
+            type: 'category',
+            data: [...new Set(lst_data_x)],
+            axisLabel: {
+              color: '#FFFFFF',
+            }
+          },
+          yAxis: {
+            type: 'value',
+            axisLabel: {
+              color: '#FFFFFF',
+              formatter: '{value} BRL/L'
+            }
+          },
+          series: [
+            {
+              name: 'Motor',
+              data: lst_data_y_m,
+              type: 'line',
+            },
+            {
+              name: 'Rodas',
+              data: lst_data_y_r,
+              type: 'line',
+            },
+            {
+              name: 'Suspencao',
+              data: lst_data_y_s,
+              type: 'line',
+            },
+            {
+              name: 'Arrefecimento',
+              data: lst_data_y_a,
+              type: 'line',
+            },
+            {
+              name: 'peca',
+              data: lst_data_y_p,
+              type: 'line',
             },
           ],
         };
@@ -393,11 +508,15 @@ export class DashboardComponent implements OnInit {
     this.kmService.read_all().subscribe(
       (res) => {
         res.length > 0 ? this.semValores = false : null;
-
         this.km = res;
+        let lst_data: any[] = [];
+        this.km.forEach((item) => {
+          lst_data.push(item);
+        });
+        let lst_data_sort = lst_data.sort((a, b) => (a.date > b.date ? 1 : -1));
         let lst_data_x: any[] = [];
         let lst_data_y: any[] = [];
-        this.km.forEach((item) => {
+        lst_data_sort.forEach((item) => {
           let data_x = moment(item.date, 'YYYY-MM-DD').format('YYYY-MM-DD');
           lst_data_x.push(data_x);
           let data_y = item.km / 1000;
