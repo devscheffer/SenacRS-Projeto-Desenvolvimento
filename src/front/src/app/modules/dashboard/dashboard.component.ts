@@ -59,58 +59,88 @@ export class DashboardComponent implements OnInit {
   async buscaDadosManutencoes() {
     this.manutencaoService.read_all().subscribe(
       (res) => {
-        res.length > 0 ? this.semValores = false : null;
+        res.length > 0 ? (this.semValores = false) : null;
         let dadosNomes: any[] = [];
         let dadosManutencao: any[] = [];
 
         let precoMotor: number = 0;
-        let motorList = res.filter(item => item.category.toLowerCase() === 'motor');
-        motorList.forEach(item => {
+        let motorList = res.filter(
+          (item) => item.category.toLowerCase() === 'motor'
+        );
+        motorList.forEach((item) => {
           precoMotor += item.price;
-        })
+        });
         if (precoMotor > 0) {
           dadosNomes.push('Motor');
-          dadosManutencao.push({ value: precoMotor, itemStyle: { color: '#5a78db' }, label: { show: true, position: 'inside' } });
+          dadosManutencao.push({
+            value: precoMotor,
+            itemStyle: { color: '#5a78db' },
+            label: { show: true, position: 'inside' },
+          });
         }
 
         let precoRodas: number = 0;
-        let rodasList = res.filter(item => item.category.toLowerCase() === 'rodas');
-        rodasList.forEach(item => {
+        let rodasList = res.filter(
+          (item) => item.category.toLowerCase() === 'rodas'
+        );
+        rodasList.forEach((item) => {
           precoRodas += item.price;
-        })
+        });
         if (precoRodas > 0) {
           dadosNomes.push('Rodas');
-          dadosManutencao.push({ value: precoRodas, itemStyle: { color: '#269120' }, label: { show: true, position: 'inside' } });
+          dadosManutencao.push({
+            value: precoRodas,
+            itemStyle: { color: '#269120' },
+            label: { show: true, position: 'inside' },
+          });
         }
 
         let precoSuspencao: number = 0;
-        let suspencaoList = res.filter(item => item.category.toLowerCase() === 'suspencao');
-        suspencaoList.forEach(item => {
+        let suspencaoList = res.filter(
+          (item) => item.category.toLowerCase() === 'suspencao'
+        );
+        suspencaoList.forEach((item) => {
           precoSuspencao += item.price;
-        })
+        });
         if (precoSuspencao > 0) {
           dadosNomes.push('Suspenção');
-          dadosManutencao.push({ value: precoSuspencao, itemStyle: { color: '#94155b' }, label: { show: true, position: 'inside' } });
+          dadosManutencao.push({
+            value: precoSuspencao,
+            itemStyle: { color: '#94155b' },
+            label: { show: true, position: 'inside' },
+          });
         }
 
         let precoArrefecimento: number = 0;
-        let arrefecimentoList = res.filter(item => item.category.toLowerCase() === 'arrefecimento');
-        arrefecimentoList.forEach(item => {
+        let arrefecimentoList = res.filter(
+          (item) => item.category.toLowerCase() === 'arrefecimento'
+        );
+        arrefecimentoList.forEach((item) => {
           precoArrefecimento += item.price;
-        })
+        });
         if (precoArrefecimento > 0) {
           dadosNomes.push('Arrefecimento');
-          dadosManutencao.push({ value: precoArrefecimento, itemStyle: { color: '#a32f24' }, label: { show: true, position: 'inside' }  });
+          dadosManutencao.push({
+            value: precoArrefecimento,
+            itemStyle: { color: '#a32f24' },
+            label: { show: true, position: 'inside' },
+          });
         }
 
         let precoPecas: number = 0;
-        let pecasList = res.filter(item => item.category.toLowerCase() === 'peca');
-        pecasList.forEach(item => {
+        let pecasList = res.filter(
+          (item) => item.category.toLowerCase() === 'peca'
+        );
+        pecasList.forEach((item) => {
           precoPecas += item.price;
-        })
+        });
         if (precoPecas > 0) {
           dadosNomes.push('Peças');
-          dadosManutencao.push({ value: precoPecas, itemStyle: { color: '#721c87' },  label: { show: true, position: 'inside' }  });
+          dadosManutencao.push({
+            value: precoPecas,
+            itemStyle: { color: '#721c87' },
+            label: { show: true, position: 'inside' },
+          });
         }
 
         this.chart_manutencao = {
@@ -118,7 +148,7 @@ export class DashboardComponent implements OnInit {
             text: 'Totais Manutenções',
             subtext: 'Valor em Reais',
             subtextStyle: {
-              color: '#FFFFFF'
+              color: '#FFFFFF',
             },
             textStyle: { color: '#FFFFFF' },
             left: 'center',
@@ -138,14 +168,14 @@ export class DashboardComponent implements OnInit {
           xAxis: {
             type: 'category',
             data: [...new Set(dadosNomes)],
-            show: false
+            show: false,
           },
           yAxis: {
             type: 'value',
             axisLabel: {
-                color: '#FFFFFF',
-                formatter: '{value} BRL'
-            }
+              color: '#FFFFFF',
+              formatter: '{value} BRL',
+            },
           },
           series: [
             {
@@ -165,7 +195,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosManutencoesLine() {
     this.manutencaoService.read_all().subscribe(
       (res) => {
-        res.length > 0 ? this.semValores = false : null;
+        res.length > 0 ? (this.semValores = false) : null;
         this.manutencoes = res;
         let lst_data: any[] = [];
         this.manutencoes.forEach((item) => {
@@ -209,7 +239,7 @@ export class DashboardComponent implements OnInit {
             text: 'Detalhes Manutenções',
             subtext: 'Valor em Reais',
             subtextStyle: {
-              color: '#FFFFFF'
+              color: '#FFFFFF',
             },
             textStyle: { color: '#FFFFFF' },
             left: 'center',
@@ -231,14 +261,14 @@ export class DashboardComponent implements OnInit {
             data: [...new Set(lst_data_x)],
             axisLabel: {
               color: '#FFFFFF',
-            }
+            },
           },
           yAxis: {
             type: 'value',
             axisLabel: {
               color: '#FFFFFF',
-              formatter: '{value} BRL/L'
-            }
+              formatter: '{value} BRL/L',
+            },
           },
           series: [
             {
@@ -278,7 +308,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosCombustivel() {
     this.combustivelService.read_all().subscribe(
       (res) => {
-        res.length > 0 ? this.semValores = false : null;
+        res.length > 0 ? (this.semValores = false) : null;
         this.combustivel = res;
 
         let lst_data: any[] = [];
@@ -323,7 +353,7 @@ export class DashboardComponent implements OnInit {
             text: 'Combustível',
             subtext: 'Preço por litro (R$/L)',
             subtextStyle: {
-              color: '#FFFFFF'
+              color: '#FFFFFF',
             },
             textStyle: { color: '#FFFFFF' },
             left: 'center',
@@ -351,14 +381,14 @@ export class DashboardComponent implements OnInit {
             data: [...new Set(lst_data_x)],
             axisLabel: {
               color: '#FFFFFF',
-            }
+            },
           },
           yAxis: {
             type: 'value',
             axisLabel: {
               color: '#FFFFFF',
-              formatter: '{value} BRL/L'
-            }
+              formatter: '{value} BRL/L',
+            },
           },
           series: [
             {
@@ -398,7 +428,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosPressaoPneu() {
     this.pressaoService.read_all().subscribe(
       (res) => {
-        res.length > 0 ? this.semValores = false : null;
+        res.length > 0 ? (this.semValores = false) : null;
 
         this.pneu = res;
         let lst_data: any[] = [];
@@ -419,26 +449,39 @@ export class DashboardComponent implements OnInit {
           switch (item.position) {
             case 'fl':
               lst_data_y_fl.push(data_y);
+              lst_data_y_fr.push(null);
+              lst_data_y_bl.push(null);
+              lst_data_y_br.push(null);
               break;
             case 'fr':
+              lst_data_y_fl.push(null);
               lst_data_y_fr.push(data_y);
+              lst_data_y_bl.push(null);
+              lst_data_y_br.push(null);
               break;
             case 'bl':
+              lst_data_y_fl.push(null);
+              lst_data_y_fr.push(null);
               lst_data_y_bl.push(data_y);
+              lst_data_y_br.push(null);
               break;
             case 'br':
+              lst_data_y_fl.push(null);
+              lst_data_y_fr.push(null);
+              lst_data_y_bl.push(null);
               lst_data_y_br.push(data_y);
               break;
             default:
               console.log('erro');
           }
         });
+
         this.chart_pneu = {
           title: {
             text: 'Pressão dos Pneus',
             subtext: 'Valor em PSI',
             subtextStyle: {
-              color: '#FFFFFF'
+              color: '#FFFFFF',
             },
             textStyle: { color: '#FFFFFF' },
             left: 'center',
@@ -465,14 +508,14 @@ export class DashboardComponent implements OnInit {
             data: [...new Set(lst_data_x)],
             axisLabel: {
               color: '#FFFFFF',
-            }
+            },
           },
           yAxis: {
             type: 'value',
             axisLabel: {
               color: '#FFFFFF',
-              formatter: '{value} PSI'
-            }
+              formatter: '{value} PSI',
+            },
           },
           series: [
             {
@@ -507,7 +550,7 @@ export class DashboardComponent implements OnInit {
   async buscaDadosKm() {
     this.kmService.read_all().subscribe(
       (res) => {
-        res.length > 0 ? this.semValores = false : null;
+        res.length > 0 ? (this.semValores = false) : null;
         this.km = res;
         let lst_data: any[] = [];
         this.km.forEach((item) => {
@@ -527,7 +570,7 @@ export class DashboardComponent implements OnInit {
             text: 'Quilometragem',
             subtext: 'Valor em km',
             subtextStyle: {
-              color: '#FFFFFF'
+              color: '#FFFFFF',
             },
             textStyle: { color: '#FFFFFF' },
             left: 'center',
@@ -549,14 +592,14 @@ export class DashboardComponent implements OnInit {
             data: lst_data_x,
             axisLabel: {
               color: '#FFFFFF',
-            }
+            },
           },
           yAxis: {
             type: 'value',
             axisLabel: {
               color: '#FFFFFF',
-              formatter: '{value}k km'
-            }
+              formatter: '{value}k km',
+            },
           },
           series: [
             {

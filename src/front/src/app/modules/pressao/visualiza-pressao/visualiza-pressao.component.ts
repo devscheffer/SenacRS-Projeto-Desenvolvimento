@@ -84,7 +84,10 @@ export class VisualizaPressaoComponent implements AfterViewInit, OnInit {
   }
 
   formataData(data: string) {
-    return moment(data).format('YYYY/MM/DD');
+    let data_formatada = moment(data)
+      .add(1, 'd')
+      .format('YYYY/MM/DD')
+    return data_formatada;
   }
 
   validaPosicao(siglaPosicao: string) {
