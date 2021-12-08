@@ -74,3 +74,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.semValor {
+  display: flex;
+  justify-content: center;
+  height: 70%;
+  align-items: center;
+
+  h3 {
+    font-size: 1.5rem;
+  }
+}

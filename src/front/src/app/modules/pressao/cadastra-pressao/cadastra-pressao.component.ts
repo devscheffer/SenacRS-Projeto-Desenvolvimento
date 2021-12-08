@@ -65,6 +65,7 @@ export class CadastraPressaoComponent implements OnInit {
             this.router.navigate(['home/pressao/registros']);
           },
           (err) => {
+            alert("Problema ao cadastrar pressão do pneu!");
             console.log(err);
             this.loading = false;
             this.validaSubmit = false;

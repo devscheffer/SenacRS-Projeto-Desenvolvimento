@@ -89,6 +89,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
         this.router.navigate(['home/quilometragem/registros']);
       },
       (err) => {
+        alert("Problema ao editar registro!");
         console.log(err);
         this.loading = false;
       }
@@ -108,6 +109,7 @@ export class ViewEditQuilometragemComponent implements OnInit {
         this.router.navigate(['home/quilometragem/registros']);
       },
       (err) => {
+        alert("Problema ao excluir registro!");
         console.log(err);
         this.loading = false;
       }

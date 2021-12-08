@@ -19,6 +19,7 @@
         autofocus />
       <app-vmessage *ngIf="cadastroForm.get('confirmPassword')?.errors?.required && validaSubmit" text="Preencha sua senha novamente."></app-vmessage>
       <app-vmessage *ngIf="cadastroForm.get('confirmPassword')?.errors?.minlength && validaSubmit" text="A senha deve ter no minimo 4 caracteres."></app-vmessage>
+      <app-vmessage *ngIf="validaSenhasIguais" text="A senha e a confirmação da senha devem ser a mesma."></app-vmessage>
     </div>
     <div class="row">
       <div class="col-6">

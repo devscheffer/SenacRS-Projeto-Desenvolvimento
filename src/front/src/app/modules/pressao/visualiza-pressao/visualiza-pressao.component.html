@@ -3,10 +3,14 @@
   <hr class="linha">
 </header>
 
-<!-- <app-button-plus [rota]="'/pressao/cadastra'" *ngIf="!loading"></app-button-plus> -->
-
-<div class="mb-4">
+<div *ngIf="data.length > 0; else semDados" class="mb-4">
   <app-datatable *ngIf="data.length > 0" [columns]="columns" [data]="data" class="mt-2"></app-datatable>
 </div>
+
+<ng-template #semDados>
+  <div *ngIf="!loading" class="text-center semValor m-2">
+    <h3 class="text-white"><i class="fa fa-exclamation-circle fa-1x mr-1" aria-hidden="false"></i> Você ainda não possui registros de pressão do pneu.</h3>
+  </div>
+</ng-template>
 
 <app-loading [loading]="loading"></app-loading>

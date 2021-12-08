@@ -83,6 +83,7 @@ export class CadastraCombustivelComponent implements OnInit {
           confirmaEnvioCombustivel = true;
         },
         (err) => {
+          alert("Problema ao cadastrar combustível!");
           console.log(err);
         }
       );
