@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -54,7 +55,8 @@ export class LoginComponent implements OnInit {
         (res) => {
           this.router.navigate(['home/dashboard']);
         },
-        (err) => {
+        (err: HttpErrorResponse) => {
+          err.status == 401 ? alert("Usuário não autorizado!") : alert("Problema ao realizar o login!");
           console.log(err);
           this.validaSubmit = false;
         }

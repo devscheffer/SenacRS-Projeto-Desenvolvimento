@@ -101,6 +101,7 @@ export class ViewEditCombustivelComponent implements OnInit {
         this.router.navigate(['home/combustivel/registros']);
       },
       (err) => {
+        alert("Problema ao editar registro!");
         console.log(err);
         this.loading = false;
       }
@@ -119,6 +120,7 @@ export class ViewEditCombustivelComponent implements OnInit {
         this.loading = false;
         this.router.navigate(['home/combustivel/registros']);
       }, err => {
+        alert("Problema ao excluir registro!");
         console.log(err);
         this.loading = false;
       }

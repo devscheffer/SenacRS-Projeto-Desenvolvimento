@@ -15,6 +15,7 @@ export class CadastroComponent implements OnInit {
   cadastroForm!: FormGroup;
   validaSubmit: boolean = false;
   @ViewChild('emailInput') emailInput!: ElementRef; // Utilizando ViewChield para manipular o DOM.
+  validaSenhasIguais: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -49,6 +50,7 @@ export class CadastroComponent implements OnInit {
   }
 
   submit() {
+    this.validaSenhasIguais = false;
     this.validaSubmit = true;
     if (!this.cadastroForm.invalid) {
       if (this.cadastroForm.get('password')?.value == this.cadastroForm.get('confirmPassword')?.value) {
@@ -60,9 +62,12 @@ export class CadastroComponent implements OnInit {
           .subscribe(res => {
             this.router.navigate(['login'])
           }, err => {
+            alert("Problema ao cadastrar o usuário!");
             console.log(err);
             this.validaSubmit = false;
           });
+      } else {
+        this.validaSenhasIguais = true;
       }
     }
   }

@@ -65,6 +65,7 @@ export class CadastraManutencaoComponent implements OnInit {
               this.router.navigate(['home/manutencao/registros']);
             },
             (err) => {
+              alert("Problema ao cadastrar manutenção!");
               console.log(err);
               this.loading = false;
               this.validaSubmit = false;

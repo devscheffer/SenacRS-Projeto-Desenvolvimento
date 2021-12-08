@@ -95,6 +95,7 @@ export class ViewEditPressaoComponent implements OnInit {
         this.router.navigate(['home/pressao/registros']);
       },
       (err) => {
+        alert("Problema ao editar registro!");
         console.log(err);
         this.loading = false;
       }
@@ -113,6 +114,7 @@ export class ViewEditPressaoComponent implements OnInit {
         this.loading = false;
         this.router.navigate(['home/pressao/registros']);
       }, err => {
+        alert("Problema ao excluir registro!");
         console.log(err);
         this.loading = false;
       }

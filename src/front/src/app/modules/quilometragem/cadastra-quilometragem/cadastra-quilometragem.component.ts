@@ -50,6 +50,7 @@ export class CadastraQuilometragemComponent implements OnInit {
           this.router.navigate(['home/quilometragem/registros']);
         },
         (err) => {
+          alert("Problema ao cadastrar quilometragem!");
           console.log(err);
           this.loading = false;
           this.validaSubmit = false;
