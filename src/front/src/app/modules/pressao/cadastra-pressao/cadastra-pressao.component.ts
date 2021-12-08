@@ -62,7 +62,7 @@ export class CadastraPressaoComponent implements OnInit {
         this.pressaoService.create(this.cadastraPressaoForm.value).subscribe(
           (res) => {
             this.loading = false;
-            this.router.navigate(['home/pneu/registros']);
+            this.router.navigate(['home/pressao/registros']);
           },
           (err) => {
             console.log(err);
