@@ -28,3 +28,7 @@
 ## App funcional
 
 https://gianalves.github.io/App-Herbie-21/#/login
+
+## Apresentação do app
+
+https://www.canva.com/design/DAEs7txDKMM/xifPmEr1RclViOkD5OaRTg/view?utm_content=DAEs7txDKMM&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
