@@ -8,7 +8,6 @@
 - Jonatan Goulart Maciel (Front-End)
 - Leonardo Soares Duarte (Front-End)
 
-
 ## Visão de Produto
 
 **Para** proprietário de automóveis
